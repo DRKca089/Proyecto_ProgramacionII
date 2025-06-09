@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-public class LogicaVenta : ILogicaVenta
+public class VentaLogica : IVentaLogica
 {
     public void RegistrarVenta(Venta venta)
     {

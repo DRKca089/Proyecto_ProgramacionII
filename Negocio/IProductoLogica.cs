@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-public interface ILogicaProducto
+public interface IProductoLogica
 {
     void Agregar(Producto producto);
     void Modificar(Producto producto);

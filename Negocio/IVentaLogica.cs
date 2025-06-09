@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-public interface ILogicaVenta
+public interface IVentaLogica
 {
     void RegistrarVenta(Venta venta);
     List<Venta> ListarVentas();

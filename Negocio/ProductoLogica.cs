@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 
-public class LogicaProducto : ILogicaProducto
+public class ProductoLogica : IProductoLogica
 {
     public void Agregar(Producto producto)
     {
-
+        if (producto == null || string.IsNullOrWhiteSpace(producto.Codigo))
+            throw new ArgumentNullException("Producto invalido");
     }
 
     public void Modificar(Producto producto)

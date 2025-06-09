@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 
 
-public class LogicaReporte : ILogicaReporte
+public class ReporteLogica : IReporteLogica
 {
     public List<Producto> ProductosStockBajo(int limite)
     {
