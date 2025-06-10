@@ -44,9 +44,7 @@
     <Compile Include="VentaLogica.cs" />
     <Compile Include="ReporteLogica.cs" />
     <Compile Include="ProductoLogica.cs" />
-    <Compile Include="IReporteLogica.cs" />
-    <Compile Include="IVentaLogica.cs" />
-    <Compile Include="IProductoLogica.cs" />
+    <Compile Include="Interfaces.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

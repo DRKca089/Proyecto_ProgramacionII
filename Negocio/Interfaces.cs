@@ -9,3 +9,16 @@ public interface IProductoLogica
     List<Producto> BuscarPorNombre(string nombre);
     List<Producto> ListarProductos();
 }
+
+public interface IVentaLogica
+{
+    void RegistrarVenta(Venta venta);
+    List<Venta> ListarVentas();
+}
+
+public interface IReporteLogica
+{
+    List<Producto> ProductosStockBajo(int limite);
+    decimal TotalIngresos();
+    List<Producto> ProductosMasVendidos(int popular); //Guarda los productos mas vendidos
+}
