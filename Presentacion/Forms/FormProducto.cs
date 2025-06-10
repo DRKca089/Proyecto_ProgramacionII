@@ -16,5 +16,10 @@ namespace Presentacion.Forms
         {
             InitializeComponent();
         }
+
+        private void btnAgregarProducto_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

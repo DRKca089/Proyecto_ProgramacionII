@@ -19,7 +19,7 @@ namespace Presentacion
         public FormMenu()
         {
             InitializeComponent();
-            this.MaximizedBounds = Screen.FromHandle(this.Handle).WorkingArea;
+
         }
 
         private void Form1_Load(object sender, EventArgs e)
