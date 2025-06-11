@@ -23,7 +23,7 @@ public class ProductoLogica : IProductoLogica
 
     public bool Modificar(Producto producto)
     {
-        var existente = BuscarPorCodigo(producto.Codigo);
+        Producto existente = BuscarPorCodigo(producto.Codigo);
         if (existente == null)
             return false;
 
@@ -35,7 +35,7 @@ public class ProductoLogica : IProductoLogica
 
     public bool Eliminar(string codigo)
     {
-        var producto = BuscarPorCodigo(codigo);
+        Producto producto = BuscarPorCodigo(codigo);
         if (producto == null)
             return false;
 
@@ -43,7 +43,7 @@ public class ProductoLogica : IProductoLogica
         return true;
     }
 
-    public Producto BuscarPorCodigo(string codigo)
+    public Producto BuscarPorCodigo(string codigo) 
     {
         return productos.Find(p => p.Codigo.IndexOf(codigo, StringComparison.OrdinalIgnoreCase) >= 0);
     }

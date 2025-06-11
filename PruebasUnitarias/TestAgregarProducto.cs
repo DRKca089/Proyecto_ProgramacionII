@@ -62,11 +62,11 @@ public class ProductoLogicaTests
     [TestCategory("BuscarPorCodigo")]
     public void BuscarPorCodigo()
     {
-        logica.Agregar(new Producto { Codigo = "0001", Nombre = "Leche Entera", CantidadDisponible = 10, Valor = 15.5m });
+        logica.Agregar(new Producto { Codigo = "0004", Nombre = "Leche Entera", CantidadDisponible = 10, Valor = 15.5m });
         logica.Agregar(new Producto { Codigo = "0002", Nombre = "Leche Descremada", CantidadDisponible = 5, Valor = 16.0m });
         logica.Agregar(new Producto { Codigo = "0003", Nombre = "Yogurt", CantidadDisponible = 7, Valor = 12.0m });
 
-        var resultado = logica.BuscarPorCodigo("0001");
+        var resultado = logica.BuscarPorCodigo("000");
 
         Assert.IsNotNull(resultado);
         Assert.AreEqual("Leche Entera", resultado.Nombre);
@@ -76,8 +76,8 @@ public class ProductoLogicaTests
     [TestCategory("BuscarPorNombre")]
     public void BuscarPorNombres()
     {
-        logica.Agregar(new Producto { Codigo = "0001", Nombre = "Leche Entera", CantidadDisponible = 10, Valor = 15.5m });
-        logica.Agregar(new Producto { Codigo = "0002", Nombre = "Leche Descremada", CantidadDisponible = 5, Valor = 16.0m });
+        logica.Agregar(new Producto { Codigo = "0001", Nombre = "Yougr Entera", CantidadDisponible = 10, Valor = 15.5m });
+        logica.Agregar(new Producto { Codigo = "0002", Nombre = "Yogurt Descremada", CantidadDisponible = 5, Valor = 16.0m });
         logica.Agregar(new Producto { Codigo = "0003", Nombre = "Yogurt", CantidadDisponible = 7, Valor = 12.0m });
 
         List<Producto> resultados = logica.BuscarPorNombre("leche");
