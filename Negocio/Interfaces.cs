@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 public interface IProductoLogica
 {
-    bool Agregar(Producto producto);
-    bool Modificar(Producto producto);
-    bool Eliminar(string codigo);
+    void Agregar(Producto producto);
+    void Modificar(Producto producto);
+    void Eliminar(string codigo);
     Producto BuscarPorCodigo(string codigo);
     List<Producto> BuscarPorNombre(string nombre);
     List<Producto> ListarProductos();
+    string GenerarCodigo();
 }
 
 public interface IVentaLogica
@@ -22,3 +23,4 @@ public interface IReporteLogica
     decimal TotalIngresos();
     List<Producto> ProductosMasVendidos(int popular); //Guarda los productos mas vendidos
 }
+

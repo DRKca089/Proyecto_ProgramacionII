@@ -76,11 +76,11 @@ public class ProductoLogicaTests
     [TestCategory("BuscarPorNombre")]
     public void BuscarPorNombres()
     {
-        logica.Agregar(new Producto { Codigo = "0001", Nombre = "Yougr Entera", CantidadDisponible = 10, Valor = 15.5m });
+        logica.Agregar(new Producto { Codigo = "0001", Nombre = "Leche Entera", CantidadDisponible = 10, Valor = 15.5m });
         logica.Agregar(new Producto { Codigo = "0002", Nombre = "Yogurt Descremada", CantidadDisponible = 5, Valor = 16.0m });
         logica.Agregar(new Producto { Codigo = "0003", Nombre = "Yogurt", CantidadDisponible = 7, Valor = 12.0m });
 
-        List<Producto> resultados = logica.BuscarPorNombre("leche");
+        List<Producto> resultados = logica.BuscarPorNombre("Yogurt");
 
         Assert.AreEqual(2, resultados.Count);
     }

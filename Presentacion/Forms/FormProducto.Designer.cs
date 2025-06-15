@@ -29,8 +29,9 @@
         private void InitializeComponent()
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -98,6 +99,7 @@
             // 
             // txtProductoCodigo
             // 
+            this.txtProductoCodigo.Enabled = false;
             this.txtProductoCodigo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtProductoCodigo.Location = new System.Drawing.Point(120, 39);
             this.txtProductoCodigo.Name = "txtProductoCodigo";
@@ -148,6 +150,10 @@
             // 
             // dGVProducto
             // 
+            this.dGVProducto.AllowUserToAddRows = false;
+            this.dGVProducto.AllowUserToDeleteRows = false;
+            this.dGVProducto.AllowUserToResizeColumns = false;
+            this.dGVProducto.AllowUserToResizeRows = false;
             this.dGVProducto.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dGVProducto.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(66)))), ((int)(((byte)(91)))));
             this.dGVProducto.BorderStyle = System.Windows.Forms.BorderStyle.None;
@@ -167,27 +173,27 @@
             this.columnNombreProducto,
             this.columnCantidadProducto,
             this.columnValorProducto});
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(66)))), ((int)(((byte)(91)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.SteelBlue;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dGVProducto.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(66)))), ((int)(((byte)(91)))));
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.SteelBlue;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dGVProducto.DefaultCellStyle = dataGridViewCellStyle3;
             this.dGVProducto.EnableHeadersVisualStyles = false;
             this.dGVProducto.GridColor = System.Drawing.Color.SteelBlue;
             this.dGVProducto.Location = new System.Drawing.Point(12, 48);
             this.dGVProducto.Name = "dGVProducto";
             this.dGVProducto.ReadOnly = true;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(66)))), ((int)(((byte)(91)))));
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.SteelBlue;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dGVProducto.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(66)))), ((int)(((byte)(91)))));
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.SteelBlue;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dGVProducto.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.dGVProducto.RowHeadersVisible = false;
             this.dGVProducto.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dGVProducto.Size = new System.Drawing.Size(699, 164);
@@ -195,24 +201,30 @@
             // 
             // columnCodigoProducto
             // 
+            this.columnCodigoProducto.DataPropertyName = "Codigo";
             this.columnCodigoProducto.HeaderText = "Código";
             this.columnCodigoProducto.Name = "columnCodigoProducto";
             this.columnCodigoProducto.ReadOnly = true;
             // 
             // columnNombreProducto
             // 
+            this.columnNombreProducto.DataPropertyName = "Nombre";
             this.columnNombreProducto.HeaderText = "Nombre";
             this.columnNombreProducto.Name = "columnNombreProducto";
             this.columnNombreProducto.ReadOnly = true;
             // 
             // columnCantidadProducto
             // 
-            this.columnCantidadProducto.HeaderText = "Cantidad";
+            this.columnCantidadProducto.DataPropertyName = "CantidadDisponible";
+            this.columnCantidadProducto.HeaderText = "Cantidad Disponible";
             this.columnCantidadProducto.Name = "columnCantidadProducto";
             this.columnCantidadProducto.ReadOnly = true;
             // 
             // columnValorProducto
             // 
+            this.columnValorProducto.DataPropertyName = "Valor";
+            dataGridViewCellStyle2.Format = "C2";
+            this.columnValorProducto.DefaultCellStyle = dataGridViewCellStyle2;
             this.columnValorProducto.HeaderText = "Valor";
             this.columnValorProducto.Name = "columnValorProducto";
             this.columnValorProducto.ReadOnly = true;
@@ -345,11 +357,11 @@
         private FontAwesome.Sharp.IconButton btnBuscarProducto;
         private System.Windows.Forms.TextBox txtProductoBuscar;
         private System.Windows.Forms.DataGridView dGVProducto;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.DataGridViewTextBoxColumn columnCodigoProducto;
         private System.Windows.Forms.DataGridViewTextBoxColumn columnNombreProducto;
         private System.Windows.Forms.DataGridViewTextBoxColumn columnCantidadProducto;
         private System.Windows.Forms.DataGridViewTextBoxColumn columnValorProducto;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Panel panel1;
     }
 }

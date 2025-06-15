@@ -63,9 +63,9 @@ namespace Presentacion.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap AAAA {
+        internal static System.Drawing.Bitmap BUHO_EPN_big {
             get {
-                object obj = ResourceManager.GetObject("AAAA", resourceCulture);
+                object obj = ResourceManager.GetObject("BUHO_EPN_big", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -73,9 +73,9 @@ namespace Presentacion.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap AAAA1 {
+        internal static System.Drawing.Bitmap BUHO_EPN_big1 {
             get {
-                object obj = ResourceManager.GetObject("AAAA1", resourceCulture);
+                object obj = ResourceManager.GetObject("BUHO_EPN_big1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
