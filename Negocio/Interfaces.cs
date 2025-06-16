@@ -24,3 +24,9 @@ public interface IReporteLogica
     List<Producto> ProductosMasVendidos(int popular); //Guarda los productos mas vendidos
 }
 
+public interface IUsuarioLogica
+{
+    Usuario Validar(string rol, string codigo, string contraseña);
+    List<Usuario> ListaUsuarios();
+}
+

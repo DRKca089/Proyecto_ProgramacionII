@@ -53,42 +53,51 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FormMenu.cs">
+    <Compile Include="FormRegistrarse.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormMenu.Designer.cs">
+    <Compile Include="FormRegistrarse.Designer.cs">
+      <DependentUpon>FormRegistrarse.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsAdministrador\FormMenu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormsAdministrador\FormMenu.Designer.cs">
       <DependentUpon>FormMenu.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\FormProducto.cs">
+    <Compile Include="FormsAdministrador\FormProducto.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\FormProducto.Designer.cs">
+    <Compile Include="FormsAdministrador\FormProducto.Designer.cs">
       <DependentUpon>FormProducto.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\FormVenta.cs">
+    <Compile Include="FormsAdministrador\FormVenta.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\FormVenta.Designer.cs">
+    <Compile Include="FormsAdministrador\FormVenta.Designer.cs">
       <DependentUpon>FormVenta.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\FormReporte.cs">
+    <Compile Include="FormsAdministrador\FormReporte.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\FormReporte.Designer.cs">
+    <Compile Include="FormsAdministrador\FormReporte.Designer.cs">
       <DependentUpon>FormReporte.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="FormMenu.resx">
+    <EmbeddedResource Include="FormsAdministrador\FormMenu.resx">
       <DependentUpon>FormMenu.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FormReporte.resx">
+    <EmbeddedResource Include="FormRegistrarse.resx">
+      <DependentUpon>FormRegistrarse.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsAdministrador\FormReporte.resx">
       <DependentUpon>FormReporte.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FormProducto.resx">
+    <EmbeddedResource Include="FormsAdministrador\FormProducto.resx">
       <DependentUpon>FormProducto.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FormVenta.resx">
+    <EmbeddedResource Include="FormsAdministrador\FormVenta.resx">
       <DependentUpon>FormVenta.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -127,6 +136,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\BUHO_EPN_big.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="FormsCliente\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
