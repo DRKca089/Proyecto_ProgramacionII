@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Drawing.Text;
 using System.Windows.Forms;
 
@@ -90,9 +92,7 @@ namespace Presentacion.Forms
                     };
 
                     productoLogica.Modificar(productoModificado);
-
                     MessageBox.Show("Producto modificado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
                     ActualizarTablaProducto();
                     LimpiarCampos();
                 }
@@ -133,6 +133,38 @@ namespace Presentacion.Forms
                     MessageBox.Show("Error al eliminar: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
+        }
+
+        private void btnBuscarProducto_Click(object sender, EventArgs e)
+        {
+            string busquedad = txtProductoBuscar.Text.Trim();
+
+            if (string.IsNullOrWhiteSpace(busquedad))
+            {
+                MessageBox.Show("Por favor ingresa un término de búsqueda.", "Campo vacío", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // Buscar por código
+            Producto productoPorCodigo = productoLogica.BuscarPorCodigo(busquedad);
+            if (productoPorCodigo != null)
+            {
+                dGVProducto.DataSource = new List<Producto> { productoPorCodigo };
+                return;
+            }
+
+            // Buscar por nombre
+            List<Producto> productosPorNombre = productoLogica.BuscarPorNombre(busquedad);
+            if (productosPorNombre.Any())
+            {
+                dGVProducto.DataSource = productosPorNombre;
+            }
+            else
+            {
+                MessageBox.Show("No se encontraron productos.", "Sin resultados", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                dGVProducto.DataSource = null;
+            }
+
         }
 
         private void dGVProducto_CellDoubleClick(object sender, DataGridViewCellEventArgs e)

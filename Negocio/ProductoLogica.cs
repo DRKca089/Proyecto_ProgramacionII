@@ -76,7 +76,7 @@ public class ProductoLogica : IProductoLogica
 
     public Producto BuscarPorCodigo(string codigo)
     {
-        return productos.Find(p => p.Codigo.IndexOf(codigo, StringComparison.OrdinalIgnoreCase) >= 0);
+        return productos.Find(p => p.Codigo.Equals(codigo, StringComparison.OrdinalIgnoreCase));
     }
 
     public List<Producto> BuscarPorNombre(string nombre)
@@ -95,8 +95,8 @@ public class ProductoLogica : IProductoLogica
 
         if (productos.Any()) //Verifica si hay algun producto en la lista
         {
-            int NumeroMaximo = productos.Select(p => int.Parse(p.Codigo.Substring(1))).Max();
-            siguienteNumero = NumeroMaximo + 1;
+            int numeroMaximo = productos.Select(p => int.Parse(p.Codigo.Substring(1))).Max();
+            siguienteNumero = numeroMaximo + 1;
         }
         else
         {
