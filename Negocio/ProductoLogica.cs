@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 public class ProductoLogica : IProductoLogica
 {
@@ -13,16 +14,22 @@ public class ProductoLogica : IProductoLogica
     public void Agregar(Producto producto)
     {
         if (producto == null)
-            throw new ArgumentNullException(nameof(producto), "El producto no puede estar vacio");
+            throw new ArgumentNullException(nameof(producto), "El producto no puede estar vacío");
 
-        if (BuscarPorCodigo(producto.Codigo) != null)
-            throw new InvalidOperationException("Ya existe un producto con ese codigo");
+        if (string.IsNullOrWhiteSpace(producto.Nombre))
+            throw new ArgumentException("El nombre del producto es obligatorio");
 
-        if (producto.CantidadDisponible <= 0)
-            throw new ArgumentException("La cantidad disponible no puede ser menor o igual a 0");
+        if (producto.CantidadDisponible < 0)
+            throw new ArgumentException("La cantidad disponible no puede ser negativo");
 
-        if (producto.Valor <= 0)
-            throw new ArgumentException("El valor del producto no puede ser menor o igual a 0");
+        if (producto.Valor < 0)
+            throw new ArgumentException("El valor del producto no puede ser negativo");
+
+        if (decimal.Round(producto.Valor, 2) != producto.Valor)
+            throw new ArgumentException("El valor solo puede tener hasta 2 decimales");
+
+        if (productos.Any(p => p.Nombre.Equals(producto.Nombre, StringComparison.OrdinalIgnoreCase)))
+            throw new InvalidOperationException("Ya existe un producto con ese nombre");
 
         producto.Codigo = GenerarCodigo();
         productos.Add(producto);
@@ -30,12 +37,27 @@ public class ProductoLogica : IProductoLogica
 
     public void Modificar(Producto producto)
     {
-        Producto existente = BuscarPorCodigo(producto.Codigo);
-        if (existente == null)
-            throw new InvalidOperationException("No se encontro el producto a modificar");
+        if (producto == null)
+            throw new ArgumentNullException(nameof(producto), "El producto no puede estar vacío");
 
         if (string.IsNullOrWhiteSpace(producto.Codigo))
             throw new ArgumentException("El código no puede estar vacío.");
+
+        Producto existente = BuscarPorCodigo(producto.Codigo);
+        if (existente == null)
+            throw new InvalidOperationException("No se encontró el producto a modificar.");
+
+        if (string.IsNullOrWhiteSpace(producto.Nombre))
+            throw new ArgumentException("El nombre del producto es obligatorio");
+
+        if (producto.CantidadDisponible < 0)
+            throw new ArgumentException("La cantidad disponible no puede ser negativo");
+
+        if (producto.Valor < 0)
+            throw new ArgumentException("El valor del producto no puede ser negativo");
+
+        if (decimal.Round(producto.Valor, 2) != producto.Valor)
+            throw new ArgumentException("El valor solo puede tener hasta 2 decimales");
 
         existente.Nombre = producto.Nombre;
         existente.CantidadDisponible = producto.CantidadDisponible;
@@ -44,14 +66,12 @@ public class ProductoLogica : IProductoLogica
 
     public void Eliminar(string codigo)
     {
-        if (string.IsNullOrWhiteSpace(codigo))
-            throw new ArgumentException("El código no puede estar vacío.");
+        Producto productoEliminar = BuscarPorCodigo(codigo);
 
-        Producto producto = BuscarPorCodigo(codigo);
-        if (producto == null)
-            throw new InvalidOperationException("No se encontró un producto con ese código.");
+        if (productoEliminar == null)
+            throw new InvalidOperationException("No se encontró el producto a eliminar.");
 
-        productos.Remove(producto);
+        productos.Remove(productoEliminar);
     }
 
     public Producto BuscarPorCodigo(string codigo)
@@ -71,16 +91,18 @@ public class ProductoLogica : IProductoLogica
 
     public string GenerarCodigo()
     {
+        int siguienteNumero;
+
+        if (productos.Any()) //Verifica si hay algun producto en la lista
         {
-            int nuevoNumero = 1;
-            if (productos.Count > 0)
-            {
-                string ultimoCodigo = productos[productos.Count - 1].Codigo;
-                string numeroStr = ultimoCodigo.Substring(1);
-                if (int.TryParse(numeroStr, out int numero))
-                    nuevoNumero = numero + 1;
-            }
-            return "P" + nuevoNumero.ToString("D4");
+            int NumeroMaximo = productos.Select(p => int.Parse(p.Codigo.Substring(1))).Max();
+            siguienteNumero = NumeroMaximo + 1;
         }
+        else
+        {
+            siguienteNumero = 1;
+        }
+
+        return "P" + siguienteNumero.ToString("D4");
     }
 }
