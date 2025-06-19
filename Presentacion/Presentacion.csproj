@@ -59,46 +59,73 @@
     <Compile Include="FormRegistrarse.Designer.cs">
       <DependentUpon>FormRegistrarse.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormsAdministrador\FormMenu.cs">
+    <Compile Include="Forms\FormMenu.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormsAdministrador\FormMenu.Designer.cs">
+    <Compile Include="Forms\FormMenu.Designer.cs">
       <DependentUpon>FormMenu.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormsAdministrador\FormProducto.cs">
+    <Compile Include="Forms\FormsAdministrador\FormProducto.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormsAdministrador\FormProducto.Designer.cs">
+    <Compile Include="Forms\FormsAdministrador\FormProducto.Designer.cs">
       <DependentUpon>FormProducto.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormsAdministrador\FormVenta.cs">
+    <Compile Include="Forms\FormsAdministrador\FormVenta.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormsAdministrador\FormVenta.Designer.cs">
+    <Compile Include="Forms\FormsAdministrador\FormVenta.Designer.cs">
       <DependentUpon>FormVenta.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormsAdministrador\FormReporte.cs">
+    <Compile Include="Forms\FormsAdministrador\FormReporte.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormsAdministrador\FormReporte.Designer.cs">
+    <Compile Include="Forms\FormsAdministrador\FormReporte.Designer.cs">
       <DependentUpon>FormReporte.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FormsCliente\frmMisCompras.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormsCliente\frmMisCompras.Designer.cs">
+      <DependentUpon>frmMisCompras.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FormsCliente\frmTienda.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormsCliente\frmTienda.Designer.cs">
+      <DependentUpon>frmTienda.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FormsCliente\frmCompra.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormsCliente\frmCompra.Designer.cs">
+      <DependentUpon>frmCompra.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="FormsAdministrador\FormMenu.resx">
+    <EmbeddedResource Include="Forms\FormMenu.resx">
       <DependentUpon>FormMenu.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormRegistrarse.resx">
       <DependentUpon>FormRegistrarse.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormsAdministrador\FormReporte.resx">
+    <EmbeddedResource Include="Forms\FormsAdministrador\FormReporte.resx">
       <DependentUpon>FormReporte.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormsAdministrador\FormProducto.resx">
+    <EmbeddedResource Include="Forms\FormsAdministrador\FormProducto.resx">
       <DependentUpon>FormProducto.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormsAdministrador\FormVenta.resx">
+    <EmbeddedResource Include="Forms\FormsAdministrador\FormVenta.resx">
       <DependentUpon>FormVenta.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormsCliente\frmCompra.resx">
+      <DependentUpon>frmCompra.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormsCliente\frmMisCompras.resx">
+      <DependentUpon>frmMisCompras.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormsCliente\frmTienda.resx">
+      <DependentUpon>frmTienda.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -137,8 +164,6 @@
   <ItemGroup>
     <None Include="Resources\BUHO_EPN_big.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="FormsCliente\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

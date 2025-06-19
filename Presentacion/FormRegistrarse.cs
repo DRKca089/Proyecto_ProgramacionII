@@ -31,6 +31,7 @@ namespace Presentacion
                 return;
             }
 
+            //Validar cliente
             bool valido = usuarioLogica.ValidarUsuario(nombre, contraseña, rol);
 
             if (valido)
@@ -38,9 +39,10 @@ namespace Presentacion
                 MessageBox.Show("¡Login exitoso!", "Bienvenido", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 this.Hide();
 
-                if (rol.Equals("Administrador", StringComparison.OrdinalIgnoreCase))
+                if (rol.Equals("Administrador", StringComparison.OrdinalIgnoreCase) ||
+                    rol.Equals("Cliente", StringComparison.OrdinalIgnoreCase))
                 {
-                    FormMenu menu = new FormMenu(nombre, rol);
+                    frmMenu menu = new frmMenu(nombre, rol);
                     menu.ShowDialog();
                 }
 
@@ -50,6 +52,7 @@ namespace Presentacion
             {
                 MessageBox.Show("Usuario, contraseña o rol incorrecto.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+
         }
     }
 }
