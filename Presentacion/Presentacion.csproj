@@ -53,17 +53,29 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FormRegistrarse.cs">
+    <Compile Include="Forms\FormInicioSesion.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormRegistrarse.Designer.cs">
-      <DependentUpon>FormRegistrarse.cs</DependentUpon>
+    <Compile Include="Forms\FormInicioSesion.Designer.cs">
+      <DependentUpon>FormInicioSesion.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\FormMenu.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\FormMenu.Designer.cs">
       <DependentUpon>FormMenu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FormRegistro.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormRegistro.Designer.cs">
+      <DependentUpon>FormRegistro.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FormsAdministrador\FormDetalleVenta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormsAdministrador\FormDetalleVenta.Designer.cs">
+      <DependentUpon>FormDetalleVenta.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\FormsAdministrador\FormProducto.cs">
       <SubType>Form</SubType>
@@ -106,8 +118,14 @@
     <EmbeddedResource Include="Forms\FormMenu.resx">
       <DependentUpon>FormMenu.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormRegistrarse.resx">
-      <DependentUpon>FormRegistrarse.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\FormInicioSesion.resx">
+      <DependentUpon>FormInicioSesion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormRegistro.resx">
+      <DependentUpon>FormRegistro.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormsAdministrador\FormDetalleVenta.resx">
+      <DependentUpon>FormDetalleVenta.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormsAdministrador\FormReporte.resx">
       <DependentUpon>FormReporte.cs</DependentUpon>
@@ -152,6 +170,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Componentes\Componentes.csproj">
+      <Project>{6099e2d2-1197-4b4b-8649-5e0a611fb211}</Project>
+      <Name>Componentes</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Entidad\Entidad.csproj">
       <Project>{519f0ee3-aac5-4445-a6be-218e5e430f6e}</Project>
       <Name>Entidad</Name>
@@ -160,9 +182,6 @@
       <Project>{69422bcd-44db-433f-97d9-fa2e8df41225}</Project>
       <Name>Negocio</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\BUHO_EPN_big.png" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Presentacion.Forms;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -10,17 +11,19 @@ using System.Windows.Forms;
 
 namespace Presentacion
 {
-    public partial class FormRegistrarse : Form
+    public partial class frmInicioSesion : Form
     {
 
         private UsuarioLogica usuarioLogica = new UsuarioLogica();
-        public FormRegistrarse()
+  
+        public frmInicioSesion()
         {
             InitializeComponent();
         }
 
         private void btnIniciarSesion_Click(object sender, EventArgs e)
         {
+
             string nombre = txtUsuario.Text.Trim();
             string contraseña = txtContraseña.Text;
             string rol = cmbRol.SelectedItem?.ToString();
@@ -52,7 +55,14 @@ namespace Presentacion
             {
                 MessageBox.Show("Usuario, contraseña o rol incorrecto.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
 
+        private void btnCrearCuenta_Click(object sender, EventArgs e)
+        {
+            frmRegistro registro = new frmRegistro();
+            this.Hide();
+            registro.ShowDialog(); 
+            this.Show(); 
         }
     }
 }

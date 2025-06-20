@@ -74,7 +74,7 @@ namespace Presentacion
             formulariohijo.BringToFront();
             formulariohijo.Show();
         }
-
+        
         private void panel1_MouseDown(object sender, MouseEventArgs e)
         {
 
@@ -112,7 +112,7 @@ namespace Presentacion
             {
                 this.Hide();
 
-                if (new FormRegistrarse().ShowDialog() == DialogResult.OK)
+                if (new frmInicioSesion().ShowDialog() == DialogResult.OK)
                 {
                     this.Show();
                 }

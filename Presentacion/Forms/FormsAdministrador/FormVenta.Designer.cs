@@ -32,20 +32,14 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label6 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.dateTimePackerVenta = new System.Windows.Forms.DateTimePicker();
-            this.txtVentaCodigo = new System.Windows.Forms.TextBox();
-            this.txtVentaNombre = new System.Windows.Forms.TextBox();
-            this.txtVentaCantidad = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.btnRegistrarVenta = new FontAwesome.Sharp.IconButton();
             this.dGVVenta = new System.Windows.Forms.DataGridView();
-            this.clmVentaNumero = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmVentaProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmVentaCantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.label5 = new System.Windows.Forms.Label();
+            this.btnBuscarProducto = new FontAwesome.Sharp.IconButton();
+            this.txtProductoBuscar = new System.Windows.Forms.TextBox();
+            this.colmCodigo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colCliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colFecha = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmVentaTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dGVVenta)).BeginInit();
@@ -61,100 +55,17 @@
             this.label6.TabIndex = 17;
             this.label6.Text = "Registro de Ventas";
             // 
-            // label1
-            // 
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(31, 51);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(136, 25);
-            this.label1.TabIndex = 18;
-            this.label1.Text = "Código:";
-            // 
-            // label2
-            // 
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(403, 52);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(136, 25);
-            this.label2.TabIndex = 19;
-            this.label2.Text = "Nombre:";
-            // 
-            // label3
-            // 
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.ForeColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(31, 89);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(136, 25);
-            this.label3.TabIndex = 20;
-            this.label3.Text = "Cantidad:";
-            // 
-            // label4
-            // 
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.ForeColor = System.Drawing.Color.White;
-            this.label4.Location = new System.Drawing.Point(403, 93);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(136, 25);
-            this.label4.TabIndex = 21;
-            this.label4.Text = "Fecha:";
-            // 
-            // dateTimePackerVenta
-            // 
-            this.dateTimePackerVenta.Location = new System.Drawing.Point(484, 92);
-            this.dateTimePackerVenta.Name = "dateTimePackerVenta";
-            this.dateTimePackerVenta.Size = new System.Drawing.Size(250, 20);
-            this.dateTimePackerVenta.TabIndex = 22;
-            // 
-            // txtVentaCodigo
-            // 
-            this.txtVentaCodigo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtVentaCodigo.Location = new System.Drawing.Point(120, 48);
-            this.txtVentaCodigo.Name = "txtVentaCodigo";
-            this.txtVentaCodigo.Size = new System.Drawing.Size(250, 22);
-            this.txtVentaCodigo.TabIndex = 23;
-            // 
-            // txtVentaNombre
-            // 
-            this.txtVentaNombre.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtVentaNombre.Location = new System.Drawing.Point(484, 48);
-            this.txtVentaNombre.Name = "txtVentaNombre";
-            this.txtVentaNombre.ReadOnly = true;
-            this.txtVentaNombre.Size = new System.Drawing.Size(250, 22);
-            this.txtVentaNombre.TabIndex = 24;
-            // 
-            // txtVentaCantidad
-            // 
-            this.txtVentaCantidad.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtVentaCantidad.Location = new System.Drawing.Point(120, 89);
-            this.txtVentaCantidad.Name = "txtVentaCantidad";
-            this.txtVentaCantidad.Size = new System.Drawing.Size(250, 22);
-            this.txtVentaCantidad.TabIndex = 25;
-            // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(30)))), ((int)(((byte)(68)))));
+            this.panel1.Controls.Add(this.label5);
             this.panel1.Controls.Add(this.dGVVenta);
-            this.panel1.Location = new System.Drawing.Point(22, 189);
+            this.panel1.Controls.Add(this.btnBuscarProducto);
+            this.panel1.Controls.Add(this.txtProductoBuscar);
+            this.panel1.Location = new System.Drawing.Point(22, 48);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(730, 216);
+            this.panel1.Size = new System.Drawing.Size(730, 357);
             this.panel1.TabIndex = 28;
-            // 
-            // btnRegistrarVenta
-            // 
-            this.btnRegistrarVenta.IconChar = FontAwesome.Sharp.IconChar.CashRegister;
-            this.btnRegistrarVenta.IconColor = System.Drawing.Color.Black;
-            this.btnRegistrarVenta.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnRegistrarVenta.IconSize = 25;
-            this.btnRegistrarVenta.Location = new System.Drawing.Point(34, 134);
-            this.btnRegistrarVenta.Name = "btnRegistrarVenta";
-            this.btnRegistrarVenta.Size = new System.Drawing.Size(133, 30);
-            this.btnRegistrarVenta.TabIndex = 26;
-            this.btnRegistrarVenta.Text = "Registrar Venta";
-            this.btnRegistrarVenta.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnRegistrarVenta.UseVisualStyleBackColor = true;
             // 
             // dGVVenta
             // 
@@ -173,9 +84,9 @@
             this.dGVVenta.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dGVVenta.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dGVVenta.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.clmVentaNumero,
-            this.clmVentaProducto,
-            this.clmVentaCantidad,
+            this.colmCodigo,
+            this.colCliente,
+            this.colFecha,
             this.clmVentaTotal});
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(66)))), ((int)(((byte)(91)))));
@@ -187,7 +98,7 @@
             this.dGVVenta.DefaultCellStyle = dataGridViewCellStyle2;
             this.dGVVenta.EnableHeadersVisualStyles = false;
             this.dGVVenta.GridColor = System.Drawing.Color.SteelBlue;
-            this.dGVVenta.Location = new System.Drawing.Point(16, 26);
+            this.dGVVenta.Location = new System.Drawing.Point(12, 43);
             this.dGVVenta.Name = "dGVVenta";
             this.dGVVenta.ReadOnly = true;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -200,26 +111,60 @@
             this.dGVVenta.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dGVVenta.RowHeadersVisible = false;
             this.dGVVenta.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dGVVenta.Size = new System.Drawing.Size(699, 164);
+            this.dGVVenta.Size = new System.Drawing.Size(699, 296);
             this.dGVVenta.TabIndex = 16;
+            this.dGVVenta.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dGVVenta_CellDoubleClick);
             // 
-            // clmVentaNumero
+            // label5
             // 
-            this.clmVentaNumero.HeaderText = "Nº Venta";
-            this.clmVentaNumero.Name = "clmVentaNumero";
-            this.clmVentaNumero.ReadOnly = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.ForeColor = System.Drawing.Color.White;
+            this.label5.Location = new System.Drawing.Point(49, 12);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(220, 25);
+            this.label5.TabIndex = 29;
+            this.label5.Text = "Buscar por Código/Nombre:";
             // 
-            // clmVentaProducto
+            // btnBuscarProducto
             // 
-            this.clmVentaProducto.HeaderText = "Producto";
-            this.clmVentaProducto.Name = "clmVentaProducto";
-            this.clmVentaProducto.ReadOnly = true;
+            this.btnBuscarProducto.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnBuscarProducto.IconChar = FontAwesome.Sharp.IconChar.MagnifyingGlass;
+            this.btnBuscarProducto.IconColor = System.Drawing.Color.Black;
+            this.btnBuscarProducto.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnBuscarProducto.IconSize = 18;
+            this.btnBuscarProducto.Location = new System.Drawing.Point(494, 12);
+            this.btnBuscarProducto.Name = "btnBuscarProducto";
+            this.btnBuscarProducto.Size = new System.Drawing.Size(80, 22);
+            this.btnBuscarProducto.TabIndex = 30;
+            this.btnBuscarProducto.Text = "Buscar";
+            this.btnBuscarProducto.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnBuscarProducto.UseVisualStyleBackColor = true;
             // 
-            // clmVentaCantidad
+            // txtProductoBuscar
             // 
-            this.clmVentaCantidad.HeaderText = "Cantidad";
-            this.clmVentaCantidad.Name = "clmVentaCantidad";
-            this.clmVentaCantidad.ReadOnly = true;
+            this.txtProductoBuscar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtProductoBuscar.Location = new System.Drawing.Point(275, 12);
+            this.txtProductoBuscar.Name = "txtProductoBuscar";
+            this.txtProductoBuscar.Size = new System.Drawing.Size(213, 22);
+            this.txtProductoBuscar.TabIndex = 31;
+            // 
+            // colmCodigo
+            // 
+            this.colmCodigo.HeaderText = "Código";
+            this.colmCodigo.Name = "colmCodigo";
+            this.colmCodigo.ReadOnly = true;
+            // 
+            // colCliente
+            // 
+            this.colCliente.HeaderText = "Cliente";
+            this.colCliente.Name = "colCliente";
+            this.colCliente.ReadOnly = true;
+            // 
+            // colFecha
+            // 
+            this.colFecha.HeaderText = "Fecha";
+            this.colFecha.Name = "colFecha";
+            this.colFecha.ReadOnly = true;
             // 
             // clmVentaTotal
             // 
@@ -233,43 +178,28 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(33)))), ((int)(((byte)(74)))));
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.btnRegistrarVenta);
-            this.Controls.Add(this.txtVentaCantidad);
-            this.Controls.Add(this.txtVentaNombre);
-            this.Controls.Add(this.txtVentaCodigo);
-            this.Controls.Add(this.dateTimePackerVenta);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.panel1);
             this.Name = "FormVenta";
             this.Text = "Form1";
             this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dGVVenta)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
 
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.DateTimePicker dateTimePackerVenta;
-        private System.Windows.Forms.TextBox txtVentaCodigo;
-        private System.Windows.Forms.TextBox txtVentaNombre;
-        private System.Windows.Forms.TextBox txtVentaCantidad;
-        private FontAwesome.Sharp.IconButton btnRegistrarVenta;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.DataGridView dGVVenta;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmVentaNumero;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmVentaProducto;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmVentaCantidad;
+        private System.Windows.Forms.Label label5;
+        private FontAwesome.Sharp.IconButton btnBuscarProducto;
+        private System.Windows.Forms.TextBox txtProductoBuscar;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colmCodigo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colCliente;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colFecha;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmVentaTotal;
     }
 }

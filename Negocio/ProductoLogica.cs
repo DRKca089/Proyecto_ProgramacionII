@@ -13,20 +13,7 @@ public class ProductoLogica : IProductoLogica
 
     public void Agregar(Producto producto)
     {
-        if (producto == null)
-            throw new ArgumentNullException(nameof(producto), "El producto no puede estar vacío");
-
-        if (string.IsNullOrWhiteSpace(producto.Nombre))
-            throw new ArgumentException("El nombre del producto es obligatorio");
-
-        if (producto.CantidadDisponible < 0)
-            throw new ArgumentException("La cantidad disponible no puede ser negativo");
-
-        if (producto.Valor < 0)
-            throw new ArgumentException("El valor del producto no puede ser negativo");
-
-        if (decimal.Round(producto.Valor, 2) != producto.Valor)
-            throw new ArgumentException("El valor solo puede tener hasta 2 decimales");
+        ValidarProducto(producto);
 
         if (productos.Any(p => p.Nombre.Equals(producto.Nombre, StringComparison.OrdinalIgnoreCase)))
             throw new InvalidOperationException("Ya existe un producto con ese nombre");
@@ -37,27 +24,11 @@ public class ProductoLogica : IProductoLogica
 
     public void Modificar(Producto producto)
     {
-        if (producto == null)
-            throw new ArgumentNullException(nameof(producto), "El producto no puede estar vacío");
-
-        if (string.IsNullOrWhiteSpace(producto.Codigo))
-            throw new ArgumentException("El código no puede estar vacío.");
+        ValidarProducto(producto, esModificacion: true);
 
         Producto existente = BuscarPorCodigo(producto.Codigo);
         if (existente == null)
             throw new InvalidOperationException("No se encontró el producto a modificar.");
-
-        if (string.IsNullOrWhiteSpace(producto.Nombre))
-            throw new ArgumentException("El nombre del producto es obligatorio");
-
-        if (producto.CantidadDisponible < 0)
-            throw new ArgumentException("La cantidad disponible no puede ser negativo");
-
-        if (producto.Valor < 0)
-            throw new ArgumentException("El valor del producto no puede ser negativo");
-
-        if (decimal.Round(producto.Valor, 2) != producto.Valor)
-            throw new ArgumentException("El valor solo puede tener hasta 2 decimales");
 
         existente.Nombre = producto.Nombre;
         existente.CantidadDisponible = producto.CantidadDisponible;
@@ -104,5 +75,29 @@ public class ProductoLogica : IProductoLogica
         }
 
         return "P" + siguienteNumero.ToString("D4");
+    }
+
+    private void ValidarProducto(Producto producto, bool esModificacion = false)
+    {
+        if (producto == null)
+            throw new ArgumentNullException(nameof(producto), "El producto no puede estar vacío");
+
+        if (esModificacion)
+        {
+            if (string.IsNullOrWhiteSpace(producto.Codigo))
+                throw new ArgumentException("El código no puede estar vacío.");
+        }
+
+        if (string.IsNullOrWhiteSpace(producto.Nombre))
+            throw new ArgumentException("El nombre del producto es obligatorio");
+
+        if (producto.CantidadDisponible < 0)
+            throw new ArgumentException("La cantidad disponible no puede ser negativo");
+
+        if (producto.Valor < 0)
+            throw new ArgumentException("El valor del producto no puede ser negativo");
+
+        if (decimal.Round(producto.Valor, 2) != producto.Valor)
+            throw new ArgumentException("El valor solo puede tener hasta 2 decimales");
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Presentacion.Forms.FormsAdministrador;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,6 +16,15 @@ namespace Presentacion.Forms
         public FormVenta()
         {
             InitializeComponent();
+        }
+
+        private void dGVVenta_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                frmDetalleVenta detalleForm = new frmDetalleVenta();
+                detalleForm.ShowDialog();
+            }
         }
     }
 }
