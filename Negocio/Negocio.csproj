@@ -49,6 +49,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Datos\Datos.csproj">
+      <Project>{df94b4bd-bbe5-49e6-af34-ff9cc09d24d1}</Project>
+      <Name>Datos</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Entidad\Entidad.csproj">
       <Project>{519f0ee3-aac5-4445-a6be-218e5e430f6e}</Project>
       <Name>Entidad</Name>

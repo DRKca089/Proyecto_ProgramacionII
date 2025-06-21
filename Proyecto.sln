@@ -11,7 +11,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Negocio", "Negocio\Negocio.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Presentacion", "Presentacion\Presentacion.csproj", "{228931F8-69E3-40CA-A341-59F04D017014}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Componentes", "Componentes\Componentes.csproj", "{6099E2D2-1197-4B4B-8649-5E0A611FB211}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Validaciones", "Componentes\Validaciones.csproj", "{6099E2D2-1197-4B4B-8649-5E0A611FB211}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

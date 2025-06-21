@@ -53,97 +53,115 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Forms\FormInicioSesion.cs">
+    <Compile Include="Forms\Base\FormInicioSesion.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\FormInicioSesion.Designer.cs">
+    <Compile Include="Forms\Base\FormInicioSesion.Designer.cs">
       <DependentUpon>FormInicioSesion.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\FormMenu.cs">
+    <Compile Include="Forms\Menu\FormMenu.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\FormMenu.Designer.cs">
+    <Compile Include="Forms\Menu\FormMenu.Designer.cs">
       <DependentUpon>FormMenu.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\FormRegistro.cs">
+    <Compile Include="Forms\Base\FormRegistro.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\FormRegistro.Designer.cs">
+    <Compile Include="Forms\Base\FormRegistro.Designer.cs">
       <DependentUpon>FormRegistro.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\FormsAdministrador\FormDetalleVenta.cs">
+    <Compile Include="Forms\Administrador\FormDetalleVenta.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\FormsAdministrador\FormDetalleVenta.Designer.cs">
+    <Compile Include="Forms\Administrador\FormDetalleVenta.Designer.cs">
       <DependentUpon>FormDetalleVenta.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\FormsAdministrador\FormProducto.cs">
+    <Compile Include="Forms\Administrador\FormGestionUsuario.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\FormsAdministrador\FormProducto.Designer.cs">
+    <Compile Include="Forms\Administrador\FormGestionUsuario.Designer.cs">
+      <DependentUpon>FormGestionUsuario.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Administrador\FormProducto.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Administrador\FormProducto.Designer.cs">
       <DependentUpon>FormProducto.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\FormsAdministrador\FormVenta.cs">
+    <Compile Include="Forms\Administrador\FormVenta.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\FormsAdministrador\FormVenta.Designer.cs">
+    <Compile Include="Forms\Administrador\FormVenta.Designer.cs">
       <DependentUpon>FormVenta.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\FormsAdministrador\FormReporte.cs">
+    <Compile Include="Forms\Administrador\FormReporte.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\FormsAdministrador\FormReporte.Designer.cs">
+    <Compile Include="Forms\Administrador\FormReporte.Designer.cs">
       <DependentUpon>FormReporte.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\FormsCliente\frmMisCompras.cs">
+    <Compile Include="Forms\Menu\FormEditarUsuario.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\FormsCliente\frmMisCompras.Designer.cs">
-      <DependentUpon>frmMisCompras.cs</DependentUpon>
+    <Compile Include="Forms\Menu\FormEditarUsuario.Designer.cs">
+      <DependentUpon>FormEditarUsuario.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\FormsCliente\frmTienda.cs">
+    <Compile Include="Forms\Cliente\FormMisCompras.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\FormsCliente\frmTienda.Designer.cs">
-      <DependentUpon>frmTienda.cs</DependentUpon>
+    <Compile Include="Forms\Cliente\FormMisCompras.Designer.cs">
+      <DependentUpon>FormMisCompras.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\FormsCliente\frmCompra.cs">
+    <Compile Include="Forms\Cliente\FormTienda.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\FormsCliente\frmCompra.Designer.cs">
-      <DependentUpon>frmCompra.cs</DependentUpon>
+    <Compile Include="Forms\Cliente\FormTienda.Designer.cs">
+      <DependentUpon>FormTienda.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Cliente\FormCompra.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Cliente\FormCompra.Designer.cs">
+      <DependentUpon>FormCompra.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Forms\FormMenu.resx">
+    <EmbeddedResource Include="Forms\Menu\FormMenu.resx">
       <DependentUpon>FormMenu.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FormInicioSesion.resx">
+    <EmbeddedResource Include="Forms\Base\FormInicioSesion.resx">
       <DependentUpon>FormInicioSesion.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FormRegistro.resx">
+    <EmbeddedResource Include="Forms\Base\FormRegistro.resx">
       <DependentUpon>FormRegistro.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FormsAdministrador\FormDetalleVenta.resx">
+    <EmbeddedResource Include="Forms\Administrador\FormDetalleVenta.resx">
       <DependentUpon>FormDetalleVenta.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FormsAdministrador\FormReporte.resx">
+    <EmbeddedResource Include="Forms\Administrador\FormGestionUsuario.resx">
+      <DependentUpon>FormGestionUsuario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Administrador\FormReporte.resx">
       <DependentUpon>FormReporte.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FormsAdministrador\FormProducto.resx">
+    <EmbeddedResource Include="Forms\Administrador\FormProducto.resx">
       <DependentUpon>FormProducto.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FormsAdministrador\FormVenta.resx">
+    <EmbeddedResource Include="Forms\Administrador\FormVenta.resx">
       <DependentUpon>FormVenta.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FormsCliente\frmCompra.resx">
-      <DependentUpon>frmCompra.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\Menu\FormEditarUsuario.resx">
+      <DependentUpon>FormEditarUsuario.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FormsCliente\frmMisCompras.resx">
-      <DependentUpon>frmMisCompras.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\Cliente\FormCompra.resx">
+      <DependentUpon>FormCompra.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FormsCliente\frmTienda.resx">
-      <DependentUpon>frmTienda.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\Cliente\FormMisCompras.resx">
+      <DependentUpon>FormMisCompras.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Cliente\FormTienda.resx">
+      <DependentUpon>FormTienda.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -170,9 +188,13 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Componentes\Componentes.csproj">
+    <ProjectReference Include="..\Componentes\Validaciones.csproj">
       <Project>{6099e2d2-1197-4b4b-8649-5e0a611fb211}</Project>
-      <Name>Componentes</Name>
+      <Name>Validaciones</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Datos\Datos.csproj">
+      <Project>{df94b4bd-bbe5-49e6-af34-ff9cc09d24d1}</Project>
+      <Name>Datos</Name>
     </ProjectReference>
     <ProjectReference Include="..\Entidad\Entidad.csproj">
       <Project>{519f0ee3-aac5-4445-a6be-218e5e430f6e}</Project>
