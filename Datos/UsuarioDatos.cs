@@ -12,22 +12,24 @@ namespace Datos
             new Usuario { Id = "I0002", UsuarioNombre = "Juan", Contraseña = "1039", Rol = "Cliente", Correo = "juan@gmail.com", Saldo = 0.00m }
         };
 
-        // Obtener lista completa de usuarios
         public List<Usuario> ObtenerUsuarios()
         {
             return usuarios;
         }
 
-        // Agregar usuario sin validar (asume que ya se validó en negocio)
         public void AgregarUsuario(Usuario nuevoUsuario)
         {
             usuarios.Add(nuevoUsuario);
         }
 
-        // Verificar si existe un usuario por nombre
         public bool ExisteUsuario(string nombreUsuario)
         {
-            return usuarios.Any(u => u.UsuarioNombre.Equals(nombreUsuario, System.StringComparison.OrdinalIgnoreCase));
+            return usuarios.Any(u => u.UsuarioNombre.Equals(nombreUsuario, StringComparison.OrdinalIgnoreCase));
+        }
+
+        public bool ExisteCorreo(string correo)
+        {
+            return usuarios.Any(u => u.Correo.Equals(correo, StringComparison.OrdinalIgnoreCase));
         }
 
         public Usuario ObtenerPorNombre(string nombre)
@@ -38,10 +40,6 @@ namespace Datos
         public Usuario ObtenerPorId(string id)
         {
             return usuarios.FirstOrDefault(u => u.Id.Equals(id));
-        }
-        public bool ExisteCorreo(string correo)
-        {
-            return usuarios.Any(u => u.Correo.Equals(correo, StringComparison.OrdinalIgnoreCase));
         }
 
         public void ActualizarUsuario(Usuario usuarioActualizado)
@@ -55,6 +53,18 @@ namespace Datos
                 usuario.Correo = usuarioActualizado.Correo;
                 usuario.Saldo = usuarioActualizado.Saldo;
             }
+        }
+
+        public void EliminarUsuario(string id)
+        {
+            var usuario = usuarios.FirstOrDefault(u => u.Id == id);
+            if (usuario != null)
+                usuarios.Remove(usuario);
+        }
+
+        public List<Usuario> BuscarPorNombreUsuario(string nombreUsuario)
+        {
+            return usuarios.FindAll(u => u.UsuarioNombre.IndexOf(nombreUsuario, StringComparison.OrdinalIgnoreCase) >= 0);
         }
     }
 }

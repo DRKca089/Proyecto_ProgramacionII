@@ -9,11 +9,6 @@ public static class ValidacionContraseña
 {
     public static bool SonContraseñasIguales(string contraseña, string confirmar)
     {
-        if (contraseña != confirmar)
-        {
-            MessageBox.Show("Las contraseñas no coinciden.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            return false;
-        }
-        return true;
+        return contraseña.Trim() == confirmar.Trim();
     }
 }

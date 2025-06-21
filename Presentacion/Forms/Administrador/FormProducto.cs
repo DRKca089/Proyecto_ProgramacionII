@@ -1,4 +1,5 @@
 ﻿using System;
+using Negocio;
 using System.Collections.Generic;
 using System.Linq;
 using System.Drawing.Text;
@@ -8,10 +9,12 @@ namespace Presentacion.Forms
 {
     public partial class frmProducto : Form
     {
-        private ProductoLogica productoLogica = new ProductoLogica();
-        public frmProducto()
+        private ProductoLogica productoLogica;
+        public frmProducto(ProductoLogica logica)
         {
             InitializeComponent();
+            productoLogica = logica;
+            ActualizarTablaProducto();
         }
 
         private void ActualizarTablaProducto()
@@ -25,15 +28,22 @@ namespace Presentacion.Forms
         private void btnAgregarProducto_Click(object sender, EventArgs e)
         {
             if (!ValidacionCampos.EstanLlenos(txtProductoNombre, txtProductoCantidad, txtProductoValor))
+            {
+                MessageBox.Show("Rellene todos los campos");
                 return;
+            }
 
-            //Válida que el formato sea el correcto del valor
-            if (!ValidacionDatos.EsEntero(txtProductoCantidad.Text.Trim(), out int cantidad, "Cantidad"))
+            if (!ValidacionNumeros.EsEntero(txtProductoCantidad.Text.Trim(), out int cantidad))
+            {
+                MessageBox.Show("La cantidad debe ser un valor entero");
                 return;
+            }
 
-            //Válida que el formato sea el correcto del valor
-            if (!ValidacionDatos.EsDecimal(txtProductoValor.Text.Trim(), out decimal valor, "Valor"))
+            if (!ValidacionNumeros.EsDecimal(txtProductoValor.Text.Trim(), out decimal valor))
+            {
+                MessageBox.Show("El valor debe ser un valor decimal con dos decimas");
                 return;
+            }
 
             Producto nuevoProducto = new Producto
             {
@@ -58,18 +68,27 @@ namespace Presentacion.Forms
         private void btnModificarProducto_Click(object sender, EventArgs e)
         {
             if (!ValidacionCampos.EstanLlenos(txtProductoCodigo, txtProductoNombre, txtProductoCantidad, txtProductoValor))
+            {
+                MessageBox.Show("Rellene todos los campos");
                 return;
+            }
 
-            if (!ValidacionDatos.EsEntero(txtProductoCantidad.Text.Trim(), out int cantidad, "Cantidad"))
+            if (!ValidacionNumeros.EsEntero(txtProductoCantidad.Text.Trim(), out int cantidad))
+            {
+                MessageBox.Show("La cantidad debe ser un valor entero");
                 return;
+            }
 
-            if (!ValidacionDatos.EsDecimal(txtProductoValor.Text.Trim(), out decimal valor, "Valor"))
+            if (!ValidacionNumeros.EsDecimal(txtProductoValor.Text.Trim(), out decimal valor))
+            {
+                MessageBox.Show("El valor debe ser un valor decimal con dos decimas");
                 return;
+            }
 
             DialogResult respuesta = MessageBox.Show(
-                "¿Está seguro que desea modificar el producto?", 
-                "Confirmar modificación", 
-                MessageBoxButtons.YesNo, 
+                "¿Está seguro que desea modificar el producto?",
+                "Confirmar modificación",
+                MessageBoxButtons.YesNo,
                 MessageBoxIcon.Question);
 
             if (respuesta == DialogResult.Yes)
@@ -99,7 +118,10 @@ namespace Presentacion.Forms
         private void btnEliminarProducto_Click(object sender, EventArgs e)
         {
             if (!ValidacionCampos.EstanLlenos(txtProductoCodigo, txtProductoNombre, txtProductoCantidad, txtProductoValor))
+            {
+                MessageBox.Show("Rellene todos los campos");
                 return;
+            }
 
             DialogResult confirmacion = MessageBox.Show(
                 "¿Está seguro que desea eliminar este producto?",
@@ -127,16 +149,14 @@ namespace Presentacion.Forms
 
         private void btnBuscarProducto_Click(object sender, EventArgs e)
         {
-            string busquedad = txtProductoBuscar.Text.Trim();
-
-            if (string.IsNullOrWhiteSpace(busquedad))
+            if (!ValidacionCampos.EstanLlenos(txtProductoBuscar))
             {
-                MessageBox.Show("Por favor ingresa un término de búsqueda.", "Campo vacío", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                ActualizarTablaProducto();
                 return;
             }
 
             // Buscar por código
-            Producto productoPorCodigo = productoLogica.BuscarPorCodigo(busquedad);
+            Producto productoPorCodigo = productoLogica.BuscarPorCodigo(txtProductoBuscar.Text);
             if (productoPorCodigo != null)
             {
                 dGVProducto.DataSource = new List<Producto> { productoPorCodigo };
@@ -144,7 +164,7 @@ namespace Presentacion.Forms
             }
 
             // Buscar por nombre
-            List<Producto> productosPorNombre = productoLogica.BuscarPorNombre(busquedad);
+            List<Producto> productosPorNombre = productoLogica.BuscarPorNombre(txtProductoBuscar.Text);
             if (productosPorNombre.Any())
             {
                 dGVProducto.DataSource = productosPorNombre;

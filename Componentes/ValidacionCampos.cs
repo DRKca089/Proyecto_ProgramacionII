@@ -12,17 +12,9 @@ public static class ValidacionCampos
         foreach (var control in controles)
         {
             if (control is TextBox t && string.IsNullOrWhiteSpace(t.Text))
-            {
-                MessageBox.Show("Rellene todos los campos.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                t.Focus();
                 return false;
-            }
-            else if (control is ComboBox c && string.IsNullOrWhiteSpace(c.Text))
-            {
-                MessageBox.Show("Seleccione una opción.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                c.Focus();
+            if (control is ComboBox c && string.IsNullOrWhiteSpace(c.Text))
                 return false;
-            }
         }
         return true;
     }

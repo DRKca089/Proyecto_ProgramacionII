@@ -26,7 +26,10 @@ namespace Presentacion
         {
 
             if (!ValidacionCampos.EstanLlenos(txtUsuario, txtContraseña, cmbRol))
+            {
+                MessageBox.Show("Rellene todos los campos");
                 return;
+            }
 
             string resultado = usuarioLogica.ValidarInicioSesion(txtUsuario.Text, txtContraseña.Text, cmbRol.Text);
 

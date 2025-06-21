@@ -8,7 +8,6 @@ public interface IProductoLogica
     Producto BuscarPorCodigo(string codigo);
     List<Producto> BuscarPorNombre(string nombre);
     List<Producto> ListarProductos();
-    string GenerarCodigo();
 }
 
 public interface IVentaLogica
@@ -26,7 +25,13 @@ public interface IReporteLogica
 
 public interface IUsuarioLogica
 {
-    Usuario Validar(string rol, string codigo, string contraseña);
-    List<Usuario> ListaUsuarios();
+    string RegistrarUsuario(string usuarioNombre, string correo, string contraseña);
+    string ValidarInicioSesion(string nombre, string contraseña, string rol);
+    string ValidarRegistro(string nombre, string correo);
+    Usuario ObtenerUsuario(string nombre);
+    List<Usuario> ObtenerTodos();
+    bool ActualizarUsuario(string id, string nuevoNombre, string nuevoCorreo, string nuevaContraseña);
+    bool DepositarSaldo(string idUsuario, decimal monto, out string mensaje, out decimal saldoActualizado);
+
 }
 

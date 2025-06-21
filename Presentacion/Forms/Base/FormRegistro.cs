@@ -21,18 +21,21 @@ namespace Presentacion.Forms
 
         private void btnRegistro_Click(object sender, EventArgs e)
         {
-            if (!ValidacionCampos.EstanLlenos(txtUsuario,txtCorreo ,txtContraseña, txtConfirmarContraseña))
-                return;
-
-            if (!ValidacionDatos.EsGmail(txtCorreo.Text))
+            if (!ValidacionCampos.EstanLlenos(txtUsuario, txtCorreo, txtContraseña, txtConfirmarContraseña))
             {
-                txtCorreo.Focus();
+                MessageBox.Show("Rellene todos los campos");
+                return;
+            }
+
+            if (!ValidacionCorreo.EsGmail(txtCorreo.Text))
+            {
+                MessageBox.Show("El correo debe terminar en @gmail.com");
                 return;
             }
 
             if (!ValidacionContraseña.SonContraseñasIguales(txtContraseña.Text, txtConfirmarContraseña.Text))
             {
-                txtConfirmarContraseña.Focus(); //No continua sin son diferentes
+                MessageBox.Show("Las contraseñas no son iguales");
                 return; 
             }
 

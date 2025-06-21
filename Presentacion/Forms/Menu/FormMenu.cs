@@ -10,6 +10,7 @@ namespace Presentacion
     public partial class frmMenu : Form
     {
         private UsuarioLogica usuarioLogica = new UsuarioLogica();
+        private ProductoLogica productoLogica = new ProductoLogica();
         private Form formularioHijoActual;
         private string nombreUsuario;
         private string rolUsuario;
@@ -24,6 +25,12 @@ namespace Presentacion
             MostrarOpcinesPorRol();
         }
 
+        public void RefrescarDatosUsuario(string nuevoNombre, string nuevoCorreo)
+        {
+            nombreUsuario = nuevoNombre;
+            correoUsuario = nuevoCorreo;
+            lblDatos.Text = $"{rolUsuario}\n\n{nombreUsuario}\n{correoUsuario}";
+        }
         private void MostrarOpcinesPorRol()
         {
             // Ocultas todos los botones primero
@@ -72,13 +79,13 @@ namespace Presentacion
         private void btnEditarUsuario_Click(object sender, EventArgs e)
         {
             Usuario usuario = usuarioLogica.ObtenerUsuario(nombreUsuario);
-            AbrirFormularioHijo(new frmEditarUsuario(usuario));
+            AbrirFormularioHijo(new frmEditarUsuario(usuario, this));
         }
 
 
         private void btnProducto_Click(object sender, EventArgs e)
         {
-            AbrirFormularioHijo(new frmProducto());
+            AbrirFormularioHijo(new frmProducto(productoLogica));
         }
 
         private void btnVentas_Click(object sender, EventArgs e)
