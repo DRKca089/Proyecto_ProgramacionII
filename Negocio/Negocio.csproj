@@ -49,10 +49,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Componentes\Validaciones.csproj">
-      <Project>{6099e2d2-1197-4b4b-8649-5e0a611fb211}</Project>
-      <Name>Validaciones</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Datos\Datos.csproj">
       <Project>{df94b4bd-bbe5-49e6-af34-ff9cc09d24d1}</Project>
       <Name>Datos</Name>
@@ -60,6 +56,10 @@
     <ProjectReference Include="..\Entidad\Entidad.csproj">
       <Project>{519f0ee3-aac5-4445-a6be-218e5e430f6e}</Project>
       <Name>Entidad</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Validacion\Validacion.csproj">
+      <Project>{dbe6b6a3-c67e-4065-b14c-0256c3dcddd7}</Project>
+      <Name>Validacion</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
