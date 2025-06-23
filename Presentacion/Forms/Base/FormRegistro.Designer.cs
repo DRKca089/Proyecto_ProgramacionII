@@ -37,8 +37,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.txtConfirmarContraseña = new System.Windows.Forms.TextBox();
             this.btnRegistro = new FontAwesome.Sharp.IconButton();
-            this.label4 = new System.Windows.Forms.Label();
-            this.txtCorreo = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.txtRol = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
@@ -66,7 +64,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(29, 84);
+            this.label1.Location = new System.Drawing.Point(29, 100);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(158, 19);
             this.label1.TabIndex = 3;
@@ -75,7 +73,7 @@
             // txtUsuario
             // 
             this.txtUsuario.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtUsuario.Location = new System.Drawing.Point(33, 106);
+            this.txtUsuario.Location = new System.Drawing.Point(33, 122);
             this.txtUsuario.Name = "txtUsuario";
             this.txtUsuario.Size = new System.Drawing.Size(250, 26);
             this.txtUsuario.TabIndex = 5;
@@ -85,7 +83,7 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(29, 208);
+            this.label3.Location = new System.Drawing.Point(29, 172);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(98, 19);
             this.label3.TabIndex = 7;
@@ -94,7 +92,7 @@
             // txtContraseña
             // 
             this.txtContraseña.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtContraseña.Location = new System.Drawing.Point(33, 230);
+            this.txtContraseña.Location = new System.Drawing.Point(33, 194);
             this.txtContraseña.Name = "txtContraseña";
             this.txtContraseña.Size = new System.Drawing.Size(250, 26);
             this.txtContraseña.TabIndex = 8;
@@ -105,7 +103,7 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(29, 271);
+            this.label2.Location = new System.Drawing.Point(29, 241);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(177, 19);
             this.label2.TabIndex = 9;
@@ -114,7 +112,7 @@
             // txtConfirmarContraseña
             // 
             this.txtConfirmarContraseña.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtConfirmarContraseña.Location = new System.Drawing.Point(33, 293);
+            this.txtConfirmarContraseña.Location = new System.Drawing.Point(33, 263);
             this.txtConfirmarContraseña.Name = "txtConfirmarContraseña";
             this.txtConfirmarContraseña.PasswordChar = '*';
             this.txtConfirmarContraseña.Size = new System.Drawing.Size(250, 26);
@@ -132,7 +130,7 @@
             this.btnRegistro.IconChar = FontAwesome.Sharp.IconChar.User;
             this.btnRegistro.IconColor = System.Drawing.Color.White;
             this.btnRegistro.IconFont = FontAwesome.Sharp.IconFont.Solid;
-            this.btnRegistro.Location = new System.Drawing.Point(56, 334);
+            this.btnRegistro.Location = new System.Drawing.Point(49, 321);
             this.btnRegistro.Name = "btnRegistro";
             this.btnRegistro.Size = new System.Drawing.Size(212, 53);
             this.btnRegistro.TabIndex = 12;
@@ -141,31 +139,12 @@
             this.btnRegistro.UseVisualStyleBackColor = false;
             this.btnRegistro.Click += new System.EventHandler(this.btnRegistro_Click);
             // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.ForeColor = System.Drawing.Color.White;
-            this.label4.Location = new System.Drawing.Point(29, 146);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(152, 19);
-            this.label4.TabIndex = 13;
-            this.label4.Text = "Correo electrónico";
-            // 
-            // txtCorreo
-            // 
-            this.txtCorreo.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCorreo.Location = new System.Drawing.Point(33, 168);
-            this.txtCorreo.Name = "txtCorreo";
-            this.txtCorreo.Size = new System.Drawing.Size(250, 26);
-            this.txtCorreo.TabIndex = 14;
-            // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.White;
-            this.label5.Location = new System.Drawing.Point(29, 18);
+            this.label5.Location = new System.Drawing.Point(29, 30);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(32, 19);
             this.label5.TabIndex = 15;
@@ -175,7 +154,7 @@
             // 
             this.txtRol.Enabled = false;
             this.txtRol.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtRol.Location = new System.Drawing.Point(33, 42);
+            this.txtRol.Location = new System.Drawing.Point(33, 52);
             this.txtRol.Name = "txtRol";
             this.txtRol.ReadOnly = true;
             this.txtRol.Size = new System.Drawing.Size(250, 26);
@@ -190,8 +169,6 @@
             this.ClientSize = new System.Drawing.Size(353, 408);
             this.Controls.Add(this.txtRol);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.txtCorreo);
-            this.Controls.Add(this.label4);
             this.Controls.Add(this.btnRegistro);
             this.Controls.Add(this.txtConfirmarContraseña);
             this.Controls.Add(this.label2);
@@ -221,8 +198,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtConfirmarContraseña;
         private FontAwesome.Sharp.IconButton btnRegistro;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox txtCorreo;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox txtRol;
     }

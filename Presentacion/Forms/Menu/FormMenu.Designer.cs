@@ -231,10 +231,10 @@
             this.btnCerrarSesion.IconColor = System.Drawing.SystemColors.Window;
             this.btnCerrarSesion.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnCerrarSesion.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCerrarSesion.Location = new System.Drawing.Point(0, 445);
+            this.btnCerrarSesion.Location = new System.Drawing.Point(0, 436);
             this.btnCerrarSesion.Name = "btnCerrarSesion";
             this.btnCerrarSesion.Padding = new System.Windows.Forms.Padding(10, 0, 20, 0);
-            this.btnCerrarSesion.Size = new System.Drawing.Size(220, 65);
+            this.btnCerrarSesion.Size = new System.Drawing.Size(220, 74);
             this.btnCerrarSesion.TabIndex = 4;
             this.btnCerrarSesion.Text = "Log Out";
             this.btnCerrarSesion.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -255,7 +255,7 @@
             // 
             // lblDatos
             // 
-            this.lblDatos.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDatos.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDatos.ForeColor = System.Drawing.Color.White;
             this.lblDatos.Location = new System.Drawing.Point(71, 12);
             this.lblDatos.Name = "lblDatos";

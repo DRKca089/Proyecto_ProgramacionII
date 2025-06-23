@@ -198,7 +198,7 @@
             this.btnComprar.UseVisualStyleBackColor = true;
             this.btnComprar.Click += new System.EventHandler(this.btnComprar_Click);
             // 
-            // frmTienda
+            // FormTienda
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -207,7 +207,8 @@
             this.Controls.Add(this.btnComprar);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.label6);
-            this.Name = "frmTienda";
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Name = "FormTienda";
             this.Text = "FormTienda";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();

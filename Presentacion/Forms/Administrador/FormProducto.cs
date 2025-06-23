@@ -29,19 +29,19 @@ namespace Presentacion.Forms
         {
             if (!ValidacionCampos.EstanLlenos(txtProductoNombre, txtProductoCantidad, txtProductoValor))
             {
-                MessageBox.Show("Rellene todos los campos");
+                MessageBox.Show("Rellene todos los campos", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
             if (!ValidacionNumeros.EsEntero(txtProductoCantidad.Text.Trim(), out int cantidad))
             {
-                MessageBox.Show("La cantidad debe ser un valor entero");
+                MessageBox.Show("La cantidad debe ser un valor entero", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
             if (!ValidacionNumeros.EsDecimal(txtProductoValor.Text.Trim(), out decimal valor))
             {
-                MessageBox.Show("El valor debe ser un valor decimal con dos decimas");
+                MessageBox.Show("El valor debe ser un valor decimal", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 

@@ -22,15 +22,14 @@ namespace Presentacion.Forms.FormsCliente
         private void MostrarDatos()
         {
             txtID.Text = usuarioActual.Id;
-            txtUsuario.Text = usuarioActual.UsuarioNombre;
-            txtCorreo.Text = usuarioActual.Correo;
+            txtUsuario.Text = usuarioActual.NombreUsuario;
             txtContraseña.Text = usuarioActual.Contraseña;
             txtSaldo.Text = usuarioActual.Saldo.ToString("C2");
         }
 
         private void Restricciones()
         {
-            bool esAdmin = usuarioActual.Rol.Equals("Administrador", StringComparison.OrdinalIgnoreCase);
+            bool esAdmin = usuarioActual.RolUsuario.Equals("Administrador", StringComparison.OrdinalIgnoreCase);
             txtMonto.Enabled = !esAdmin;
             btnDepositar.Enabled = !esAdmin;
         }
@@ -58,37 +57,29 @@ namespace Presentacion.Forms.FormsCliente
 
         private void btnGuardarCambios_Click(object sender, EventArgs e)
         {
-            if (!ValidacionCampos.EstanLlenos(txtUsuario, txtCorreo))
+            if (!ValidacionCampos.EstanLlenos(txtUsuario))
             {
                 MessageBox.Show("Rellene todos los campos.");
                 return;
             }
 
-            if (!ValidacionCorreo.EsGmail(txtCorreo.Text))
-            {
-                MessageBox.Show("El correo debe terminar en @gmail.com.");
-                return;
-            }
+            string validacion = usuarioLogica.ValidarRegistro(txtUsuario.Text);
 
-            string validacion = usuarioLogica.ValidarRegistro(txtUsuario.Text, txtCorreo.Text);
-
-            bool nombreCambió = !txtUsuario.Text.Equals(usuarioActual.UsuarioNombre, StringComparison.OrdinalIgnoreCase);
-            bool correoCambió = !txtCorreo.Text.Equals(usuarioActual.Correo, StringComparison.OrdinalIgnoreCase);
+            bool nombreCambió = !txtUsuario.Text.Equals(usuarioActual.NombreUsuario, StringComparison.OrdinalIgnoreCase);
 
             if (validacion != "OK" &&
-                ((validacion.Contains("usuario") && nombreCambió) || (validacion.Contains("correo") && correoCambió)))
+                (validacion.Contains("usuario") && nombreCambió))
             {
                 MessageBox.Show(validacion, "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            bool actualizado = usuarioLogica.ActualizarUsuario(usuarioActual.Id, txtUsuario.Text, txtCorreo.Text, usuarioActual.Contraseña);
+            bool actualizado = usuarioLogica.ActualizarUsuario(usuarioActual.Id, txtUsuario.Text, usuarioActual.Contraseña);
 
             if (actualizado)
             {
-                usuarioActual.UsuarioNombre = txtUsuario.Text;
-                usuarioActual.Correo = txtCorreo.Text;
-                formularioPadre.RefrescarDatosUsuario(usuarioActual.UsuarioNombre, usuarioActual.Correo);
+                usuarioActual.NombreUsuario = txtUsuario.Text;
+                formularioPadre.RefrescarDatosUsuario(usuarioActual.NombreUsuario);
 
                 MessageBox.Show("Datos actualizados correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
@@ -125,8 +116,7 @@ namespace Presentacion.Forms.FormsCliente
 
             bool actualizado = usuarioLogica.ActualizarUsuario(
                 usuarioActual.Id,
-                usuarioActual.UsuarioNombre,
-                usuarioActual.Correo,
+                usuarioActual.NombreUsuario ,
                 txtNuevaContraseña.Text
             );
 

@@ -32,17 +32,16 @@ namespace Presentacion.Forms.FormsAdministrador
         private void btnAgregarProducto_Click(object sender, EventArgs e)
         {
             string usuarioNombre = txtUsuario.Text.Trim();
-            string correo = txtCorreo.Text.Trim();
             string contraseña = txtContraseña.Text;
             string rol = cmbRol.Text.Trim();
 
-            string resultado = usuarioLogica.CrearUsuarioDesdeGestion(usuarioNombre, correo, contraseña, rol);
+            string resultado = usuarioLogica.CrearUsuarioDesdeGestion(usuarioNombre, contraseña, rol);
 
             if (resultado == "OK")
             {
                 MessageBox.Show("Usuario agregado correctamente.");
                 ActualizarTablaUsuarios();
-                LimpiarFormulario.LimpiarCampos(txtID,txtUsuario,txtSaldo,cmbRol,txtCorreo,txtContraseña);
+                LimpiarFormulario.LimpiarCampos(txtID,txtUsuario,txtSaldo,cmbRol,txtContraseña);
 
             }
             else
@@ -61,18 +60,17 @@ namespace Presentacion.Forms.FormsAdministrador
             }
 
             string nuevoNombre = txtUsuario.Text.Trim();
-            string nuevoCorreo = txtCorreo.Text.Trim();
             string nuevaContraseña = txtContraseña.Text;
             string nuevoRol = cmbRol.Text.Trim();
 
-            bool exito = usuarioLogica.ActualizarUsuario(id, nuevoNombre, nuevoCorreo, nuevaContraseña, nuevoRol);
+            bool exito = usuarioLogica.ActualizarUsuario(id, nuevoNombre, nuevaContraseña, nuevoRol);
 
 
             if (exito)
             {
                 MessageBox.Show("Usuario modificado correctamente.");
                 ActualizarTablaUsuarios();
-                LimpiarFormulario.LimpiarCampos(txtID, txtUsuario, txtSaldo, cmbRol, txtCorreo, txtContraseña);
+                LimpiarFormulario.LimpiarCampos(txtID, txtUsuario, txtSaldo, cmbRol, txtContraseña);
             }
             else
             {
@@ -99,7 +97,7 @@ namespace Presentacion.Forms.FormsAdministrador
                 {
                     MessageBox.Show("Usuario eliminado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     ActualizarTablaUsuarios();
-                    LimpiarFormulario.LimpiarCampos(txtID, txtUsuario, txtSaldo, cmbRol, txtCorreo, txtContraseña);
+                    LimpiarFormulario.LimpiarCampos(txtID, txtUsuario, txtSaldo, cmbRol, txtContraseña);
                 }
                 else
                 {
@@ -117,9 +115,8 @@ namespace Presentacion.Forms.FormsAdministrador
                 txtID.Text = fila.Cells[0].Value.ToString();
                 cmbRol.Text = fila.Cells[1].Value.ToString();
                 txtUsuario.Text = fila.Cells[2].Value.ToString();
-                txtCorreo.Text = fila.Cells[3].Value.ToString();
-                txtContraseña.Text = fila.Cells[4].Value.ToString();
-                txtSaldo.Text = string.Format("{0:C2}", Convert.ToDecimal(fila.Cells[5].Value));
+                txtContraseña.Text = fila.Cells[3].Value.ToString();
+                txtSaldo.Text = string.Format("{0:C2}", Convert.ToDecimal(fila.Cells[4].Value));
             }
         }
 

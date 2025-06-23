@@ -12,21 +12,22 @@ namespace Negocio
         {
             ValidarProducto(producto);
 
-            if (productoDatos.ObtenerProductos().Any(p => p.Nombre.Equals(producto.Nombre, StringComparison.OrdinalIgnoreCase)))
+            if (productoDatos.ObtenerProductos()
+                .Any(p => p.Nombre.Equals(producto.Nombre, StringComparison.OrdinalIgnoreCase)))
+            {
                 throw new InvalidOperationException("Ya existe un producto con ese nombre.");
-
+            }
             producto.Codigo = GenerarCodigo();
             productoDatos.AgregarProducto(producto);
         }
 
         public void Modificar(Producto producto)
         {
-            ValidarProducto(producto, true);
+            ValidarProducto(producto, esModificacion: true);
 
             var existente = productoDatos.BuscarPorCodigo(producto.Codigo);
             if (existente == null)
                 throw new InvalidOperationException("No se encontró el producto a modificar.");
-
             productoDatos.ActualizarProducto(producto);
         }
 
@@ -35,7 +36,6 @@ namespace Negocio
             var existente = productoDatos.BuscarPorCodigo(codigo);
             if (existente == null)
                 throw new InvalidOperationException("No se encontró el producto a eliminar.");
-
             productoDatos.EliminarProducto(codigo);
         }
 
@@ -56,9 +56,10 @@ namespace Negocio
 
         private string GenerarCodigo()
         {
-            var productos = productoDatos.ObtenerProductos(); 
+            var productos = productoDatos.ObtenerProductos();
             int siguienteNumero;
-            if (productos.Any()) // Verifica si hay productos en la lista
+
+            if (productos.Any())
             {
                 int numeroMaximo = productos.Select(p => int.Parse(p.Codigo.Substring(1))).Max();
                 siguienteNumero = numeroMaximo + 1;
@@ -67,7 +68,6 @@ namespace Negocio
             {
                 siguienteNumero = 1;
             }
-
             return "P" + siguienteNumero.ToString("D4");
         }
 

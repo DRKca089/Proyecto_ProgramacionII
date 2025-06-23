@@ -44,10 +44,10 @@
   <ItemGroup>
     <Compile Include="LimpiarFormulario.cs" />
     <Compile Include="ValidacionContraseña.cs" />
-    <Compile Include="ValidacionCorreo.cs" />
     <Compile Include="ValidacionNumeros.cs" />
     <Compile Include="ValidacionCampos.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ValidacionUsuario.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Datos\Datos.csproj">

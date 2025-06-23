@@ -49,6 +49,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Componentes\Validaciones.csproj">
+      <Project>{6099e2d2-1197-4b4b-8649-5e0a611fb211}</Project>
+      <Name>Validaciones</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Datos\Datos.csproj">
       <Project>{df94b4bd-bbe5-49e6-af34-ff9cc09d24d1}</Project>
       <Name>Datos</Name>

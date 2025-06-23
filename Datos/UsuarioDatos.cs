@@ -8,8 +8,8 @@ namespace Datos
     {
         private static List<Usuario> usuarios = new List<Usuario>()
         {
-            new Usuario { Id = "I0001", UsuarioNombre = "Pepe", Contraseña = "1029", Rol = "Administrador", Correo = "pepe@gmail.com", Saldo = 0.00m },
-            new Usuario { Id = "I0002", UsuarioNombre = "Juan", Contraseña = "1039", Rol = "Cliente", Correo = "juan@gmail.com", Saldo = 0.00m }
+            new Usuario { Id = "I0001", NombreUsuario = "Pepe", Contraseña = "1029", RolUsuario = "Administrador", Saldo = 0.00m },
+            new Usuario { Id = "I0002", NombreUsuario = "Juan", Contraseña = "1039", RolUsuario = "Cliente", Saldo = 0.00m }
         };
 
         public List<Usuario> ObtenerUsuarios()
@@ -24,17 +24,12 @@ namespace Datos
 
         public bool ExisteUsuario(string nombreUsuario)
         {
-            return usuarios.Any(u => u.UsuarioNombre.Equals(nombreUsuario, StringComparison.OrdinalIgnoreCase));
-        }
-
-        public bool ExisteCorreo(string correo)
-        {
-            return usuarios.Any(u => u.Correo.Equals(correo, StringComparison.OrdinalIgnoreCase));
+            return usuarios.Any(u => u.NombreUsuario.Equals(nombreUsuario, StringComparison.OrdinalIgnoreCase));
         }
 
         public Usuario ObtenerPorNombre(string nombre)
         {
-            return usuarios.FirstOrDefault(u => u.UsuarioNombre.Equals(nombre, StringComparison.OrdinalIgnoreCase));
+            return usuarios.FirstOrDefault(u => u.NombreUsuario.Equals(nombre, StringComparison.OrdinalIgnoreCase));
         }
 
         public Usuario ObtenerPorId(string id)
@@ -47,10 +42,9 @@ namespace Datos
             var usuario = usuarios.FirstOrDefault(u => u.Id == usuarioActualizado.Id);
             if (usuario != null)
             {
-                usuario.UsuarioNombre = usuarioActualizado.UsuarioNombre;
+                usuario.NombreUsuario = usuarioActualizado.NombreUsuario;
                 usuario.Contraseña = usuarioActualizado.Contraseña;
-                usuario.Rol = usuarioActualizado.Rol;
-                usuario.Correo = usuarioActualizado.Correo;
+                usuario.RolUsuario = usuarioActualizado.RolUsuario;
                 usuario.Saldo = usuarioActualizado.Saldo;
             }
         }
@@ -64,7 +58,7 @@ namespace Datos
 
         public List<Usuario> BuscarPorNombreUsuario(string nombreUsuario)
         {
-            return usuarios.FindAll(u => u.UsuarioNombre.IndexOf(nombreUsuario, StringComparison.OrdinalIgnoreCase) >= 0);
+            return usuarios.FindAll(u => u.NombreUsuario.IndexOf(nombreUsuario, StringComparison.OrdinalIgnoreCase) >= 0);
         }
     }
 }

@@ -40,7 +40,7 @@ namespace Presentacion
                 this.Hide();
 
                 Usuario usuario = usuarioLogica.ObtenerUsuario(txtUsuario.Text);
-                frmMenu menu = new frmMenu(usuario.UsuarioNombre, usuario.Rol, usuario.Correo);
+                frmMenu menu = new frmMenu(usuario.NombreUsuario, usuario.RolUsuario);
                 menu.ShowDialog();
 
                 this.Close();

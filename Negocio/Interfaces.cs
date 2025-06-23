@@ -25,12 +25,12 @@ public interface IReporteLogica
 
 public interface IUsuarioLogica
 {
-    string RegistrarUsuario(string usuarioNombre, string correo, string contraseña);
+    string RegistrarUsuario(string usuarioNombre, string contraseña);
     string ValidarInicioSesion(string nombre, string contraseña, string rol);
-    string ValidarRegistro(string nombre, string correo);
+    string ValidarRegistro(string nombre);
     Usuario ObtenerUsuario(string nombre);
     List<Usuario> ObtenerTodos();
-    bool ActualizarUsuario(string id, string nuevoNombre, string nuevoCorreo, string nuevaContraseña);
+    bool ActualizarUsuario(string id, string nuevoNombre, string nuevaContraseña);
     bool DepositarSaldo(string idUsuario, decimal monto, out string mensaje, out decimal saldoActualizado);
 
 }

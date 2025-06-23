@@ -21,15 +21,9 @@ namespace Presentacion.Forms
 
         private void btnRegistro_Click(object sender, EventArgs e)
         {
-            if (!ValidacionCampos.EstanLlenos(txtUsuario, txtCorreo, txtContraseña, txtConfirmarContraseña))
+            if (!ValidacionCampos.EstanLlenos(txtUsuario, txtContraseña, txtConfirmarContraseña))
             {
                 MessageBox.Show("Rellene todos los campos");
-                return;
-            }
-
-            if (!ValidacionCorreo.EsGmail(txtCorreo.Text))
-            {
-                MessageBox.Show("El correo debe terminar en @gmail.com");
                 return;
             }
 
@@ -39,7 +33,7 @@ namespace Presentacion.Forms
                 return; 
             }
 
-            string resultadoValidacion = usuarioLogica.ValidarRegistro(txtUsuario.Text, txtCorreo.Text);
+            string resultadoValidacion = usuarioLogica.ValidarRegistro(txtUsuario.Text);
 
             if (resultadoValidacion != "OK")
             {
@@ -48,7 +42,7 @@ namespace Presentacion.Forms
             }
 
             // Envia los datos necesarios a negocio para crear el usuario y agregarlo
-            string resultadoRegistro = usuarioLogica.RegistrarUsuario(txtUsuario.Text,txtCorreo.Text, txtContraseña.Text);
+            string resultadoRegistro = usuarioLogica.RegistrarUsuario(txtUsuario.Text, txtContraseña.Text);
 
             if (resultadoRegistro == "OK")
             {

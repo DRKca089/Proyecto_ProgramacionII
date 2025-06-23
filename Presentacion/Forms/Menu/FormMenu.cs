@@ -14,22 +14,19 @@ namespace Presentacion
         private Form formularioHijoActual;
         private string nombreUsuario;
         private string rolUsuario;
-        private string correoUsuario;
-        public frmMenu(string nombre, string rol, string correo)
+        public frmMenu(string nombre, string rol)
         {
             InitializeComponent();
             nombreUsuario = nombre;
             rolUsuario = rol;
-            correoUsuario = correo;
-            lblDatos.Text = $"{rolUsuario}\n\n{nombreUsuario}\n{correoUsuario}";
+            lblDatos.Text = $"{rolUsuario}\n\n{nombreUsuario}";
             MostrarOpcinesPorRol();
         }
 
-        public void RefrescarDatosUsuario(string nuevoNombre, string nuevoCorreo)
+        public void RefrescarDatosUsuario(string nuevoNombre)
         {
             nombreUsuario = nuevoNombre;
-            correoUsuario = nuevoCorreo;
-            lblDatos.Text = $"{rolUsuario}\n\n{nombreUsuario}\n{correoUsuario}";
+            lblDatos.Text = $"{rolUsuario}\n\n{nombreUsuario}";
         }
         private void MostrarOpcinesPorRol()
         {

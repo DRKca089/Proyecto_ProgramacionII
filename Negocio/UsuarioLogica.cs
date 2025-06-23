@@ -18,7 +18,6 @@ namespace Negocio
                 int numeroMaximo = usuarios
                     .Select(u => int.Parse(u.Id.Substring(1)))
                     .Max();
-
                 siguienteNumero = numeroMaximo + 1;
             }
             else
@@ -29,27 +28,50 @@ namespace Negocio
             return "I" + siguienteNumero.ToString("D4");
         }
 
-        public string RegistrarUsuario(string nombre, string correo, string contraseña)
+        public string RegistrarUsuario(string nombre, string contraseña)
         {
-            return CrearUsuario(nombre, correo, contraseña, "Cliente");
+            return CrearUsuario(nombre, contraseña, "Cliente");
+        }
+
+        public string CrearUsuarioDesdeGestion(string nombre, string contraseña, string rol)
+        {
+            return CrearUsuario(nombre, contraseña, rol);
+        }
+
+        private string CrearUsuario(string nombre, string contraseña, string rol)
+        {
+            string resultado = ValidacionUsuario.VerificarExistencia(nombre, usuarioDatos);
+            if (resultado != "OK") return resultado;
+
+            if (!ValidacionUsuario.EsRolValido(rol))
+                return "Rol inválido.";
+
+            Usuario nuevoUsuario = new Usuario
+            {
+                Id = GenerarNuevoId(),
+                NombreUsuario = nombre,
+                Contraseña = contraseña,
+                RolUsuario = rol,
+                Saldo = 0.0m
+            };
+
+            usuarioDatos.AgregarUsuario(nuevoUsuario);
+            return "OK";
         }
 
         public string ValidarInicioSesion(string nombre, string contraseña, string rol)
         {
             var usuario = usuarioDatos.ObtenerPorNombre(nombre);
-            if (usuario == null || usuario.Contraseña != contraseña || !usuario.Rol.Equals(rol, StringComparison.OrdinalIgnoreCase))
+            if (usuario == null || usuario.Contraseña != contraseña || !usuario.RolUsuario.Equals(rol, StringComparison.OrdinalIgnoreCase))
                 return "Usuario, contraseña o rol incorrecto.";
 
             return "OK";
         }
 
-        public string ValidarRegistro(string nombre, string correo)
+        public string ValidarRegistro(string nombre)
         {
             if (usuarioDatos.ExisteUsuario(nombre))
                 return "El nombre de usuario ya está en uso.";
-
-            if (usuarioDatos.ExisteCorreo(correo))
-                return "El correo electrónico ya está en uso.";
 
             return "OK";
         }
@@ -64,18 +86,22 @@ namespace Negocio
             return usuarioDatos.ObtenerPorNombre(nombre);
         }
 
-        public bool ActualizarUsuario(string id, string nuevoNombre, string nuevoCorreo, string nuevaContraseña, string nuevoRol = null)
+        public List<Usuario> BuscarUsuariosPorNombre(string nombre)
+        {
+            return usuarioDatos.BuscarPorNombreUsuario(nombre);
+        }
+
+        public bool ActualizarUsuario(string id, string nuevoNombre, string nuevaContraseña, string nuevoRol = null)
         {
             var usuario = usuarioDatos.ObtenerPorId(id);
             if (usuario == null)
                 return false;
 
-            usuario.UsuarioNombre = nuevoNombre;
-            usuario.Correo = nuevoCorreo;
+            usuario.NombreUsuario = nuevoNombre;
             usuario.Contraseña = nuevaContraseña;
 
             if (nuevoRol != null)
-                usuario.Rol = nuevoRol;
+                usuario.RolUsuario = nuevoRol;
 
             usuarioDatos.ActualizarUsuario(usuario);
             return true;
@@ -89,11 +115,6 @@ namespace Negocio
 
             usuarioDatos.EliminarUsuario(id);
             return true;
-        }
-
-        public List<Usuario> BuscarUsuariosPorNombre(string nombre)
-        {
-            return usuarioDatos.BuscarPorNombreUsuario(nombre);
         }
 
         public bool DepositarSaldo(string idUsuario, decimal monto, out string mensaje, out decimal saldoActualizado)
@@ -119,36 +140,6 @@ namespace Negocio
             saldoActualizado = usuario.Saldo;
             mensaje = $"Se depositaron {monto:C2} correctamente.";
             return true;
-        }
-
-        public string CrearUsuarioDesdeGestion(string nombre, string correo, string contraseña, string rol)
-        {
-            return CrearUsuario(nombre, correo, contraseña, rol);
-        }
-
-        private string CrearUsuario(string nombre, string correo, string contraseña, string rol)
-        {
-            if (usuarioDatos.ExisteUsuario(nombre))
-                return "El nombre de usuario ya está en uso.";
-
-            if (usuarioDatos.ExisteCorreo(correo))
-                return "El correo electrónico ya está en uso.";
-
-            if (rol != "Cliente" && rol != "Administrador")
-                return "Rol inválido.";
-
-            Usuario nuevoUsuario = new Usuario
-            {
-                Id = GenerarNuevoId(),
-                UsuarioNombre = nombre,
-                Correo = correo,
-                Contraseña = contraseña,
-                Rol = rol,
-                Saldo = 0.0m
-            };
-
-            usuarioDatos.AgregarUsuario(nuevoUsuario);
-            return "OK";
         }
     }
 }

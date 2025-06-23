@@ -33,14 +33,14 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label6 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.dGVVenta = new System.Windows.Forms.DataGridView();
             this.label5 = new System.Windows.Forms.Label();
-            this.btnBuscarProducto = new FontAwesome.Sharp.IconButton();
-            this.txtProductoBuscar = new System.Windows.Forms.TextBox();
+            this.dGVVenta = new System.Windows.Forms.DataGridView();
             this.colmCodigo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colCliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colFecha = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmVentaTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnBuscarProducto = new FontAwesome.Sharp.IconButton();
+            this.txtProductoBuscar = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dGVVenta)).BeginInit();
             this.SuspendLayout();
@@ -66,6 +66,16 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(730, 357);
             this.panel1.TabIndex = 28;
+            // 
+            // label5
+            // 
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.ForeColor = System.Drawing.Color.White;
+            this.label5.Location = new System.Drawing.Point(49, 12);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(220, 25);
+            this.label5.TabIndex = 29;
+            this.label5.Text = "Buscar por Código/Nombre:";
             // 
             // dGVVenta
             // 
@@ -115,39 +125,6 @@
             this.dGVVenta.TabIndex = 16;
             this.dGVVenta.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dGVVenta_CellDoubleClick);
             // 
-            // label5
-            // 
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.ForeColor = System.Drawing.Color.White;
-            this.label5.Location = new System.Drawing.Point(49, 12);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(220, 25);
-            this.label5.TabIndex = 29;
-            this.label5.Text = "Buscar por Código/Nombre:";
-            // 
-            // btnBuscarProducto
-            // 
-            this.btnBuscarProducto.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnBuscarProducto.IconChar = FontAwesome.Sharp.IconChar.MagnifyingGlass;
-            this.btnBuscarProducto.IconColor = System.Drawing.Color.Black;
-            this.btnBuscarProducto.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnBuscarProducto.IconSize = 18;
-            this.btnBuscarProducto.Location = new System.Drawing.Point(494, 12);
-            this.btnBuscarProducto.Name = "btnBuscarProducto";
-            this.btnBuscarProducto.Size = new System.Drawing.Size(80, 22);
-            this.btnBuscarProducto.TabIndex = 30;
-            this.btnBuscarProducto.Text = "Buscar";
-            this.btnBuscarProducto.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnBuscarProducto.UseVisualStyleBackColor = true;
-            // 
-            // txtProductoBuscar
-            // 
-            this.txtProductoBuscar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtProductoBuscar.Location = new System.Drawing.Point(275, 12);
-            this.txtProductoBuscar.Name = "txtProductoBuscar";
-            this.txtProductoBuscar.Size = new System.Drawing.Size(213, 22);
-            this.txtProductoBuscar.TabIndex = 31;
-            // 
             // colmCodigo
             // 
             this.colmCodigo.HeaderText = "Código";
@@ -172,6 +149,29 @@
             this.clmVentaTotal.Name = "clmVentaTotal";
             this.clmVentaTotal.ReadOnly = true;
             // 
+            // btnBuscarProducto
+            // 
+            this.btnBuscarProducto.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnBuscarProducto.IconChar = FontAwesome.Sharp.IconChar.MagnifyingGlass;
+            this.btnBuscarProducto.IconColor = System.Drawing.Color.Black;
+            this.btnBuscarProducto.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnBuscarProducto.IconSize = 18;
+            this.btnBuscarProducto.Location = new System.Drawing.Point(494, 12);
+            this.btnBuscarProducto.Name = "btnBuscarProducto";
+            this.btnBuscarProducto.Size = new System.Drawing.Size(80, 22);
+            this.btnBuscarProducto.TabIndex = 30;
+            this.btnBuscarProducto.Text = "Buscar";
+            this.btnBuscarProducto.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnBuscarProducto.UseVisualStyleBackColor = true;
+            // 
+            // txtProductoBuscar
+            // 
+            this.txtProductoBuscar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtProductoBuscar.Location = new System.Drawing.Point(275, 12);
+            this.txtProductoBuscar.Name = "txtProductoBuscar";
+            this.txtProductoBuscar.Size = new System.Drawing.Size(213, 22);
+            this.txtProductoBuscar.TabIndex = 31;
+            // 
             // FormVenta
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -180,6 +180,7 @@
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.panel1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FormVenta";
             this.Text = "Form1";
             this.panel1.ResumeLayout(false);
