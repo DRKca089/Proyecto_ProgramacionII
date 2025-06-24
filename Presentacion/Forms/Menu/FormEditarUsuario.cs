@@ -116,7 +116,7 @@ namespace Presentacion.Forms.FormsCliente
 
             bool actualizado = usuarioLogica.ActualizarUsuario(
                 usuarioActual.Id,
-                usuarioActual.NombreUsuario ,
+                usuarioActual.NombreUsuario,
                 txtNuevaContraseña.Text
             );
 

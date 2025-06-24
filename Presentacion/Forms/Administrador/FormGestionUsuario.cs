@@ -1,12 +1,7 @@
 ﻿using Negocio;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Presentacion.Forms.FormsAdministrador
@@ -24,7 +19,7 @@ namespace Presentacion.Forms.FormsAdministrador
         {
             dGVUsuarios.AutoGenerateColumns = false;
             dGVUsuarios.DataSource = null;
-            var usuarios = usuarioLogica.ObtenerTodos(); 
+            var usuarios = usuarioLogica.ObtenerTodos();
             dGVUsuarios.DataSource = usuarios;
 
         }
@@ -41,7 +36,7 @@ namespace Presentacion.Forms.FormsAdministrador
             {
                 MessageBox.Show("Usuario agregado correctamente.");
                 ActualizarTablaUsuarios();
-                LimpiarFormulario.LimpiarCampos(txtID,txtUsuario,txtSaldo,cmbRol,txtContraseña);
+                LimpiarFormulario.LimpiarCampos(txtID, txtUsuario, txtSaldo, cmbRol, txtContraseña);
 
             }
             else

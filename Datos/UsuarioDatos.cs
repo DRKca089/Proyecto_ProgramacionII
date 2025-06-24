@@ -8,7 +8,7 @@ namespace Datos
     {
         private static List<Usuario> usuarios = new List<Usuario>()
         {
-            new Usuario { Id = "I0001", NombreUsuario = "Joseph Cruz", Contraseña = "1029", RolUsuario = "Administrador", Saldo = 0.00m },
+            new Usuario { Id = "I0001", NombreUsuario = "Pepe", Contraseña = "1029", RolUsuario = "Administrador", Saldo = 0.00m },
         };
 
         public List<Usuario> ObtenerUsuarios()

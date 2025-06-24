@@ -1,13 +1,6 @@
-﻿using Presentacion.Forms;
+﻿using Negocio;
+using Presentacion.Forms;
 using System;
-using Negocio;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Presentacion
@@ -31,29 +24,40 @@ namespace Presentacion
                 return;
             }
 
-            string resultado = usuarioLogica.ValidarInicioSesion(txtUsuario.Text, txtContraseña.Text, cmbRol.Text);
-
-            if (resultado == "OK")
+            try
             {
-                MessageBox.Show("¡Login exitoso!", "Bienvenido", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                string resultado = usuarioLogica.ValidarInicioSesion(txtUsuario.Text, txtContraseña.Text, cmbRol.Text);
 
-                this.Hide();
+                if (resultado == "OK")
+                {
+                    Usuario usuario = usuarioLogica.ObtenerUsuario(txtUsuario.Text);
 
-                Usuario usuario = usuarioLogica.ObtenerUsuario(txtUsuario.Text);
-                frmMenu menu = new frmMenu(usuario.NombreUsuario, usuario.RolUsuario);
-                menu.ShowDialog();
+                    if (usuario == null)
+                    {
+                        MessageBox.Show("Usuario no encontrado.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;  // Aquí evitas que siga el código con usuario null
+                    }
 
-                this.Close();
+                    MessageBox.Show("¡Login exitoso!", "Bienvenido", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    this.Hide();
+                    frmMenu menu = new frmMenu(usuario.NombreUsuario, usuario.RolUsuario);
+                    menu.ShowDialog();
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show(resultado, "Error de inicio de sesión", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show(resultado, "Error de inicio de sesión", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                if (resultado.Contains("usuario"))
-                    txtUsuario.Focus();
-                else if (resultado.Contains("contraseña"))
-                    txtContraseña.Focus();
-                else if (resultado.Contains("rol"))
-                    cmbRol.Focus();
+                MessageBox.Show(
+        $"Error inesperado en: {ex.TargetSite}\n\nMensaje: {ex.Message}\n\nStackTrace:\n{ex.StackTrace}",
+        "Error Detallado",
+        MessageBoxButtons.OK,
+        MessageBoxIcon.Error);
+
             }
         }
 

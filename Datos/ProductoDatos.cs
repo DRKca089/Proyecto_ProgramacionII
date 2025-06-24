@@ -10,7 +10,7 @@ public class ProductoDatos
 
     public List<Producto> ObtenerProductos()
     {
-        return productos;
+        return productos.ToList();
     }
 
     public void AgregarProducto(Producto producto)

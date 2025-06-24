@@ -103,6 +103,7 @@
             // 
             this.txtReporteStockBajo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtReporteStockBajo.Location = new System.Drawing.Point(142, 104);
+            this.txtReporteStockBajo.MaxLength = 6;
             this.txtReporteStockBajo.Name = "txtReporteStockBajo";
             this.txtReporteStockBajo.Size = new System.Drawing.Size(89, 22);
             this.txtReporteStockBajo.TabIndex = 23;
@@ -120,6 +121,7 @@
             // 
             this.txtReporteTopVendidos.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtReporteTopVendidos.Location = new System.Drawing.Point(142, 169);
+            this.txtReporteTopVendidos.MaxLength = 6;
             this.txtReporteTopVendidos.Name = "txtReporteTopVendidos";
             this.txtReporteTopVendidos.Size = new System.Drawing.Size(89, 22);
             this.txtReporteTopVendidos.TabIndex = 27;

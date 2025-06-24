@@ -1,12 +1,5 @@
 ﻿using Negocio;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Presentacion.Forms
@@ -30,7 +23,7 @@ namespace Presentacion.Forms
             if (!ValidacionContraseña.SonContraseñasIguales(txtContraseña.Text, txtConfirmarContraseña.Text))
             {
                 MessageBox.Show("Las contraseñas no son iguales");
-                return; 
+                return;
             }
 
             string resultadoValidacion = usuarioLogica.ValidarRegistro(txtUsuario.Text);

@@ -42,13 +42,13 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.txtMonto = new System.Windows.Forms.TextBox();
-            this.txtSaldo = new System.Windows.Forms.TextBox();
-            this.btnDepositar = new FontAwesome.Sharp.IconButton();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.btnDepositar = new FontAwesome.Sharp.IconButton();
+            this.txtSaldo = new System.Windows.Forms.TextBox();
+            this.txtMonto = new System.Windows.Forms.TextBox();
+            this.panel2 = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -105,6 +105,7 @@
             // 
             this.txtConfirmarContraseña.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtConfirmarContraseña.Location = new System.Drawing.Point(196, 229);
+            this.txtConfirmarContraseña.MaxLength = 16;
             this.txtConfirmarContraseña.Name = "txtConfirmarContraseña";
             this.txtConfirmarContraseña.Size = new System.Drawing.Size(279, 23);
             this.txtConfirmarContraseña.TabIndex = 27;
@@ -114,6 +115,7 @@
             // 
             this.txtNuevaContraseña.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtNuevaContraseña.Location = new System.Drawing.Point(179, 186);
+            this.txtNuevaContraseña.MaxLength = 16;
             this.txtNuevaContraseña.Name = "txtNuevaContraseña";
             this.txtNuevaContraseña.Size = new System.Drawing.Size(296, 23);
             this.txtNuevaContraseña.TabIndex = 26;
@@ -134,6 +136,7 @@
             // 
             this.txtUsuario.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtUsuario.Location = new System.Drawing.Point(93, 88);
+            this.txtUsuario.MaxLength = 20;
             this.txtUsuario.Name = "txtUsuario";
             this.txtUsuario.Size = new System.Drawing.Size(382, 23);
             this.txtUsuario.TabIndex = 24;
@@ -215,38 +218,35 @@
             this.label5.TabIndex = 12;
             this.label5.Text = "ID:";
             // 
-            // panel2
+            // label2
             // 
-            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(30)))), ((int)(((byte)(68)))));
-            this.panel2.Controls.Add(this.txtMonto);
-            this.panel2.Controls.Add(this.txtSaldo);
-            this.panel2.Controls.Add(this.btnDepositar);
-            this.panel2.Controls.Add(this.label9);
-            this.panel2.Controls.Add(this.label1);
-            this.panel2.Controls.Add(this.label2);
-            this.panel2.Location = new System.Drawing.Point(27, 285);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(695, 129);
-            this.panel2.TabIndex = 35;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.White;
+            this.label2.Location = new System.Drawing.Point(14, 11);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(217, 25);
+            this.label2.TabIndex = 17;
+            this.label2.Text = "Saldo y Dinero";
             // 
-            // txtMonto
+            // label1
             // 
-            this.txtMonto.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtMonto.Location = new System.Drawing.Point(179, 87);
-            this.txtMonto.Name = "txtMonto";
-            this.txtMonto.Size = new System.Drawing.Size(114, 23);
-            this.txtMonto.TabIndex = 29;
+            this.label1.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Location = new System.Drawing.Point(14, 46);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(118, 25);
+            this.label1.TabIndex = 12;
+            this.label1.Text = "Saldo actual:";
             // 
-            // txtSaldo
+            // label9
             // 
-            this.txtSaldo.Enabled = false;
-            this.txtSaldo.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSaldo.Location = new System.Drawing.Point(179, 46);
-            this.txtSaldo.Name = "txtSaldo";
-            this.txtSaldo.ReadOnly = true;
-            this.txtSaldo.Size = new System.Drawing.Size(114, 23);
-            this.txtSaldo.TabIndex = 28;
-            this.txtSaldo.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.label9.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.ForeColor = System.Drawing.Color.White;
+            this.label9.Location = new System.Drawing.Point(14, 86);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(159, 25);
+            this.label9.TabIndex = 18;
+            this.label9.Text = "Monto a depositar:";
             // 
             // btnDepositar
             // 
@@ -265,35 +265,39 @@
             this.btnDepositar.UseVisualStyleBackColor = true;
             this.btnDepositar.Click += new System.EventHandler(this.btnDepositar_Click);
             // 
-            // label9
+            // txtSaldo
             // 
-            this.label9.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.ForeColor = System.Drawing.Color.White;
-            this.label9.Location = new System.Drawing.Point(14, 86);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(159, 25);
-            this.label9.TabIndex = 18;
-            this.label9.Text = "Monto a depositar:";
+            this.txtSaldo.Enabled = false;
+            this.txtSaldo.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSaldo.Location = new System.Drawing.Point(179, 46);
+            this.txtSaldo.Name = "txtSaldo";
+            this.txtSaldo.ReadOnly = true;
+            this.txtSaldo.Size = new System.Drawing.Size(114, 23);
+            this.txtSaldo.TabIndex = 28;
+            this.txtSaldo.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
-            // label1
+            // txtMonto
             // 
-            this.label1.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(14, 46);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(118, 25);
-            this.label1.TabIndex = 12;
-            this.label1.Text = "Saldo actual:";
+            this.txtMonto.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtMonto.Location = new System.Drawing.Point(179, 87);
+            this.txtMonto.MaxLength = 6;
+            this.txtMonto.Name = "txtMonto";
+            this.txtMonto.Size = new System.Drawing.Size(114, 23);
+            this.txtMonto.TabIndex = 29;
             // 
-            // label2
+            // panel2
             // 
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(14, 11);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(217, 25);
-            this.label2.TabIndex = 17;
-            this.label2.Text = "Saldo y Dinero";
+            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(30)))), ((int)(((byte)(68)))));
+            this.panel2.Controls.Add(this.txtMonto);
+            this.panel2.Controls.Add(this.txtSaldo);
+            this.panel2.Controls.Add(this.btnDepositar);
+            this.panel2.Controls.Add(this.label9);
+            this.panel2.Controls.Add(this.label1);
+            this.panel2.Controls.Add(this.label2);
+            this.panel2.Location = new System.Drawing.Point(27, 285);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(695, 129);
+            this.panel2.TabIndex = 35;
             // 
             // frmEditarUsuario
             // 
@@ -323,19 +327,19 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
         private FontAwesome.Sharp.IconButton btnGuardarCambios;
         private System.Windows.Forms.TextBox txtConfirmarContraseña;
         private System.Windows.Forms.TextBox txtNuevaContraseña;
         private System.Windows.Forms.TextBox txtContraseña;
         private System.Windows.Forms.TextBox txtUsuario;
         private System.Windows.Forms.TextBox txtID;
-        private System.Windows.Forms.TextBox txtMonto;
-        private System.Windows.Forms.TextBox txtSaldo;
-        private FontAwesome.Sharp.IconButton btnDepositar;
-        private System.Windows.Forms.Label label9;
         private FontAwesome.Sharp.IconButton btnCambiarContraseña;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label9;
+        private FontAwesome.Sharp.IconButton btnDepositar;
+        private System.Windows.Forms.TextBox txtSaldo;
+        private System.Windows.Forms.TextBox txtMonto;
+        private System.Windows.Forms.Panel panel2;
     }
 }

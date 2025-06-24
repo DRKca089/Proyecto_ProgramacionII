@@ -20,7 +20,7 @@ namespace Presentacion
             nombreUsuario = nombre;
             rolUsuario = rol;
             lblDatos.Text = $"{rolUsuario}\n\n{nombreUsuario}";
-            MostrarOpcinesPorRol();
+            MostrarOpcionesPorRol();
         }
 
         public void RefrescarDatosUsuario(string nuevoNombre)
@@ -28,7 +28,7 @@ namespace Presentacion
             nombreUsuario = nuevoNombre;
             lblDatos.Text = $"{rolUsuario}\n\n{nombreUsuario}";
         }
-        private void MostrarOpcinesPorRol()
+        private void MostrarOpcionesPorRol()
         {
             // Ocultas todos los botones primero
             btnProducto.Visible = false;

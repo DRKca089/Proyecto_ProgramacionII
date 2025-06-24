@@ -37,14 +37,14 @@
             this.label5 = new System.Windows.Forms.Label();
             this.btnBuscar = new FontAwesome.Sharp.IconButton();
             this.txtBuscar = new System.Windows.Forms.TextBox();
-            this.dGVProducto = new System.Windows.Forms.DataGridView();
+            this.dGVTienda = new System.Windows.Forms.DataGridView();
             this.clmNombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmPrecio = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmStock = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmCarrito = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnComprar = new FontAwesome.Sharp.IconButton();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dGVProducto)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dGVTienda)).BeginInit();
             this.SuspendLayout();
             // 
             // label6
@@ -63,7 +63,7 @@
             this.panel1.Controls.Add(this.label5);
             this.panel1.Controls.Add(this.btnBuscar);
             this.panel1.Controls.Add(this.txtBuscar);
-            this.panel1.Controls.Add(this.dGVProducto);
+            this.panel1.Controls.Add(this.dGVTienda);
             this.panel1.Location = new System.Drawing.Point(12, 46);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(730, 313);
@@ -102,17 +102,17 @@
             this.txtBuscar.Size = new System.Drawing.Size(253, 23);
             this.txtBuscar.TabIndex = 14;
             // 
-            // dGVProducto
+            // dGVTienda
             // 
-            this.dGVProducto.AllowUserToAddRows = false;
-            this.dGVProducto.AllowUserToDeleteRows = false;
-            this.dGVProducto.AllowUserToResizeColumns = false;
-            this.dGVProducto.AllowUserToResizeRows = false;
-            this.dGVProducto.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dGVProducto.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(66)))), ((int)(((byte)(91)))));
-            this.dGVProducto.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.dGVProducto.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
-            this.dGVProducto.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            this.dGVTienda.AllowUserToAddRows = false;
+            this.dGVTienda.AllowUserToDeleteRows = false;
+            this.dGVTienda.AllowUserToResizeColumns = false;
+            this.dGVTienda.AllowUserToResizeRows = false;
+            this.dGVTienda.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dGVTienda.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(66)))), ((int)(((byte)(91)))));
+            this.dGVTienda.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dGVTienda.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
+            this.dGVTienda.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.HotTrack;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -120,9 +120,9 @@
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dGVProducto.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.dGVProducto.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dGVProducto.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dGVTienda.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.dGVTienda.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dGVTienda.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.clmNombre,
             this.clmPrecio,
             this.clmStock,
@@ -134,12 +134,12 @@
             dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.SteelBlue;
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dGVProducto.DefaultCellStyle = dataGridViewCellStyle3;
-            this.dGVProducto.EnableHeadersVisualStyles = false;
-            this.dGVProducto.GridColor = System.Drawing.Color.SteelBlue;
-            this.dGVProducto.Location = new System.Drawing.Point(12, 48);
-            this.dGVProducto.Name = "dGVProducto";
-            this.dGVProducto.ReadOnly = true;
+            this.dGVTienda.DefaultCellStyle = dataGridViewCellStyle3;
+            this.dGVTienda.EnableHeadersVisualStyles = false;
+            this.dGVTienda.GridColor = System.Drawing.Color.SteelBlue;
+            this.dGVTienda.Location = new System.Drawing.Point(12, 48);
+            this.dGVTienda.Name = "dGVTienda";
+            this.dGVTienda.ReadOnly = true;
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(66)))), ((int)(((byte)(91)))));
             dataGridViewCellStyle4.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -147,11 +147,11 @@
             dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.SteelBlue;
             dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.White;
             dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dGVProducto.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
-            this.dGVProducto.RowHeadersVisible = false;
-            this.dGVProducto.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dGVProducto.Size = new System.Drawing.Size(699, 248);
-            this.dGVProducto.TabIndex = 15;
+            this.dGVTienda.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            this.dGVTienda.RowHeadersVisible = false;
+            this.dGVTienda.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dGVTienda.Size = new System.Drawing.Size(699, 248);
+            this.dGVTienda.TabIndex = 15;
             // 
             // clmNombre
             // 
@@ -212,7 +212,7 @@
             this.Text = "FormTienda";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dGVProducto)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dGVTienda)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -224,7 +224,7 @@
         private System.Windows.Forms.Label label5;
         private FontAwesome.Sharp.IconButton btnBuscar;
         private System.Windows.Forms.TextBox txtBuscar;
-        private System.Windows.Forms.DataGridView dGVProducto;
+        private System.Windows.Forms.DataGridView dGVTienda;
         private FontAwesome.Sharp.IconButton btnComprar;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmNombre;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmPrecio;
