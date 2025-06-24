@@ -52,11 +52,7 @@ namespace Presentacion
             }
             catch (Exception ex)
             {
-                MessageBox.Show(
-        $"Error inesperado en: {ex.TargetSite}\n\nMensaje: {ex.Message}\n\nStackTrace:\n{ex.StackTrace}",
-        "Error Detallado",
-        MessageBoxButtons.OK,
-        MessageBoxIcon.Error);
+                MessageBox.Show($"Error inesperado: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
             }
         }

@@ -179,14 +179,25 @@ namespace Presentacion.Forms
 
         private void dGVProducto_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex >= 0) // Evita que se seleccione el encabezado
+            try
             {
-                DataGridViewRow fila = dGVProducto.Rows[e.RowIndex];
+                if (e.RowIndex >= 0 && e.RowIndex < dGVProducto.Rows.Count)
+                {
+                    DataGridViewRow fila = dGVProducto.Rows[e.RowIndex];
 
-                txtProductoCodigo.Text = fila.Cells[0].Value.ToString();
-                txtProductoNombre.Text = fila.Cells[1].Value.ToString();
-                txtProductoCantidad.Text = fila.Cells[2].Value.ToString();
-                txtProductoValor.Text = fila.Cells[3].Value.ToString();
+                    txtProductoCodigo.Text = fila.Cells[0]?.Value?.ToString() ?? "";
+                    txtProductoNombre.Text = fila.Cells[1]?.Value?.ToString() ?? "";
+                    txtProductoCantidad.Text = fila.Cells[2]?.Value?.ToString() ?? "";
+                    txtProductoValor.Text = fila.Cells[3]?.Value?.ToString() ?? "";
+                }
+            }
+            catch (ArgumentOutOfRangeException ex)
+            {
+                MessageBox.Show("Se intentó acceder a una fila que no existe" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error inesperado al seleccionar el producto" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

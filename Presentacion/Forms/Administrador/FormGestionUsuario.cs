@@ -103,15 +103,34 @@ namespace Presentacion.Forms.FormsAdministrador
 
         private void dGVUsuarios_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex >= 0) // Evita que se seleccione el encabezado
+            try
             {
-                DataGridViewRow fila = dGVUsuarios.Rows[e.RowIndex];
+                if (e.RowIndex >= 0 && e.RowIndex < dGVUsuarios.Rows.Count)
+                {
+                    DataGridViewRow fila = dGVUsuarios.Rows[e.RowIndex];
 
-                txtID.Text = fila.Cells[0].Value.ToString();
-                cmbRol.Text = fila.Cells[1].Value.ToString();
-                txtUsuario.Text = fila.Cells[2].Value.ToString();
-                txtContraseña.Text = fila.Cells[3].Value.ToString();
-                txtSaldo.Text = string.Format("{0:C2}", Convert.ToDecimal(fila.Cells[4].Value));
+                    txtID.Text = fila.Cells[0]?.Value?.ToString() ?? "";
+                    cmbRol.Text = fila.Cells[1]?.Value?.ToString() ?? "";
+                    txtUsuario.Text = fila.Cells[2]?.Value?.ToString() ?? "";
+                    txtContraseña.Text = fila.Cells[3]?.Value?.ToString() ?? "";
+
+                    if (decimal.TryParse(fila.Cells[4]?.Value?.ToString(), out decimal saldo))
+                    {
+                        txtSaldo.Text = string.Format("{0:C2}", saldo);
+                    }
+                    else
+                    {
+                        txtSaldo.Text = "$0.00";
+                    }
+                }
+            }
+            catch (ArgumentOutOfRangeException ex)
+            {
+                MessageBox.Show("Se intentó acceder a una fila que no existe.\n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error inesperado al seleccionar el usuario.\n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
