@@ -37,8 +37,7 @@
             this.txtContraseña = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.btnIniciarSesion = new FontAwesome.Sharp.IconButton();
-            this.label4 = new System.Windows.Forms.Label();
-            this.btnCrearCuenta = new FontAwesome.Sharp.IconButton();
+            this.lblRegistro = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // BarraTitulo
@@ -135,44 +134,26 @@
             this.btnIniciarSesion.IconChar = FontAwesome.Sharp.IconChar.User;
             this.btnIniciarSesion.IconColor = System.Drawing.Color.White;
             this.btnIniciarSesion.IconFont = FontAwesome.Sharp.IconFont.Solid;
-            this.btnIniciarSesion.Location = new System.Drawing.Point(64, 280);
+            this.btnIniciarSesion.Location = new System.Drawing.Point(53, 280);
             this.btnIniciarSesion.Name = "btnIniciarSesion";
-            this.btnIniciarSesion.Size = new System.Drawing.Size(212, 53);
+            this.btnIniciarSesion.Size = new System.Drawing.Size(250, 53);
             this.btnIniciarSesion.TabIndex = 8;
             this.btnIniciarSesion.Text = "Iniciar sesión";
             this.btnIniciarSesion.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnIniciarSesion.UseVisualStyleBackColor = false;
             this.btnIniciarSesion.Click += new System.EventHandler(this.btnIniciarSesion_Click);
             // 
-            // label4
+            // lblRegistro
             // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.ForeColor = System.Drawing.Color.White;
-            this.label4.Location = new System.Drawing.Point(28, 364);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(180, 18);
-            this.label4.TabIndex = 9;
-            this.label4.Text = "¿No tienes una cuenta?";
-            // 
-            // btnCrearCuenta
-            // 
-            this.btnCrearCuenta.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(38)))), ((int)(((byte)(70)))));
-            this.btnCrearCuenta.FlatAppearance.BorderSize = 0;
-            this.btnCrearCuenta.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCrearCuenta.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCrearCuenta.ForeColor = System.Drawing.Color.White;
-            this.btnCrearCuenta.IconChar = FontAwesome.Sharp.IconChar.None;
-            this.btnCrearCuenta.IconColor = System.Drawing.Color.White;
-            this.btnCrearCuenta.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnCrearCuenta.IconSize = 20;
-            this.btnCrearCuenta.Location = new System.Drawing.Point(214, 361);
-            this.btnCrearCuenta.Name = "btnCrearCuenta";
-            this.btnCrearCuenta.Size = new System.Drawing.Size(109, 26);
-            this.btnCrearCuenta.TabIndex = 10;
-            this.btnCrearCuenta.Text = "Crear cuenta";
-            this.btnCrearCuenta.UseVisualStyleBackColor = false;
-            this.btnCrearCuenta.Click += new System.EventHandler(this.btnCrearCuenta_Click);
+            this.lblRegistro.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRegistro.ForeColor = System.Drawing.Color.White;
+            this.lblRegistro.Location = new System.Drawing.Point(53, 361);
+            this.lblRegistro.Name = "lblRegistro";
+            this.lblRegistro.Size = new System.Drawing.Size(250, 18);
+            this.lblRegistro.TabIndex = 9;
+            this.lblRegistro.Text = "¿No tienes una cuenta?";
+            this.lblRegistro.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblRegistro.Click += new System.EventHandler(this.lblRegistro_Click);
             // 
             // frmInicioSesion
             // 
@@ -180,8 +161,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(59)))), ((int)(((byte)(104)))));
             this.ClientSize = new System.Drawing.Size(353, 408);
-            this.Controls.Add(this.btnCrearCuenta);
-            this.Controls.Add(this.label4);
+            this.Controls.Add(this.lblRegistro);
             this.Controls.Add(this.btnIniciarSesion);
             this.Controls.Add(this.txtContraseña);
             this.Controls.Add(this.label3);
@@ -212,7 +192,6 @@
         private System.Windows.Forms.TextBox txtContraseña;
         private System.Windows.Forms.Label label3;
         private FontAwesome.Sharp.IconButton btnIniciarSesion;
-        private System.Windows.Forms.Label label4;
-        private FontAwesome.Sharp.IconButton btnCrearCuenta;
+        private System.Windows.Forms.Label lblRegistro;
     }
 }

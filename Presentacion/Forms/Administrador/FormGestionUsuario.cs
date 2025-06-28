@@ -9,9 +9,12 @@ namespace Presentacion.Forms.FormsAdministrador
     public partial class frmGestionUsuario : Form
     {
         private UsuarioLogica usuarioLogica = new UsuarioLogica();
-        public frmGestionUsuario()
+        private Usuario usuarioActual;
+
+        public frmGestionUsuario(Usuario usuario)
         {
             InitializeComponent();
+            usuarioActual = usuario;
             ActualizarTablaUsuarios();
         }
 
@@ -54,6 +57,12 @@ namespace Presentacion.Forms.FormsAdministrador
                 return;
             }
 
+            if (usuarioActual == null)
+            {
+                MessageBox.Show("Usuario actual no inicializado.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             string nuevoNombre = txtUsuario.Text.Trim();
             string nuevaContraseña = txtContraseña.Text;
             string nuevoRol = cmbRol.Text.Trim();
@@ -75,10 +84,23 @@ namespace Presentacion.Forms.FormsAdministrador
 
         private void btnEliminarProducto_Click(object sender, EventArgs e)
         {
-            string id = txtID.Text;
-            if (string.IsNullOrEmpty(id))
+            if (dGVUsuarios.CurrentRow == null)
             {
-                MessageBox.Show("Seleccione un usuario para eliminar.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Seleccione un usuario para eliminar.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (usuarioActual == null)
+            {
+                MessageBox.Show("Usuario actual no inicializado.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            string idAEliminar = dGVUsuarios.CurrentRow.Cells["ID"].Value?.ToString();
+
+            if (string.IsNullOrWhiteSpace(idAEliminar))
+            {
+                MessageBox.Show("No se pudo obtener el ID del usuario.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -86,7 +108,7 @@ namespace Presentacion.Forms.FormsAdministrador
 
             if (confirm == DialogResult.Yes)
             {
-                bool exito = usuarioLogica.EliminarUsuario(id);
+                bool exito = usuarioLogica.EliminarUsuario(idAEliminar, usuarioActual.Id);
 
                 if (exito)
                 {
@@ -96,7 +118,10 @@ namespace Presentacion.Forms.FormsAdministrador
                 }
                 else
                 {
-                    MessageBox.Show("No se pudo eliminar el usuario.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    if (idAEliminar == usuarioActual.Id)
+                        MessageBox.Show("No puedes eliminarte a ti mismo.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    else
+                        MessageBox.Show("No se pudo eliminar el usuario.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }

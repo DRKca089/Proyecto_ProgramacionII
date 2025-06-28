@@ -133,9 +133,9 @@
             this.btnRegistro.IconChar = FontAwesome.Sharp.IconChar.User;
             this.btnRegistro.IconColor = System.Drawing.Color.White;
             this.btnRegistro.IconFont = FontAwesome.Sharp.IconFont.Solid;
-            this.btnRegistro.Location = new System.Drawing.Point(49, 321);
+            this.btnRegistro.Location = new System.Drawing.Point(33, 321);
             this.btnRegistro.Name = "btnRegistro";
-            this.btnRegistro.Size = new System.Drawing.Size(212, 53);
+            this.btnRegistro.Size = new System.Drawing.Size(250, 53);
             this.btnRegistro.TabIndex = 12;
             this.btnRegistro.Text = "Registrarse";
             this.btnRegistro.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;

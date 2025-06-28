@@ -34,7 +34,6 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.label6 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -59,21 +58,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.dGVStockBajo)).BeginInit();
             this.SuspendLayout();
             // 
-            // label6
-            // 
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.ForeColor = System.Drawing.Color.White;
-            this.label6.Location = new System.Drawing.Point(21, 9);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(224, 54);
-            this.label6.TabIndex = 18;
-            this.label6.Text = "Reporte de inventario y venta";
-            // 
             // label1
             // 
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(22, 101);
+            this.label1.Location = new System.Drawing.Point(22, 26);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(114, 25);
             this.label1.TabIndex = 19;
@@ -93,19 +82,19 @@
             // 
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(22, 159);
+            this.label3.Location = new System.Drawing.Point(22, 102);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(114, 46);
+            this.label3.Size = new System.Drawing.Size(185, 25);
             this.label3.TabIndex = 21;
             this.label3.Text = "Top productos vendidos:";
             // 
             // txtReporteStockBajo
             // 
             this.txtReporteStockBajo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtReporteStockBajo.Location = new System.Drawing.Point(142, 104);
+            this.txtReporteStockBajo.Location = new System.Drawing.Point(25, 50);
             this.txtReporteStockBajo.MaxLength = 6;
             this.txtReporteStockBajo.Name = "txtReporteStockBajo";
-            this.txtReporteStockBajo.Size = new System.Drawing.Size(89, 22);
+            this.txtReporteStockBajo.Size = new System.Drawing.Size(206, 22);
             this.txtReporteStockBajo.TabIndex = 23;
             // 
             // label5
@@ -120,10 +109,10 @@
             // txtReporteTopVendidos
             // 
             this.txtReporteTopVendidos.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtReporteTopVendidos.Location = new System.Drawing.Point(142, 169);
+            this.txtReporteTopVendidos.Location = new System.Drawing.Point(25, 130);
             this.txtReporteTopVendidos.MaxLength = 6;
             this.txtReporteTopVendidos.Name = "txtReporteTopVendidos";
-            this.txtReporteTopVendidos.Size = new System.Drawing.Size(89, 22);
+            this.txtReporteTopVendidos.Size = new System.Drawing.Size(206, 22);
             this.txtReporteTopVendidos.TabIndex = 27;
             // 
             // panel1
@@ -307,7 +296,7 @@
             this.btnGenerarReporte.IconColor = System.Drawing.Color.Black;
             this.btnGenerarReporte.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnGenerarReporte.IconSize = 18;
-            this.btnGenerarReporte.Location = new System.Drawing.Point(41, 240);
+            this.btnGenerarReporte.Location = new System.Drawing.Point(52, 264);
             this.btnGenerarReporte.Name = "btnGenerarReporte";
             this.btnGenerarReporte.Size = new System.Drawing.Size(166, 26);
             this.btnGenerarReporte.TabIndex = 28;
@@ -327,7 +316,6 @@
             this.Controls.Add(this.txtReporteStockBajo);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.label6);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FormReporte";
@@ -341,8 +329,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;

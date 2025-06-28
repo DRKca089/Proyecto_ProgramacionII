@@ -54,6 +54,42 @@ namespace Negocio
             return productoDatos.ObtenerProductos();
         }
 
+        public void ActualizarStock(Dictionary<string, int> cantidadesCompradas)
+        {
+            foreach (var item in cantidadesCompradas)
+            {
+                var producto = productoDatos.BuscarPorCodigo(item.Key);
+                if (producto != null)
+                {
+                    producto.CantidadDisponible -= item.Value;
+                    if (producto.CantidadDisponible < 0)
+                        producto.CantidadDisponible = 0;
+
+                    productoDatos.ActualizarProducto(producto); //Se guarda en el CSV
+                }
+            }
+        }
+
+        public List<ProductoCompra> ObtenerProductosParaCompra(List<Producto> productos, Dictionary<string, int> cantidadesSeleccionadas)
+        {
+            var carrito = new List<ProductoCompra>();
+
+            foreach (var producto in productos)
+            {
+                if (cantidadesSeleccionadas.TryGetValue(producto.Codigo, out int cantidad) && cantidad > 0)
+                {
+                    carrito.Add(new ProductoCompra
+                    {
+                        Codigo = producto.Codigo,
+                        Nombre = producto.Nombre,
+                        Cantidad = cantidad,
+                        Total = producto.Valor * cantidad
+                    });
+                }
+            }
+            return carrito;
+        }
+
         private string GenerarCodigo()
         {
             var productos = productoDatos.ObtenerProductos();

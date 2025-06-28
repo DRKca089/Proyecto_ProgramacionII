@@ -30,7 +30,6 @@
         {
             this.label6 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.btnCambiarContraseña = new FontAwesome.Sharp.IconButton();
             this.txtConfirmarContraseña = new System.Windows.Forms.TextBox();
             this.txtNuevaContraseña = new System.Windows.Forms.TextBox();
             this.txtContraseña = new System.Windows.Forms.TextBox();
@@ -66,7 +65,6 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(30)))), ((int)(((byte)(68)))));
-            this.panel1.Controls.Add(this.btnCambiarContraseña);
             this.panel1.Controls.Add(this.txtConfirmarContraseña);
             this.panel1.Controls.Add(this.txtNuevaContraseña);
             this.panel1.Controls.Add(this.txtContraseña);
@@ -84,40 +82,23 @@
             this.panel1.Size = new System.Drawing.Size(695, 267);
             this.panel1.TabIndex = 34;
             // 
-            // btnCambiarContraseña
-            // 
-            this.btnCambiarContraseña.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCambiarContraseña.IconChar = FontAwesome.Sharp.IconChar.Certificate;
-            this.btnCambiarContraseña.IconColor = System.Drawing.Color.Black;
-            this.btnCambiarContraseña.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnCambiarContraseña.IconSize = 25;
-            this.btnCambiarContraseña.Location = new System.Drawing.Point(496, 222);
-            this.btnCambiarContraseña.Name = "btnCambiarContraseña";
-            this.btnCambiarContraseña.Size = new System.Drawing.Size(181, 30);
-            this.btnCambiarContraseña.TabIndex = 30;
-            this.btnCambiarContraseña.Text = "Cambiar Contraseña";
-            this.btnCambiarContraseña.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCambiarContraseña.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnCambiarContraseña.UseVisualStyleBackColor = true;
-            this.btnCambiarContraseña.Click += new System.EventHandler(this.btnCambiarContraseña_Click);
-            // 
             // txtConfirmarContraseña
             // 
             this.txtConfirmarContraseña.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtConfirmarContraseña.Location = new System.Drawing.Point(196, 229);
+            this.txtConfirmarContraseña.Location = new System.Drawing.Point(196, 213);
             this.txtConfirmarContraseña.MaxLength = 16;
             this.txtConfirmarContraseña.Name = "txtConfirmarContraseña";
-            this.txtConfirmarContraseña.Size = new System.Drawing.Size(279, 23);
+            this.txtConfirmarContraseña.Size = new System.Drawing.Size(304, 23);
             this.txtConfirmarContraseña.TabIndex = 27;
             this.txtConfirmarContraseña.UseSystemPasswordChar = true;
             // 
             // txtNuevaContraseña
             // 
             this.txtNuevaContraseña.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNuevaContraseña.Location = new System.Drawing.Point(179, 186);
+            this.txtNuevaContraseña.Location = new System.Drawing.Point(196, 175);
             this.txtNuevaContraseña.MaxLength = 16;
             this.txtNuevaContraseña.Name = "txtNuevaContraseña";
-            this.txtNuevaContraseña.Size = new System.Drawing.Size(296, 23);
+            this.txtNuevaContraseña.Size = new System.Drawing.Size(304, 23);
             this.txtNuevaContraseña.TabIndex = 26;
             this.txtNuevaContraseña.UseSystemPasswordChar = true;
             // 
@@ -125,30 +106,30 @@
             // 
             this.txtContraseña.Enabled = false;
             this.txtContraseña.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtContraseña.Location = new System.Drawing.Point(179, 150);
+            this.txtContraseña.Location = new System.Drawing.Point(196, 130);
             this.txtContraseña.Name = "txtContraseña";
             this.txtContraseña.ReadOnly = true;
-            this.txtContraseña.Size = new System.Drawing.Size(295, 23);
+            this.txtContraseña.Size = new System.Drawing.Size(304, 23);
             this.txtContraseña.TabIndex = 25;
             this.txtContraseña.UseSystemPasswordChar = true;
             // 
             // txtUsuario
             // 
             this.txtUsuario.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtUsuario.Location = new System.Drawing.Point(93, 88);
+            this.txtUsuario.Location = new System.Drawing.Point(196, 76);
             this.txtUsuario.MaxLength = 20;
             this.txtUsuario.Name = "txtUsuario";
-            this.txtUsuario.Size = new System.Drawing.Size(382, 23);
+            this.txtUsuario.Size = new System.Drawing.Size(304, 23);
             this.txtUsuario.TabIndex = 24;
             // 
             // txtID
             // 
             this.txtID.Enabled = false;
             this.txtID.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtID.Location = new System.Drawing.Point(93, 51);
+            this.txtID.Location = new System.Drawing.Point(196, 42);
             this.txtID.Name = "txtID";
             this.txtID.ReadOnly = true;
-            this.txtID.Size = new System.Drawing.Size(81, 23);
+            this.txtID.Size = new System.Drawing.Size(97, 23);
             this.txtID.TabIndex = 23;
             // 
             // btnGuardarCambios
@@ -158,9 +139,9 @@
             this.btnGuardarCambios.IconColor = System.Drawing.Color.Black;
             this.btnGuardarCambios.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnGuardarCambios.IconSize = 25;
-            this.btnGuardarCambios.Location = new System.Drawing.Point(496, 81);
+            this.btnGuardarCambios.Location = new System.Drawing.Point(519, 206);
             this.btnGuardarCambios.Name = "btnGuardarCambios";
-            this.btnGuardarCambios.Size = new System.Drawing.Size(181, 30);
+            this.btnGuardarCambios.Size = new System.Drawing.Size(168, 30);
             this.btnGuardarCambios.TabIndex = 22;
             this.btnGuardarCambios.Text = "Guardar Cambios";
             this.btnGuardarCambios.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -172,7 +153,7 @@
             // 
             this.label8.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.ForeColor = System.Drawing.Color.White;
-            this.label8.Location = new System.Drawing.Point(14, 229);
+            this.label8.Location = new System.Drawing.Point(15, 213);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(186, 25);
             this.label8.TabIndex = 21;
@@ -182,7 +163,7 @@
             // 
             this.label7.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.ForeColor = System.Drawing.Color.White;
-            this.label7.Location = new System.Drawing.Point(15, 186);
+            this.label7.Location = new System.Drawing.Point(15, 173);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(159, 25);
             this.label7.TabIndex = 20;
@@ -192,7 +173,7 @@
             // 
             this.label4.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.White;
-            this.label4.Location = new System.Drawing.Point(14, 148);
+            this.label4.Location = new System.Drawing.Point(14, 130);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(159, 25);
             this.label4.TabIndex = 19;
@@ -202,7 +183,7 @@
             // 
             this.label3.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(15, 86);
+            this.label3.Location = new System.Drawing.Point(15, 76);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(73, 25);
             this.label3.TabIndex = 18;
@@ -212,7 +193,7 @@
             // 
             this.label5.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.White;
-            this.label5.Location = new System.Drawing.Point(14, 49);
+            this.label5.Location = new System.Drawing.Point(15, 40);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(35, 25);
             this.label5.TabIndex = 12;
@@ -270,6 +251,7 @@
             this.txtSaldo.Enabled = false;
             this.txtSaldo.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtSaldo.Location = new System.Drawing.Point(179, 46);
+            this.txtSaldo.MaxLength = 13;
             this.txtSaldo.Name = "txtSaldo";
             this.txtSaldo.ReadOnly = true;
             this.txtSaldo.Size = new System.Drawing.Size(114, 23);
@@ -280,10 +262,10 @@
             // 
             this.txtMonto.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtMonto.Location = new System.Drawing.Point(179, 87);
-            this.txtMonto.MaxLength = 6;
+            this.txtMonto.MaxLength = 11;
             this.txtMonto.Name = "txtMonto";
             this.txtMonto.Size = new System.Drawing.Size(114, 23);
-            this.txtMonto.TabIndex = 29;
+            this.txtMonto.TabIndex = 6;
             // 
             // panel2
             // 
@@ -333,7 +315,6 @@
         private System.Windows.Forms.TextBox txtContraseña;
         private System.Windows.Forms.TextBox txtUsuario;
         private System.Windows.Forms.TextBox txtID;
-        private FontAwesome.Sharp.IconButton btnCambiarContraseña;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label9;

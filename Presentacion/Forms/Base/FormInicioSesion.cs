@@ -41,7 +41,7 @@ namespace Presentacion
                     MessageBox.Show("¡Login exitoso!", "Bienvenido", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                     this.Hide();
-                    frmMenu menu = new frmMenu(usuario.NombreUsuario, usuario.RolUsuario);
+                    frmMenu menu = new frmMenu(usuario.NombreUsuario, usuario.RolUsuario, usuario);
                     menu.ShowDialog();
                     this.Close();
                 }
@@ -57,7 +57,7 @@ namespace Presentacion
             }
         }
 
-        private void btnCrearCuenta_Click(object sender, EventArgs e)
+        private void lblRegistro_Click(object sender, EventArgs e)
         {
             frmRegistro registro = new frmRegistro();
             this.Hide();

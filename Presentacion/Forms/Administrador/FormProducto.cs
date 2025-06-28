@@ -174,7 +174,6 @@ namespace Presentacion.Forms
                 MessageBox.Show("No se encontraron productos.", "Sin resultados", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 dGVProducto.DataSource = null;
             }
-
         }
 
         private void dGVProducto_CellDoubleClick(object sender, DataGridViewCellEventArgs e)

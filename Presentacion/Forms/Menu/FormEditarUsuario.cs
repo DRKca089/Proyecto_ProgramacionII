@@ -57,79 +57,75 @@ namespace Presentacion.Forms.FormsCliente
 
         private void btnGuardarCambios_Click(object sender, EventArgs e)
         {
-            if (!ValidacionCampos.EstanLlenos(txtUsuario))
-            {
-                MessageBox.Show("Rellene todos los campos.");
-                return;
-            }
-
+            //Validar si quieres cambiar el nombre de usuario
             string validacion = usuarioLogica.ValidarRegistro(txtUsuario.Text);
+            bool nombreCambió = !txtUsuario.Text.Equals(usuarioActual.NombreUsuario,StringComparison.OrdinalIgnoreCase);
 
-            bool nombreCambió = !txtUsuario.Text.Equals(usuarioActual.NombreUsuario, StringComparison.OrdinalIgnoreCase);
-
-            if (validacion != "OK" &&
-                (validacion.Contains("usuario") && nombreCambió))
+            if (validacion != "OK" && nombreCambió && validacion.Contains("usuario"))
             {
                 MessageBox.Show(validacion, "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            bool actualizado = usuarioLogica.ActualizarUsuario(usuarioActual.Id, txtUsuario.Text, usuarioActual.Contraseña);
+            // Validar si quiere cambiar contraseña
+            bool cambiarContraseña = !string.IsNullOrWhiteSpace(txtNuevaContraseña.Text) || !string.IsNullOrWhiteSpace(txtConfirmarContraseña.Text);
+
+            if (cambiarContraseña)
+            {
+                if (!ValidacionCampos.EstanLlenos(txtNuevaContraseña, txtConfirmarContraseña))
+                {
+                    MessageBox.Show("Rellene ambos campos de contraseña.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                if (!ValidacionContraseña.SonContraseñasIguales(txtNuevaContraseña.Text, txtConfirmarContraseña.Text))
+                {
+                    MessageBox.Show("Las contraseñas no coinciden.");
+                    return;
+                }
+
+                if (ValidacionContraseña.SonContraseñasIguales(txtNuevaContraseña.Text, usuarioActual.Contraseña))
+                {
+                    MessageBox.Show("La nueva contraseña no puede ser igual a la actual.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    txtNuevaContraseña.Focus();
+                    return;
+                }
+
+                DialogResult resultado = MessageBox.Show("¿Está seguro que desea cambiar su contraseña?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (resultado != DialogResult.Yes)
+                    return;
+            }
+
+            string nuevaContraseña;
+            if(cambiarContraseña)
+            {
+                nuevaContraseña = txtNuevaContraseña.Text.Trim();
+            }
+            else
+            {
+                nuevaContraseña = usuarioActual.Contraseña; // Mantiene la contraseña actual si no se cambia
+            }
+
+            bool actualizado = usuarioLogica.ActualizarUsuario(usuarioActual.Id, txtUsuario.Text,nuevaContraseña);
 
             if (actualizado)
             {
-                usuarioActual.NombreUsuario = txtUsuario.Text;
-                formularioPadre.RefrescarDatosUsuario(usuarioActual.NombreUsuario);
-
+                if (nombreCambió)
+                {
+                    usuarioActual.NombreUsuario = txtUsuario.Text;
+                    formularioPadre.RefrescarDatosUsuario(usuarioActual.NombreUsuario);
+                }
+                if (cambiarContraseña)
+                {
+                    usuarioActual.Contraseña = txtNuevaContraseña.Text;
+                    LimpiarFormulario.LimpiarCampos(txtNuevaContraseña, txtConfirmarContraseña);
+                    txtContraseña.Text = usuarioActual.Contraseña;
+                }
                 MessageBox.Show("Datos actualizados correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
             {
                 MessageBox.Show("No se pudo actualizar la información.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private void btnCambiarContraseña_Click(object sender, EventArgs e)
-        {
-            if (!ValidacionCampos.EstanLlenos(txtNuevaContraseña, txtConfirmarContraseña))
-            {
-                MessageBox.Show("Rellene todos los campos.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-            if (!ValidacionContraseña.SonContraseñasIguales(txtNuevaContraseña.Text, txtConfirmarContraseña.Text))
-            {
-                MessageBox.Show("Las contraseñas no coinciden.");
-                return;
-            }
-
-            if (ValidacionContraseña.SonContraseñasIguales(txtNuevaContraseña.Text, usuarioActual.Contraseña))
-            {
-                MessageBox.Show("La nueva contraseña no puede ser igual a la contraseña actual.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                txtNuevaContraseña.Focus();
-                return;
-            }
-
-            DialogResult resultado = MessageBox.Show("¿Está seguro que desea cambiar su contraseña?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            if (resultado != DialogResult.Yes)
-                return;
-
-            bool actualizado = usuarioLogica.ActualizarUsuario(
-                usuarioActual.Id,
-                usuarioActual.NombreUsuario,
-                txtNuevaContraseña.Text
-            );
-
-            if (actualizado)
-            {
-                usuarioActual.Contraseña = txtNuevaContraseña.Text;
-                MessageBox.Show("Contraseña actualizada correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                LimpiarFormulario.LimpiarCampos(txtNuevaContraseña, txtConfirmarContraseña);
-                txtContraseña.Text = usuarioActual.Contraseña;
-            }
-            else
-            {
-                MessageBox.Show("No se pudo cambiar la contraseña.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

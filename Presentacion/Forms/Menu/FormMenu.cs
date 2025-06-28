@@ -3,6 +3,7 @@ using Presentacion.Forms;
 using Presentacion.Forms.FormsAdministrador;
 using Presentacion.Forms.FormsCliente;
 using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
 
 namespace Presentacion
@@ -11,16 +12,19 @@ namespace Presentacion
     {
         private UsuarioLogica usuarioLogica = new UsuarioLogica();
         private ProductoLogica productoLogica = new ProductoLogica();
+        private Dictionary<string, int> cantidadesSeleccionadas = new Dictionary<string, int>();
         private Form formularioHijoActual;
+        private Usuario usuarioActual;
         private string nombreUsuario;
         private string rolUsuario;
-        public frmMenu(string nombre, string rol)
+        public frmMenu(string nombre, string rol, Usuario usuario)
         {
             InitializeComponent();
             nombreUsuario = nombre;
             rolUsuario = rol;
             lblDatos.Text = $"{rolUsuario}\n\n{nombreUsuario}";
             MostrarOpcionesPorRol();
+            usuarioActual = usuario;
         }
 
         public void RefrescarDatosUsuario(string nuevoNombre)
@@ -76,7 +80,7 @@ namespace Presentacion
         private void btnEditarUsuario_Click(object sender, EventArgs e)
         {
             Usuario usuario = usuarioLogica.ObtenerUsuario(nombreUsuario);
-            AbrirFormularioHijo(new frmEditarUsuario(usuario, this));
+            AbrirFormularioHijo(new frmEditarUsuario(usuarioActual, this));
         }
 
 
@@ -97,7 +101,7 @@ namespace Presentacion
 
         private void bntTienda_Click(object sender, EventArgs e)
         {
-            AbrirFormularioHijo(new FormTienda());
+            AbrirFormularioHijo(new frmTienda(usuarioActual, cantidadesSeleccionadas));
         }
 
         private void btnMisCompras_Click(object sender, EventArgs e)
@@ -107,7 +111,7 @@ namespace Presentacion
 
         private void btnGestionUsuarios_Click(object sender, EventArgs e)
         {
-            AbrirFormularioHijo(new frmGestionUsuario());
+            AbrirFormularioHijo(new frmGestionUsuario(usuarioActual));
         }
 
         private void btnCerrarSesion_Click(object sender, EventArgs e)

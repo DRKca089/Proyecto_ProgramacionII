@@ -15,9 +15,7 @@ namespace Negocio
             var usuarios = usuarioDatos.ObtenerUsuarios();
             if (usuarios.Any()) // Verifica si hay usuarios registrados
             {
-                int numeroMaximo = usuarios
-                    .Select(u => int.Parse(u.Id.Substring(1)))
-                    .Max();
+                int numeroMaximo = usuarios.Select(u => int.Parse(u.Id.Substring(1))).Max();
                 siguienteNumero = numeroMaximo + 1;
             }
             else
@@ -107,17 +105,34 @@ namespace Negocio
             return true;
         }
 
-        public bool EliminarUsuario(string id)
+        public bool EliminarUsuario(string idAEliminar, string idUsuarioSolicitante)
         {
-            var usuario = usuarioDatos.ObtenerPorId(id);
+            if (idAEliminar == idUsuarioSolicitante)
+                return false;
+
+            var usuario = usuarioDatos.ObtenerPorId(idAEliminar);
             if (usuario == null)
                 return false;
 
-            usuarioDatos.EliminarUsuario(id);
+            usuarioDatos.EliminarUsuario(idAEliminar);
             return true;
         }
 
         public bool DepositarSaldo(string idUsuario, decimal monto, out string mensaje, out decimal saldoActualizado)
+        {
+            return OperarSaldo(idUsuario, monto, (saldo, m) => true, (saldo, m) => saldo + m, "Se depositaron {0:C2} correctamente.",
+                "", out mensaje, out saldoActualizado);
+        }
+
+        public bool DescontarSaldo(string idUsuario, decimal monto, out string mensaje, out decimal saldoActualizado)
+        {
+            return OperarSaldo(
+                idUsuario, monto, (saldo, m) => saldo >= m, (saldo, m) => saldo - m, "Se descontaron {0:C2} correctamente.",
+                "Saldo insuficiente para esta operación.", out mensaje, out saldoActualizado);
+        }
+
+        private bool OperarSaldo(string idUsuario, decimal monto, Func<decimal, decimal, bool> condicion, 
+            Func<decimal, decimal, decimal> operacion, string mensajeExito, string mensajeErrorCondicion, out string mensaje, out decimal saldoActualizado)
         {
             saldoActualizado = 0m;
 
@@ -134,11 +149,17 @@ namespace Negocio
                 return false;
             }
 
-            usuario.Saldo += monto;
+            if (!condicion(usuario.Saldo, monto))
+            {
+                mensaje = mensajeErrorCondicion;
+                return false;
+            }
+
+            usuario.Saldo = operacion(usuario.Saldo, monto);
             usuarioDatos.ActualizarUsuario(usuario);
 
             saldoActualizado = usuario.Saldo;
-            mensaje = $"Se depositaron {monto:C2} correctamente.";
+            mensaje = string.Format(mensajeExito, monto);
             return true;
         }
     }
