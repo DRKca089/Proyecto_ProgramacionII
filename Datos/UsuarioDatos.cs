@@ -22,12 +22,9 @@ namespace Datos
 
             if (!File.Exists(ArchivoCsv))
             {
-                // Crear archivo con admin y cliente por defecto
                 File.WriteAllLines(ArchivoCsv, new[]
                 {
-                    "Id,NombreUsuario,Contraseña,RolUsuario,Saldo",
-                    "I0001,Pepe,1029,Administrador,0.00",
-                    "I0002,Pedro,1029,Cliente,0.00"
+                    "Id,NombreUsuario,Contraseña,RolUsuario,Saldo"
                 });
             }
 
@@ -71,6 +68,7 @@ namespace Datos
 
         public List<Usuario> ObtenerUsuarios()
         {
+            CargarDesdeArchivo();
             return usuarios.ToList();
         }
 
@@ -82,21 +80,25 @@ namespace Datos
 
         public bool ExisteUsuario(string nombreUsuario)
         {
+            CargarDesdeArchivo();
             return usuarios.Any(u => u.NombreUsuario.Equals(nombreUsuario, StringComparison.OrdinalIgnoreCase));
         }
 
         public Usuario ObtenerPorNombre(string nombre)
         {
+            CargarDesdeArchivo();
             return usuarios.FirstOrDefault(u => u.NombreUsuario.Equals(nombre, StringComparison.OrdinalIgnoreCase));
         }
 
         public Usuario ObtenerPorId(string id)
         {
+            CargarDesdeArchivo();
             return usuarios.FirstOrDefault(u => u.Id.Equals(id));
         }
 
         public void ActualizarUsuario(Usuario usuarioActualizado)
         {
+            CargarDesdeArchivo();
             var usuario = usuarios.FirstOrDefault(u => u.Id == usuarioActualizado.Id);
             if (usuario != null)
             {
@@ -110,6 +112,7 @@ namespace Datos
 
         public void EliminarUsuario(string id)
         {
+            CargarDesdeArchivo();
             var usuario = usuarios.FirstOrDefault(u => u.Id == id);
             if (usuario != null)
             {
@@ -120,6 +123,7 @@ namespace Datos
 
         public List<Usuario> BuscarPorNombreUsuario(string nombreUsuario)
         {
+            CargarDesdeArchivo();
             return usuarios.FindAll(u => u.NombreUsuario.IndexOf(nombreUsuario, StringComparison.OrdinalIgnoreCase) >= 0);
         }
     }
