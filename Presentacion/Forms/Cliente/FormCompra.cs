@@ -8,12 +8,13 @@ namespace Presentacion.Forms.FormsCliente
 {
     public partial class frmCompra : Form
     {
-        private List<ProductoCompra> carrito;
+        private List<CompraDetalles> carrito;
         private ProductoLogica productoLogica = new ProductoLogica();
-        private Usuario usuarioActual;
         private UsuarioLogica usuarioLogica = new UsuarioLogica();
+        private CompraLogica compraLogica = new CompraLogica();
+        private Usuario usuarioActual;
 
-        public frmCompra(List<ProductoCompra> productosSeleccionados, Usuario usuario)
+        public frmCompra(List<CompraDetalles> productosSeleccionados, Usuario usuario)
         {
             InitializeComponent();
             carrito = productosSeleccionados;
@@ -30,7 +31,7 @@ namespace Presentacion.Forms.FormsCliente
             dGVCarrito.AutoGenerateColumns = false;
             dGVCarrito.DataSource = carrito;
 
-            decimal totalCompra = carrito.Sum(p => p.Total);
+            decimal totalCompra = carrito.Sum(p => p.Subtotal);
             lblTotal.Text = $"$ {totalCompra:F2}";
         }
 
@@ -38,7 +39,7 @@ namespace Presentacion.Forms.FormsCliente
         {
             try
             {
-                decimal totalCompra = carrito.Sum(p => p.Total);
+                decimal totalCompra = carrito.Sum(p => p.Subtotal);
 
                 if (decimal.Round(usuarioActual.Saldo, 2) < decimal.Round(totalCompra, 2))
                 {
@@ -48,16 +49,16 @@ namespace Presentacion.Forms.FormsCliente
 
                 foreach (var item in carrito)
                 {
-                    Producto productoOriginal = productoLogica.BuscarPorCodigo(item.Codigo);
+                    Producto productoOriginal = productoLogica.BuscarPorCodigo(item.CodigoProducto);
                     if (productoOriginal == null)
                     {
-                        MessageBox.Show($"Producto {item.Nombre} no encontrado.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show($"Producto {item.NombreProducto} no encontrado.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                     }
 
                     if (productoOriginal.CantidadDisponible < item.Cantidad)
                     {
-                        MessageBox.Show($"No hay suficiente stock para {item.Nombre}. Stock actual: {productoOriginal.CantidadDisponible}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show($"No hay suficiente stock para {item.NombreProducto}. Stock actual: {productoOriginal.CantidadDisponible}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                     }
                 }
@@ -70,8 +71,15 @@ namespace Presentacion.Forms.FormsCliente
                 }
                 usuarioActual.Saldo = nuevoSaldo;
 
-                var cantidadesCompradas = carrito.ToDictionary(p => p.Codigo, p => p.Cantidad);
+                var cantidadesCompradas = carrito.ToDictionary(p => p.CodigoProducto, p => p.Cantidad);
                 productoLogica.ActualizarStock(cantidadesCompradas);
+
+                string resultado = compraLogica.RegistrarCompra(usuarioActual.Id, carrito);
+                if (resultado != "OK")
+                {
+                    MessageBox.Show("Error al registrar la compra: " + resultado, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
 
                 MessageBox.Show("¡Gracias por tu compra!", "Compra completada.", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 this.DialogResult = DialogResult.OK;

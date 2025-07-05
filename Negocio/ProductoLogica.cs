@@ -26,6 +26,11 @@ namespace Negocio
             ValidarProducto(producto, esModificacion: true);
 
             var existente = productoDatos.BuscarPorCodigo(producto.Codigo);
+            if(productoDatos.ObtenerProductos()
+                .Any(p => p.Nombre.Equals(producto.Nombre, StringComparison.OrdinalIgnoreCase) && p.Codigo != producto.Codigo))
+            {
+                throw new InvalidOperationException("Ya existe un producto con ese nombre.");
+            }
             if (existente == null)
                 throw new InvalidOperationException("No se encontró el producto a modificar.");
             productoDatos.ActualizarProducto(producto);
@@ -70,20 +75,21 @@ namespace Negocio
             }
         }
 
-        public List<ProductoCompra> ObtenerProductosParaCompra(List<Producto> productos, Dictionary<string, int> cantidadesSeleccionadas)
+        public List<CompraDetalles> ObtenerProductosParaCompra(List<Producto> productos, Dictionary<string, int> cantidadesSeleccionadas)
         {
-            var carrito = new List<ProductoCompra>();
+            var carrito = new List<CompraDetalles>();
 
             foreach (var producto in productos)
             {
                 if (cantidadesSeleccionadas.TryGetValue(producto.Codigo, out int cantidad) && cantidad > 0)
                 {
-                    carrito.Add(new ProductoCompra
+                    carrito.Add(new CompraDetalles
                     {
-                        Codigo = producto.Codigo,
-                        Nombre = producto.Nombre,
+                        CodigoProducto = producto.Codigo,
+                        NombreProducto = producto.Nombre,
                         Cantidad = cantidad,
-                        Total = producto.Valor * cantidad
+                        PrecioUnitario = producto.Valor,
+                        Subtotal = producto.Valor * cantidad
                     });
                 }
             }

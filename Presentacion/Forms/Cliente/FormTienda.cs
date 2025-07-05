@@ -27,7 +27,10 @@ namespace Presentacion.Forms.FormsCliente
             foreach (DataGridViewRow fila in dGVTienda.Rows)
             {
                 string codigo = fila.Cells["Codigo"].Value?.ToString();
-                int cantidad = Convert.ToInt32(fila.Cells["Cantidad"].Value);
+                int cantidad = 0;
+
+                if (fila.Cells["Cantidad"].Value != null)
+                    int.TryParse(fila.Cells["Cantidad"].Value.ToString(), out cantidad);
 
                 if (!string.IsNullOrEmpty(codigo) && cantidad > 0)
                 {
@@ -42,16 +45,15 @@ namespace Presentacion.Forms.FormsCliente
             }
 
             List<Producto> productos = productoLogica.ListarProductos();
-            List<ProductoCompra> carrito = productoLogica.ObtenerProductosParaCompra(productos, cantidadesSeleccionadas);
+            List<CompraDetalles> carrito = productoLogica.ObtenerProductosParaCompra(productos, cantidadesSeleccionadas);
 
             frmCompra frmcompra = new frmCompra(carrito, usuarioActual);
             var resultado = frmcompra.ShowDialog();
 
             if (resultado == DialogResult.OK)
             {
-                // Solo cuando el usuario confirme la compra, actualizar el stock
                 productoLogica.ActualizarStock(cantidadesSeleccionadas);
-                cantidadesSeleccionadas.Clear(); // ✅ Limpia solo si se confirma
+                cantidadesSeleccionadas.Clear();
                 ActualizarTabla();
             }
         }

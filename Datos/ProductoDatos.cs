@@ -19,13 +19,13 @@ public class ProductoDatos
         productos.Clear();
         if (!File.Exists(ArchivoCsv))
         {
-            // Archivo no existe, crear uno con cabecera
+            //Si el archivo no existe, se crea uno nuevo con esta cabecera
             File.WriteAllText(ArchivoCsv, "Codigo,Nombre,CantidadDisponible,Valor" + Environment.NewLine);
             return;
         }
 
         var lineas = File.ReadAllLines(ArchivoCsv);
-        // Ignorar la primera línea (cabecera)
+        // Ignorar la primera línea  que es la cabecera
         foreach (var linea in lineas.Skip(1))
         {
             if (string.IsNullOrWhiteSpace(linea)) continue;
@@ -43,14 +43,14 @@ public class ProductoDatos
                 };
                 productos.Add(producto);
             }
-            catch
+            catch(Exception)
             {
-                //Ignorar línea si hay error de formato
+                //Joseph ve que podrias agregar aqui
             }
         }
     }
 
-    private void GuardarEnArchivo()
+    private void GuardarEnArchivo() 
     {
         var lineas = new List<string>
         {

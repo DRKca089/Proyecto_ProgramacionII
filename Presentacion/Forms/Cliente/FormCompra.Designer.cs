@@ -74,7 +74,7 @@
             this.btnConfirmar.IconColor = System.Drawing.Color.Black;
             this.btnConfirmar.IconFont = FontAwesome.Sharp.IconFont.Solid;
             this.btnConfirmar.IconSize = 25;
-            this.btnConfirmar.Location = new System.Drawing.Point(213, 351);
+            this.btnConfirmar.Location = new System.Drawing.Point(231, 351);
             this.btnConfirmar.Name = "btnConfirmar";
             this.btnConfirmar.Size = new System.Drawing.Size(197, 28);
             this.btnConfirmar.TabIndex = 32;
@@ -90,11 +90,11 @@
             this.btnRegresar.IconColor = System.Drawing.Color.Black;
             this.btnRegresar.IconFont = FontAwesome.Sharp.IconFont.Solid;
             this.btnRegresar.IconSize = 25;
-            this.btnRegresar.Location = new System.Drawing.Point(56, 351);
+            this.btnRegresar.Location = new System.Drawing.Point(27, 351);
             this.btnRegresar.Name = "btnRegresar";
-            this.btnRegresar.Size = new System.Drawing.Size(115, 28);
+            this.btnRegresar.Size = new System.Drawing.Size(186, 28);
             this.btnRegresar.TabIndex = 33;
-            this.btnRegresar.Text = "Regresar";
+            this.btnRegresar.Text = "Cancelar compra";
             this.btnRegresar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnRegresar.UseVisualStyleBackColor = true;
             this.btnRegresar.Click += new System.EventHandler(this.btnRegresar_Click);
@@ -190,7 +190,7 @@
             // 
             // Nombre
             // 
-            this.Nombre.DataPropertyName = "Nombre";
+            this.Nombre.DataPropertyName = "NombreProducto";
             this.Nombre.HeaderText = "Nombre";
             this.Nombre.Name = "Nombre";
             this.Nombre.ReadOnly = true;
@@ -204,7 +204,7 @@
             // 
             // Total
             // 
-            this.Total.DataPropertyName = "Total";
+            this.Total.DataPropertyName = "Subtotal";
             dataGridViewCellStyle2.Format = "C2";
             this.Total.DefaultCellStyle = dataGridViewCellStyle2;
             this.Total.HeaderText = "Valor Total";

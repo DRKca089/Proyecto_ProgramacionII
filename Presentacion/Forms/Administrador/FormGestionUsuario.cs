@@ -27,13 +27,21 @@ namespace Presentacion.Forms.FormsAdministrador
 
         }
 
-        private void btnAgregarProducto_Click(object sender, EventArgs e)
+        private void btnAgregar_Click(object sender, EventArgs e)
         {
-            string usuarioNombre = txtUsuario.Text.Trim();
-            string contraseña = txtContraseña.Text;
-            string rol = cmbRol.Text.Trim();
+            if (!ValidacionCampos.EstanLlenos(txtUsuario, txtContraseña, cmbRol))
+            {
+                MessageBox.Show("Rellene todos los campos", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
 
-            string resultado = usuarioLogica.CrearUsuarioDesdeGestion(usuarioNombre, contraseña, rol);
+            if(ValidacionContraseña.EsLongitudValida(txtContraseña.Text) == false)
+            {
+                MessageBox.Show("La contraseña debe tener al menos 5 caracteres.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            string resultado = usuarioLogica.CrearUsuarioDesdeGestion(txtUsuario.Text.Trim(), txtContraseña.Text, cmbRol.Text.Trim());
 
             if (resultado == "OK")
             {
@@ -48,41 +56,39 @@ namespace Presentacion.Forms.FormsAdministrador
             }
         }
 
-        private void btnModificarProducto_Click(object sender, EventArgs e)
+        private void btnModificar_Click(object sender, EventArgs e)
         {
-            string id = txtID.Text;
-            if (string.IsNullOrEmpty(id))
+            var usuarioExistente = usuarioLogica.ObtenerUsuario(txtUsuario.Text.Trim());
+
+            if (usuarioExistente != null && usuarioExistente.Id != txtID.Text)
             {
-                MessageBox.Show("Seleccione un usuario para modificar.");
+                MessageBox.Show("Ya existe un usuario con ese nombre.");
+            }
+
+            if (ValidacionContraseña.EsLongitudValida(txtContraseña.Text) == false)
+            {
+                MessageBox.Show("La contraseña debe tener al menos 5 caracteres.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
-            if (usuarioActual == null)
-            {
-                MessageBox.Show("Usuario actual no inicializado.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-            string nuevoNombre = txtUsuario.Text.Trim();
-            string nuevaContraseña = txtContraseña.Text;
-            string nuevoRol = cmbRol.Text.Trim();
-
-            bool exito = usuarioLogica.ActualizarUsuario(id, nuevoNombre, nuevaContraseña, nuevoRol);
-
-
-            if (exito)
-            {
-                MessageBox.Show("Usuario modificado correctamente.");
-                ActualizarTablaUsuarios();
-                LimpiarFormulario.LimpiarCampos(txtID, txtUsuario, txtSaldo, cmbRol, txtContraseña);
-            }
             else
             {
-                MessageBox.Show("Error al modificar usuario.");
+                bool exito = usuarioLogica.ModificarUsuario(txtID.Text,txtUsuario.Text.Trim(),txtContraseña.Text,cmbRol.Text.Trim());
+
+                if (exito)
+                {
+                    MessageBox.Show("Usuario modificado correctamente.");
+                    ActualizarTablaUsuarios();
+                    LimpiarFormulario.LimpiarCampos(txtID, txtUsuario, txtSaldo, cmbRol, txtContraseña);
+                }
+                else
+                {
+                    MessageBox.Show("Error al modificar usuario.","Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
 
-        private void btnEliminarProducto_Click(object sender, EventArgs e)
+        private void btnEliminar_Click(object sender, EventArgs e)
         {
             if (dGVUsuarios.CurrentRow == null)
             {
@@ -151,11 +157,11 @@ namespace Presentacion.Forms.FormsAdministrador
             }
             catch (ArgumentOutOfRangeException ex)
             {
-                MessageBox.Show("Se intentó acceder a una fila que no existe.\n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show($"Se intentó acceder a una fila que no existe.\n{ ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error inesperado al seleccionar el usuario.\n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Error inesperado al seleccionar el usuario.\n {ex.Message}\n Porfavor comunicarse con atención al cliente", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

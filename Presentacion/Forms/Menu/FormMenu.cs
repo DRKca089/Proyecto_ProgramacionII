@@ -106,7 +106,7 @@ namespace Presentacion
 
         private void btnMisCompras_Click(object sender, EventArgs e)
         {
-            AbrirFormularioHijo(new FormMisCompras());
+            AbrirFormularioHijo(new frmMisCompras(usuarioActual));
         }
 
         private void btnGestionUsuarios_Click(object sender, EventArgs e)

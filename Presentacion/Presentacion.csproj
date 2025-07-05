@@ -59,6 +59,12 @@
     <Compile Include="Forms\Base\FormInicioSesion.Designer.cs">
       <DependentUpon>FormInicioSesion.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Cliente\FormDetalleCompra.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Cliente\FormDetalleCompra.Designer.cs">
+      <DependentUpon>FormDetalleCompra.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Menu\FormMenu.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -127,6 +133,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Forms\Cliente\FormDetalleCompra.resx">
+      <DependentUpon>FormDetalleCompra.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Menu\FormMenu.resx">
       <DependentUpon>FormMenu.cs</DependentUpon>
     </EmbeddedResource>

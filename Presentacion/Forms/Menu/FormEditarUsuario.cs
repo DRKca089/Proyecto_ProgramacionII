@@ -78,6 +78,12 @@ namespace Presentacion.Forms.FormsCliente
                     return;
                 }
 
+                if (!ValidacionContraseña.EsLongitudValida(txtNuevaContraseña.Text))
+                {
+                    MessageBox.Show("La nueva contraseña debe tener al menos 5 caracteres.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
                 if (!ValidacionContraseña.SonContraseñasIguales(txtNuevaContraseña.Text, txtConfirmarContraseña.Text))
                 {
                     MessageBox.Show("Las contraseñas no coinciden.");
@@ -106,7 +112,7 @@ namespace Presentacion.Forms.FormsCliente
                 nuevaContraseña = usuarioActual.Contraseña; // Mantiene la contraseña actual si no se cambia
             }
 
-            bool actualizado = usuarioLogica.ActualizarUsuario(usuarioActual.Id, txtUsuario.Text,nuevaContraseña);
+            bool actualizado = usuarioLogica.ModificarUsuario(usuarioActual.Id, txtUsuario.Text,nuevaContraseña);
 
             if (actualizado)
             {

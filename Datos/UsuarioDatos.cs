@@ -10,6 +10,8 @@ namespace Datos
     {
         private const string ArchivoCsv = "usuarios.csv";
         private List<Usuario> usuarios = new List<Usuario>();
+        private CompraDatos compraDatos = new CompraDatos();
+        private DetalleCompraDatos detalleCompraDatos = new DetalleCompraDatos();
 
         public UsuarioDatos()
         {
@@ -43,12 +45,12 @@ namespace Datos
                         NombreUsuario = campos[1],
                         Contraseña = campos[2],
                         RolUsuario = campos[3],
-                        Saldo = decimal.Parse(campos[4], CultureInfo.InvariantCulture)
+                        Saldo = decimal.Parse(campos[4], CultureInfo.InvariantCulture) //Asegura que el fomato decimal sea correcto para el csv
                     });
                 }
-                catch
+                catch(Exception)
                 {
-                    // Ignorar líneas con error de formato
+                    //Joseph mira que agregar aqui
                 }
             }
         }
@@ -96,16 +98,16 @@ namespace Datos
             return usuarios.FirstOrDefault(u => u.Id.Equals(id));
         }
 
-        public void ActualizarUsuario(Usuario usuarioActualizado)
+        public void ModificarUsuario(Usuario usuarioModificado)
         {
             CargarDesdeArchivo();
-            var usuario = usuarios.FirstOrDefault(u => u.Id == usuarioActualizado.Id);
+            var usuario = usuarios.FirstOrDefault(u => u.Id == usuarioModificado.Id);
             if (usuario != null)
             {
-                usuario.NombreUsuario = usuarioActualizado.NombreUsuario;
-                usuario.Contraseña = usuarioActualizado.Contraseña;
-                usuario.RolUsuario = usuarioActualizado.RolUsuario;
-                usuario.Saldo = usuarioActualizado.Saldo;
+                usuario.NombreUsuario = usuarioModificado.NombreUsuario;
+                usuario.Contraseña = usuarioModificado.Contraseña;
+                usuario.RolUsuario = usuarioModificado.RolUsuario;
+                usuario.Saldo = usuarioModificado.Saldo;
                 GuardarEnArchivo();
             }
         }
@@ -116,6 +118,12 @@ namespace Datos
             var usuario = usuarios.FirstOrDefault(u => u.Id == id);
             if (usuario != null)
             {
+                var comprasUsuario = compraDatos.ObtenerComprasPorUsuario(id);
+                var codigosCompras = comprasUsuario.Select(c => c.Codigo).ToList();
+
+                detalleCompraDatos.EliminarDetallesPorCompras(codigosCompras);
+                compraDatos.EliminarComprasPorUsuario(id);
+
                 usuarios.Remove(usuario);
                 GuardarEnArchivo();
             }

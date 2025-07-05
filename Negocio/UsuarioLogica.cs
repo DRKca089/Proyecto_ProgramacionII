@@ -89,10 +89,14 @@ namespace Negocio
             return usuarioDatos.BuscarPorNombreUsuario(nombre);
         }
 
-        public bool ActualizarUsuario(string id, string nuevoNombre, string nuevaContraseña, string nuevoRol = null)
+        public bool ModificarUsuario(string id, string nuevoNombre, string nuevaContraseña, string nuevoRol = null)
         {
             var usuario = usuarioDatos.ObtenerPorId(id);
             if (usuario == null)
+                return false;
+
+            var usuarioExistente = usuarioDatos.ObtenerPorNombre(nuevoNombre);
+            if (usuarioExistente != null && usuarioExistente.Id != id)
                 return false;
 
             usuario.NombreUsuario = nuevoNombre;
@@ -101,20 +105,20 @@ namespace Negocio
             if (nuevoRol != null)
                 usuario.RolUsuario = nuevoRol;
 
-            usuarioDatos.ActualizarUsuario(usuario);
+            usuarioDatos.ModificarUsuario(usuario);
             return true;
         }
 
-        public bool EliminarUsuario(string idAEliminar, string idUsuarioSolicitante)
+        public bool EliminarUsuario(string IDEliminar, string idUsuarioSolicitante)
         {
-            if (idAEliminar == idUsuarioSolicitante)
+            if (IDEliminar == idUsuarioSolicitante)
                 return false;
 
-            var usuario = usuarioDatos.ObtenerPorId(idAEliminar);
+            var usuario = usuarioDatos.ObtenerPorId(IDEliminar);
             if (usuario == null)
                 return false;
 
-            usuarioDatos.EliminarUsuario(idAEliminar);
+            usuarioDatos.EliminarUsuario(IDEliminar);
             return true;
         }
 
@@ -156,7 +160,7 @@ namespace Negocio
             }
 
             usuario.Saldo = operacion(usuario.Saldo, monto);
-            usuarioDatos.ActualizarUsuario(usuario);
+            usuarioDatos.ModificarUsuario(usuario);
 
             saldoActualizado = usuario.Saldo;
             mensaje = string.Format(mensajeExito, monto);

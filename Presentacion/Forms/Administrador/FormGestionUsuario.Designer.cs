@@ -38,9 +38,14 @@
             this.btnBuscar = new FontAwesome.Sharp.IconButton();
             this.txtBuscar = new System.Windows.Forms.TextBox();
             this.dGVUsuarios = new System.Windows.Forms.DataGridView();
-            this.btnEliminarProducto = new FontAwesome.Sharp.IconButton();
-            this.btnModificarProducto = new FontAwesome.Sharp.IconButton();
-            this.btnAgregarProducto = new FontAwesome.Sharp.IconButton();
+            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Rol = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NombreUsuario = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Contraseña = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Saldo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnEliminar = new FontAwesome.Sharp.IconButton();
+            this.btnModificar = new FontAwesome.Sharp.IconButton();
+            this.btnAgregar = new FontAwesome.Sharp.IconButton();
             this.txtUsuario = new System.Windows.Forms.TextBox();
             this.txtID = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -52,11 +57,6 @@
             this.label8 = new System.Windows.Forms.Label();
             this.txtSaldo = new System.Windows.Forms.TextBox();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Rol = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.NombreUsuario = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Contraseña = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Saldo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dGVUsuarios)).BeginInit();
             this.panel2.SuspendLayout();
@@ -161,56 +161,97 @@
             this.dGVUsuarios.TabIndex = 15;
             this.dGVUsuarios.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dGVUsuarios_CellDoubleClick);
             // 
-            // btnEliminarProducto
+            // ID
             // 
-            this.btnEliminarProducto.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEliminarProducto.IconChar = FontAwesome.Sharp.IconChar.Trash;
-            this.btnEliminarProducto.IconColor = System.Drawing.Color.Black;
-            this.btnEliminarProducto.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnEliminarProducto.IconSize = 25;
-            this.btnEliminarProducto.Location = new System.Drawing.Point(562, 111);
-            this.btnEliminarProducto.Name = "btnEliminarProducto";
-            this.btnEliminarProducto.Size = new System.Drawing.Size(106, 30);
-            this.btnEliminarProducto.TabIndex = 42;
-            this.btnEliminarProducto.Text = "Eliminar";
-            this.btnEliminarProducto.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnEliminarProducto.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnEliminarProducto.UseVisualStyleBackColor = true;
-            this.btnEliminarProducto.Click += new System.EventHandler(this.btnEliminarProducto_Click);
+            this.ID.DataPropertyName = "ID";
+            this.ID.HeaderText = "ID";
+            this.ID.Name = "ID";
+            this.ID.ReadOnly = true;
             // 
-            // btnModificarProducto
+            // Rol
             // 
-            this.btnModificarProducto.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnModificarProducto.IconChar = FontAwesome.Sharp.IconChar.Wrench;
-            this.btnModificarProducto.IconColor = System.Drawing.Color.Black;
-            this.btnModificarProducto.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnModificarProducto.IconSize = 25;
-            this.btnModificarProducto.Location = new System.Drawing.Point(562, 61);
-            this.btnModificarProducto.Name = "btnModificarProducto";
-            this.btnModificarProducto.Size = new System.Drawing.Size(106, 30);
-            this.btnModificarProducto.TabIndex = 41;
-            this.btnModificarProducto.Text = "Modificar";
-            this.btnModificarProducto.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnModificarProducto.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnModificarProducto.UseVisualStyleBackColor = true;
-            this.btnModificarProducto.Click += new System.EventHandler(this.btnModificarProducto_Click);
+            this.Rol.DataPropertyName = "RolUsuario";
+            this.Rol.HeaderText = "Rol";
+            this.Rol.Name = "Rol";
+            this.Rol.ReadOnly = true;
             // 
-            // btnAgregarProducto
+            // NombreUsuario
             // 
-            this.btnAgregarProducto.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAgregarProducto.IconChar = FontAwesome.Sharp.IconChar.FloppyDisk;
-            this.btnAgregarProducto.IconColor = System.Drawing.Color.Black;
-            this.btnAgregarProducto.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnAgregarProducto.IconSize = 25;
-            this.btnAgregarProducto.Location = new System.Drawing.Point(562, 12);
-            this.btnAgregarProducto.Name = "btnAgregarProducto";
-            this.btnAgregarProducto.Size = new System.Drawing.Size(106, 30);
-            this.btnAgregarProducto.TabIndex = 40;
-            this.btnAgregarProducto.Text = "Agregar";
-            this.btnAgregarProducto.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAgregarProducto.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnAgregarProducto.UseVisualStyleBackColor = true;
-            this.btnAgregarProducto.Click += new System.EventHandler(this.btnAgregarProducto_Click);
+            this.NombreUsuario.DataPropertyName = "NombreUsuario";
+            dataGridViewCellStyle2.Format = "C2";
+            this.NombreUsuario.DefaultCellStyle = dataGridViewCellStyle2;
+            this.NombreUsuario.HeaderText = "Usuario";
+            this.NombreUsuario.Name = "NombreUsuario";
+            this.NombreUsuario.ReadOnly = true;
+            // 
+            // Contraseña
+            // 
+            this.Contraseña.DataPropertyName = "Contraseña";
+            this.Contraseña.HeaderText = "Contraseña";
+            this.Contraseña.Name = "Contraseña";
+            this.Contraseña.ReadOnly = true;
+            this.Contraseña.Visible = false;
+            // 
+            // Saldo
+            // 
+            this.Saldo.DataPropertyName = "Saldo";
+            dataGridViewCellStyle3.Format = "C2";
+            dataGridViewCellStyle3.NullValue = null;
+            this.Saldo.DefaultCellStyle = dataGridViewCellStyle3;
+            this.Saldo.HeaderText = "Saldo";
+            this.Saldo.Name = "Saldo";
+            this.Saldo.ReadOnly = true;
+            // 
+            // btnEliminar
+            // 
+            this.btnEliminar.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEliminar.IconChar = FontAwesome.Sharp.IconChar.Trash;
+            this.btnEliminar.IconColor = System.Drawing.Color.Black;
+            this.btnEliminar.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnEliminar.IconSize = 25;
+            this.btnEliminar.Location = new System.Drawing.Point(562, 111);
+            this.btnEliminar.Name = "btnEliminar";
+            this.btnEliminar.Size = new System.Drawing.Size(106, 30);
+            this.btnEliminar.TabIndex = 42;
+            this.btnEliminar.Text = "Eliminar";
+            this.btnEliminar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnEliminar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnEliminar.UseVisualStyleBackColor = true;
+            this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
+            // 
+            // btnModificar
+            // 
+            this.btnModificar.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnModificar.IconChar = FontAwesome.Sharp.IconChar.Wrench;
+            this.btnModificar.IconColor = System.Drawing.Color.Black;
+            this.btnModificar.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnModificar.IconSize = 25;
+            this.btnModificar.Location = new System.Drawing.Point(562, 61);
+            this.btnModificar.Name = "btnModificar";
+            this.btnModificar.Size = new System.Drawing.Size(106, 30);
+            this.btnModificar.TabIndex = 41;
+            this.btnModificar.Text = "Modificar";
+            this.btnModificar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnModificar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnModificar.UseVisualStyleBackColor = true;
+            this.btnModificar.Click += new System.EventHandler(this.btnModificar_Click);
+            // 
+            // btnAgregar
+            // 
+            this.btnAgregar.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAgregar.IconChar = FontAwesome.Sharp.IconChar.FloppyDisk;
+            this.btnAgregar.IconColor = System.Drawing.Color.Black;
+            this.btnAgregar.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnAgregar.IconSize = 25;
+            this.btnAgregar.Location = new System.Drawing.Point(562, 12);
+            this.btnAgregar.Name = "btnAgregar";
+            this.btnAgregar.Size = new System.Drawing.Size(106, 30);
+            this.btnAgregar.TabIndex = 40;
+            this.btnAgregar.Text = "Agregar";
+            this.btnAgregar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnAgregar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnAgregar.UseVisualStyleBackColor = true;
+            this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
             // 
             // txtUsuario
             // 
@@ -318,11 +359,11 @@
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(30)))), ((int)(((byte)(68)))));
-            this.panel2.Controls.Add(this.btnEliminarProducto);
+            this.panel2.Controls.Add(this.btnEliminar);
             this.panel2.Controls.Add(this.txtContraseña);
-            this.panel2.Controls.Add(this.btnModificarProducto);
+            this.panel2.Controls.Add(this.btnModificar);
             this.panel2.Controls.Add(this.label8);
-            this.panel2.Controls.Add(this.btnAgregarProducto);
+            this.panel2.Controls.Add(this.btnAgregar);
             this.panel2.Controls.Add(this.label7);
             this.panel2.Controls.Add(this.txtSaldo);
             this.panel2.Controls.Add(this.txtID);
@@ -335,47 +376,6 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(723, 153);
             this.panel2.TabIndex = 48;
-            // 
-            // ID
-            // 
-            this.ID.DataPropertyName = "ID";
-            this.ID.HeaderText = "ID";
-            this.ID.Name = "ID";
-            this.ID.ReadOnly = true;
-            // 
-            // Rol
-            // 
-            this.Rol.DataPropertyName = "RolUsuario";
-            this.Rol.HeaderText = "Rol";
-            this.Rol.Name = "Rol";
-            this.Rol.ReadOnly = true;
-            // 
-            // NombreUsuario
-            // 
-            this.NombreUsuario.DataPropertyName = "NombreUsuario";
-            dataGridViewCellStyle2.Format = "C2";
-            this.NombreUsuario.DefaultCellStyle = dataGridViewCellStyle2;
-            this.NombreUsuario.HeaderText = "Usuario";
-            this.NombreUsuario.Name = "NombreUsuario";
-            this.NombreUsuario.ReadOnly = true;
-            // 
-            // Contraseña
-            // 
-            this.Contraseña.DataPropertyName = "Contraseña";
-            this.Contraseña.HeaderText = "Contraseña";
-            this.Contraseña.Name = "Contraseña";
-            this.Contraseña.ReadOnly = true;
-            this.Contraseña.Visible = false;
-            // 
-            // Saldo
-            // 
-            this.Saldo.DataPropertyName = "Saldo";
-            dataGridViewCellStyle3.Format = "C2";
-            dataGridViewCellStyle3.NullValue = null;
-            this.Saldo.DefaultCellStyle = dataGridViewCellStyle3;
-            this.Saldo.HeaderText = "Saldo";
-            this.Saldo.Name = "Saldo";
-            this.Saldo.ReadOnly = true;
             // 
             // frmGestionUsuario
             // 
@@ -403,9 +403,9 @@
         private FontAwesome.Sharp.IconButton btnBuscar;
         private System.Windows.Forms.TextBox txtBuscar;
         private System.Windows.Forms.DataGridView dGVUsuarios;
-        private FontAwesome.Sharp.IconButton btnEliminarProducto;
-        private FontAwesome.Sharp.IconButton btnModificarProducto;
-        private FontAwesome.Sharp.IconButton btnAgregarProducto;
+        private FontAwesome.Sharp.IconButton btnEliminar;
+        private FontAwesome.Sharp.IconButton btnModificar;
+        private FontAwesome.Sharp.IconButton btnAgregar;
         private System.Windows.Forms.TextBox txtUsuario;
         private System.Windows.Forms.TextBox txtID;
         private System.Windows.Forms.Label label3;

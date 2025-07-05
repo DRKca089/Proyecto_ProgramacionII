@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CompraLogica.cs" />
     <Compile Include="UsuarioLogica.cs" />
     <Compile Include="VentaLogica.cs" />
     <Compile Include="ReporteLogica.cs" />

@@ -20,6 +20,12 @@ namespace Presentacion.Forms
                 return;
             }
 
+            if (ValidacionContraseña.EsLongitudValida(txtContraseña.Text) == false)
+            {
+                MessageBox.Show("La contraseña debe tener al menos 5 caracteres.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             if (!ValidacionContraseña.SonContraseñasIguales(txtContraseña.Text, txtConfirmarContraseña.Text))
             {
                 MessageBox.Show("Las contraseñas no son iguales");
