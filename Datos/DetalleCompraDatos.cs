@@ -76,11 +76,4 @@ public class DetalleCompraDatos
         detalles.AddRange(nuevosDetalles);
         GuardarTodo();
     }
-
-    public void EliminarDetallesPorCompras(List<string> codigosCompras)
-    {
-        CargarDesdeArchivo();
-        detalles = detalles.Where(d => !codigosCompras.Contains(d.CodigoCompra)).ToList();
-        GuardarTodo();
-    }
 }

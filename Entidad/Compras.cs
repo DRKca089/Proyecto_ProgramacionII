@@ -1,8 +1,9 @@
 ﻿using System;
 public class Compra
 {
-    public string IdUsuario { get; set; }
     public string Codigo { get; set; }
+    public string IdUsuario { get; set; }
+    public string NombreCliente { get; set; }
     public DateTime Fecha { get; set; }
     public decimal Total { get; set; }
 

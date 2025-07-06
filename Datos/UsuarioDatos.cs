@@ -121,15 +121,12 @@ namespace Datos
                 var comprasUsuario = compraDatos.ObtenerComprasPorUsuario(id);
                 var codigosCompras = comprasUsuario.Select(c => c.Codigo).ToList();
 
-                detalleCompraDatos.EliminarDetallesPorCompras(codigosCompras);
-                compraDatos.EliminarComprasPorUsuario(id);
-
                 usuarios.Remove(usuario);
                 GuardarEnArchivo();
             }
         }
 
-        public List<Usuario> BuscarPorNombreUsuario(string nombreUsuario)
+        public List<Usuario> BuscarPorNombre(string nombreUsuario)
         {
             CargarDesdeArchivo();
             return usuarios.FindAll(u => u.NombreUsuario.IndexOf(nombreUsuario, StringComparison.OrdinalIgnoreCase) >= 0);

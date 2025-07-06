@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Datos;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -60,10 +61,35 @@ public class CompraLogica
         return "OK";
     }
 
+    public List<Compra> ObtenerComprasPorNombreUsuario(string nombreUsuario)
+    {
+        var usuarios = new UsuarioDatos().ObtenerUsuarios();
+        var usuario = usuarios.FirstOrDefault(u => u.NombreUsuario.Equals(nombreUsuario, StringComparison.OrdinalIgnoreCase));
+
+        if (usuario == null)
+        {
+            return new List<Compra>();
+        }
+
+        var compras = ObtenerComprasPorUsuario(usuario.Id);
+
+        foreach (var compra in compras)
+        {
+            compra.NombreCliente = usuario.NombreUsuario;
+        }
+
+        return compras;
+    }
+
     public decimal ObtenerTotalGastadoPorUsuario(string idUsuario)
     {
         var compras = ObtenerComprasPorUsuario(idUsuario);
         return compras.Sum(c => c.Total);
+    }
+
+    public List<Compra> ObtenerCompras()
+    {
+        return compraDatos.ObtenerCompras();
     }
 
     public List<Compra> ObtenerComprasPorUsuario(string idUsuario)

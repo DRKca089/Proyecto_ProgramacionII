@@ -147,11 +147,11 @@
             // 
             this.lblRegistro.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblRegistro.ForeColor = System.Drawing.Color.White;
-            this.lblRegistro.Location = new System.Drawing.Point(53, 361);
+            this.lblRegistro.Location = new System.Drawing.Point(53, 350);
             this.lblRegistro.Name = "lblRegistro";
-            this.lblRegistro.Size = new System.Drawing.Size(250, 18);
+            this.lblRegistro.Size = new System.Drawing.Size(250, 40);
             this.lblRegistro.TabIndex = 9;
-            this.lblRegistro.Text = "¿No tienes una cuenta?";
+            this.lblRegistro.Text = "¿No tienes una cuenta?  Registrate";
             this.lblRegistro.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.lblRegistro.Click += new System.EventHandler(this.lblRegistro_Click);
             // 

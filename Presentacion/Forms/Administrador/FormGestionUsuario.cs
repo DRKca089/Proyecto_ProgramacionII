@@ -60,6 +60,12 @@ namespace Presentacion.Forms.FormsAdministrador
         {
             var usuarioExistente = usuarioLogica.ObtenerUsuario(txtUsuario.Text.Trim());
 
+            if (!ValidacionCampos.EstanLlenos(txtID, txtUsuario, txtContraseña, txtSaldo))
+            {
+                MessageBox.Show("Rellene todos los campos");
+                return;
+            }
+
             if (usuarioExistente != null && usuarioExistente.Id != txtID.Text)
             {
                 MessageBox.Show("Ya existe un usuario con ese nombre.");
@@ -90,6 +96,12 @@ namespace Presentacion.Forms.FormsAdministrador
 
         private void btnEliminar_Click(object sender, EventArgs e)
         {
+            if (!ValidacionCampos.EstanLlenos(txtID, txtUsuario, txtContraseña, txtSaldo))
+            {
+                MessageBox.Show("Rellene todos los campos");
+                return;
+            }
+
             if (dGVUsuarios.CurrentRow == null)
             {
                 MessageBox.Show("Seleccione un usuario para eliminar.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -109,6 +121,7 @@ namespace Presentacion.Forms.FormsAdministrador
                 MessageBox.Show("No se pudo obtener el ID del usuario.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
+
 
             DialogResult confirm = MessageBox.Show("¿Seguro que desea eliminar este usuario?", "Confirmar", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
 
@@ -177,7 +190,7 @@ namespace Presentacion.Forms.FormsAdministrador
             }
 
             // Buscar usuarios por nombre (que contengan el texto)
-            List<Usuario> usuariosPorNombre = usuarioLogica.BuscarUsuariosPorNombre(busqueda);
+            List<Usuario> usuariosPorNombre = usuarioLogica.BuscarPorNombre(busqueda);
             if (usuariosPorNombre.Any())
             {
                 dGVUsuarios.DataSource = usuariosPorNombre;

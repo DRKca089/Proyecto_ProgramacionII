@@ -84,9 +84,9 @@ namespace Negocio
             return usuarioDatos.ObtenerPorNombre(nombre);
         }
 
-        public List<Usuario> BuscarUsuariosPorNombre(string nombre)
+        public List<Usuario> BuscarPorNombre(string nombre)
         {
-            return usuarioDatos.BuscarPorNombreUsuario(nombre);
+            return usuarioDatos.BuscarPorNombre(nombre);
         }
 
         public bool ModificarUsuario(string id, string nuevoNombre, string nuevaContraseña, string nuevoRol = null)

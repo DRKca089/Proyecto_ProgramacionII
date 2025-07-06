@@ -30,6 +30,8 @@
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label6 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -39,8 +41,9 @@
             this.colCliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colFecha = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmVentaTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnBuscarProducto = new FontAwesome.Sharp.IconButton();
-            this.txtProductoBuscar = new System.Windows.Forms.TextBox();
+            this.btnDetalles = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.btnBuscar = new FontAwesome.Sharp.IconButton();
+            this.txtBuscar = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dGVVenta)).BeginInit();
             this.SuspendLayout();
@@ -60,8 +63,8 @@
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(30)))), ((int)(((byte)(68)))));
             this.panel1.Controls.Add(this.label5);
             this.panel1.Controls.Add(this.dGVVenta);
-            this.panel1.Controls.Add(this.btnBuscarProducto);
-            this.panel1.Controls.Add(this.txtProductoBuscar);
+            this.panel1.Controls.Add(this.btnBuscar);
+            this.panel1.Controls.Add(this.txtBuscar);
             this.panel1.Location = new System.Drawing.Point(22, 48);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(730, 357);
@@ -71,106 +74,129 @@
             // 
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.White;
-            this.label5.Location = new System.Drawing.Point(49, 12);
+            this.label5.Location = new System.Drawing.Point(39, 9);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(220, 25);
+            this.label5.Size = new System.Drawing.Size(163, 25);
             this.label5.TabIndex = 29;
-            this.label5.Text = "Buscar por Código/Nombre:";
+            this.label5.Text = "Buscar por Nombre:";
             // 
             // dGVVenta
             // 
+            this.dGVVenta.AllowUserToAddRows = false;
+            this.dGVVenta.AllowUserToDeleteRows = false;
+            this.dGVVenta.AllowUserToResizeColumns = false;
+            this.dGVVenta.AllowUserToResizeRows = false;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter;
+            this.dGVVenta.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dGVVenta.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dGVVenta.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(66)))), ((int)(((byte)(91)))));
             this.dGVVenta.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dGVVenta.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
             this.dGVVenta.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.HotTrack;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dGVVenta.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.HotTrack;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dGVVenta.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dGVVenta.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dGVVenta.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colmCodigo,
             this.colCliente,
             this.colFecha,
-            this.clmVentaTotal});
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(66)))), ((int)(((byte)(91)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.SteelBlue;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dGVVenta.DefaultCellStyle = dataGridViewCellStyle2;
+            this.clmVentaTotal,
+            this.btnDetalles});
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(66)))), ((int)(((byte)(91)))));
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.SteelBlue;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dGVVenta.DefaultCellStyle = dataGridViewCellStyle4;
             this.dGVVenta.EnableHeadersVisualStyles = false;
             this.dGVVenta.GridColor = System.Drawing.Color.SteelBlue;
             this.dGVVenta.Location = new System.Drawing.Point(12, 43);
             this.dGVVenta.Name = "dGVVenta";
             this.dGVVenta.ReadOnly = true;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(66)))), ((int)(((byte)(91)))));
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.SteelBlue;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dGVVenta.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(66)))), ((int)(((byte)(91)))));
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.SteelBlue;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dGVVenta.RowHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.dGVVenta.RowHeadersVisible = false;
             this.dGVVenta.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dGVVenta.Size = new System.Drawing.Size(699, 296);
             this.dGVVenta.TabIndex = 16;
-            this.dGVVenta.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dGVVenta_CellDoubleClick);
+            this.dGVVenta.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dGVVenta_CellClick);
             // 
             // colmCodigo
             // 
+            this.colmCodigo.DataPropertyName = "Codigo";
             this.colmCodigo.HeaderText = "Código";
             this.colmCodigo.Name = "colmCodigo";
             this.colmCodigo.ReadOnly = true;
             // 
             // colCliente
             // 
+            this.colCliente.DataPropertyName = "NombreCliente";
             this.colCliente.HeaderText = "Cliente";
             this.colCliente.Name = "colCliente";
             this.colCliente.ReadOnly = true;
             // 
             // colFecha
             // 
+            this.colFecha.DataPropertyName = "Fecha";
             this.colFecha.HeaderText = "Fecha";
             this.colFecha.Name = "colFecha";
             this.colFecha.ReadOnly = true;
             // 
             // clmVentaTotal
             // 
+            this.clmVentaTotal.DataPropertyName = "Total";
+            dataGridViewCellStyle3.Format = "C2";
+            this.clmVentaTotal.DefaultCellStyle = dataGridViewCellStyle3;
             this.clmVentaTotal.HeaderText = "Total";
             this.clmVentaTotal.Name = "clmVentaTotal";
             this.clmVentaTotal.ReadOnly = true;
             // 
-            // btnBuscarProducto
+            // btnDetalles
             // 
-            this.btnBuscarProducto.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnBuscarProducto.IconChar = FontAwesome.Sharp.IconChar.MagnifyingGlass;
-            this.btnBuscarProducto.IconColor = System.Drawing.Color.Black;
-            this.btnBuscarProducto.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnBuscarProducto.IconSize = 18;
-            this.btnBuscarProducto.Location = new System.Drawing.Point(494, 12);
-            this.btnBuscarProducto.Name = "btnBuscarProducto";
-            this.btnBuscarProducto.Size = new System.Drawing.Size(80, 22);
-            this.btnBuscarProducto.TabIndex = 30;
-            this.btnBuscarProducto.Text = "Buscar";
-            this.btnBuscarProducto.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnBuscarProducto.UseVisualStyleBackColor = true;
+            this.btnDetalles.FillWeight = 70F;
+            this.btnDetalles.HeaderText = "Detalles";
+            this.btnDetalles.Name = "btnDetalles";
+            this.btnDetalles.ReadOnly = true;
+            this.btnDetalles.Text = "Ver Detalles";
+            this.btnDetalles.UseColumnTextForButtonValue = true;
             // 
-            // txtProductoBuscar
+            // btnBuscar
             // 
-            this.txtProductoBuscar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtProductoBuscar.Location = new System.Drawing.Point(275, 12);
-            this.txtProductoBuscar.Name = "txtProductoBuscar";
-            this.txtProductoBuscar.Size = new System.Drawing.Size(213, 22);
-            this.txtProductoBuscar.TabIndex = 31;
+            this.btnBuscar.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnBuscar.IconChar = FontAwesome.Sharp.IconChar.MagnifyingGlass;
+            this.btnBuscar.IconColor = System.Drawing.Color.Black;
+            this.btnBuscar.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnBuscar.IconSize = 18;
+            this.btnBuscar.Location = new System.Drawing.Point(507, 9);
+            this.btnBuscar.Name = "btnBuscar";
+            this.btnBuscar.Size = new System.Drawing.Size(88, 25);
+            this.btnBuscar.TabIndex = 30;
+            this.btnBuscar.Text = "Buscar";
+            this.btnBuscar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnBuscar.UseVisualStyleBackColor = true;
+            this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
+            // 
+            // txtBuscar
+            // 
+            this.txtBuscar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtBuscar.Location = new System.Drawing.Point(208, 12);
+            this.txtBuscar.Name = "txtBuscar";
+            this.txtBuscar.Size = new System.Drawing.Size(280, 22);
+            this.txtBuscar.TabIndex = 31;
             // 
             // FormVenta
             // 
@@ -196,11 +222,12 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.DataGridView dGVVenta;
         private System.Windows.Forms.Label label5;
-        private FontAwesome.Sharp.IconButton btnBuscarProducto;
-        private System.Windows.Forms.TextBox txtProductoBuscar;
+        private FontAwesome.Sharp.IconButton btnBuscar;
+        private System.Windows.Forms.TextBox txtBuscar;
         private System.Windows.Forms.DataGridViewTextBoxColumn colmCodigo;
         private System.Windows.Forms.DataGridViewTextBoxColumn colCliente;
         private System.Windows.Forms.DataGridViewTextBoxColumn colFecha;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmVentaTotal;
+        private System.Windows.Forms.DataGridViewButtonColumn btnDetalles;
     }
 }

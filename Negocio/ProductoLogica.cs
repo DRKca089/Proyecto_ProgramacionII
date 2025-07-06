@@ -70,7 +70,7 @@ namespace Negocio
                     if (producto.CantidadDisponible < 0)
                         producto.CantidadDisponible = 0;
 
-                    productoDatos.ActualizarProducto(producto); //Se guarda en el CSV
+                    productoDatos.ActualizarProducto(producto); //Paara guardarse en el csv
                 }
             }
         }

@@ -64,13 +64,6 @@ public class CompraDatos
         GuardarCompras();
     }
 
-    public void EliminarComprasPorUsuario(string idUsuario)
-    {
-        CargarCompras(); 
-        compras = compras.Where(c => c.IdUsuario != idUsuario).ToList();
-        GuardarCompras();
-    }
-
     public List<Compra> ObtenerCompras()
     {
         return compras.ToList();
