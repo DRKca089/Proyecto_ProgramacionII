@@ -49,7 +49,7 @@ namespace Presentacion.Forms
             {
                 Nombre = txtProductoNombre.Text,
                 CantidadDisponible = cantidad,
-                Valor = valor
+                PrecioUnitario = valor
             };
 
             try
@@ -100,7 +100,7 @@ namespace Presentacion.Forms
                         Codigo = txtProductoCodigo.Text,
                         Nombre = txtProductoNombre.Text,
                         CantidadDisponible = cantidad,
-                        Valor = valor
+                        PrecioUnitario = valor
                     };
 
                     productoLogica.Modificar(productoModificado);

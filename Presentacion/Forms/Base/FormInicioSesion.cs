@@ -41,7 +41,7 @@ namespace Presentacion
                     MessageBox.Show("¡Login exitoso!", "Bienvenido", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                     this.Hide();
-                    frmMenu menu = new frmMenu(usuario.NombreUsuario, usuario.RolUsuario, usuario);
+                    frmMenu menu = new frmMenu(usuario.Nombre, usuario.Rol, usuario);
                     menu.ShowDialog();
                     this.Close();
                 }

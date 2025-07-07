@@ -42,9 +42,9 @@ namespace Datos
                     usuarios.Add(new Usuario
                     {
                         Id = campos[0],
-                        NombreUsuario = campos[1],
+                        Nombre = campos[1],
                         Contraseña = campos[2],
-                        RolUsuario = campos[3],
+                        Rol = campos[3],
                         Saldo = decimal.Parse(campos[4], CultureInfo.InvariantCulture) //Asegura que el fomato decimal sea correcto para el csv
                     });
                 }
@@ -63,7 +63,7 @@ namespace Datos
             };
 
             lineas.AddRange(usuarios.Select(u =>
-            $"{u.Id},{u.NombreUsuario},{u.Contraseña},{u.RolUsuario},{u.Saldo.ToString(CultureInfo.InvariantCulture)}"));
+            $"{u.Id},{u.Nombre},{u.Contraseña},{u.Rol},{u.Saldo.ToString(CultureInfo.InvariantCulture)}"));
 
             File.WriteAllLines(ArchivoCsv, lineas);
         }
@@ -83,13 +83,13 @@ namespace Datos
         public bool ExisteUsuario(string nombreUsuario)
         {
             CargarDesdeArchivo();
-            return usuarios.Any(u => u.NombreUsuario.Equals(nombreUsuario, StringComparison.OrdinalIgnoreCase));
+            return usuarios.Any(u => u.Nombre.Equals(nombreUsuario, StringComparison.OrdinalIgnoreCase));
         }
 
         public Usuario ObtenerPorNombre(string nombre)
         {
             CargarDesdeArchivo();
-            return usuarios.FirstOrDefault(u => u.NombreUsuario.Equals(nombre, StringComparison.OrdinalIgnoreCase));
+            return usuarios.FirstOrDefault(u => u.Nombre.Equals(nombre, StringComparison.OrdinalIgnoreCase));
         }
 
         public Usuario ObtenerPorId(string id)
@@ -104,9 +104,9 @@ namespace Datos
             var usuario = usuarios.FirstOrDefault(u => u.Id == usuarioModificado.Id);
             if (usuario != null)
             {
-                usuario.NombreUsuario = usuarioModificado.NombreUsuario;
+                usuario.Nombre = usuarioModificado.Nombre;
                 usuario.Contraseña = usuarioModificado.Contraseña;
-                usuario.RolUsuario = usuarioModificado.RolUsuario;
+                usuario.Rol = usuarioModificado.Rol;
                 usuario.Saldo = usuarioModificado.Saldo;
                 GuardarEnArchivo();
             }
@@ -129,7 +129,7 @@ namespace Datos
         public List<Usuario> BuscarPorNombre(string nombreUsuario)
         {
             CargarDesdeArchivo();
-            return usuarios.FindAll(u => u.NombreUsuario.IndexOf(nombreUsuario, StringComparison.OrdinalIgnoreCase) >= 0);
+            return usuarios.FindAll(u => u.Nombre.IndexOf(nombreUsuario, StringComparison.OrdinalIgnoreCase) >= 0);
         }
     }
 }

@@ -88,8 +88,8 @@ namespace Negocio
                         CodigoProducto = producto.Codigo,
                         NombreProducto = producto.Nombre,
                         Cantidad = cantidad,
-                        PrecioUnitario = producto.Valor,
-                        Subtotal = producto.Valor * cantidad
+                        PrecioUnitario = producto.PrecioUnitario,
+                        Subtotal = producto.PrecioUnitario * cantidad
                     });
                 }
             }
@@ -127,10 +127,10 @@ namespace Negocio
             if (producto.CantidadDisponible < 0)
                 throw new ArgumentException("La cantidad no puede ser negativa.");
 
-            if (producto.Valor < 0)
+            if (producto.PrecioUnitario < 0)
                 throw new ArgumentException("El valor no puede ser negativo.");
 
-            if (decimal.Round(producto.Valor, 2) != producto.Valor)
+            if (decimal.Round(producto.PrecioUnitario, 2) != producto.PrecioUnitario)
                 throw new ArgumentException("El valor debe tener máximo dos decimales.");
         }
     }

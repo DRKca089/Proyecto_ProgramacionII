@@ -47,9 +47,9 @@ namespace Negocio
             Usuario nuevoUsuario = new Usuario
             {
                 Id = GenerarNuevoId(),
-                NombreUsuario = nombre,
+                Nombre = nombre,
                 Contraseña = contraseña,
-                RolUsuario = rol,
+                Rol = rol,
                 Saldo = 0.0m
             };
 
@@ -60,7 +60,7 @@ namespace Negocio
         public string ValidarInicioSesion(string nombre, string contraseña, string rol)
         {
             var usuario = usuarioDatos.ObtenerPorNombre(nombre);
-            if (usuario == null || usuario.Contraseña != contraseña || !usuario.RolUsuario.Equals(rol, StringComparison.OrdinalIgnoreCase))
+            if (usuario == null || usuario.Contraseña != contraseña || !usuario.Rol.Equals(rol, StringComparison.OrdinalIgnoreCase))
                 return "Usuario, contraseña o rol incorrecto.";
 
             return "OK";
@@ -99,11 +99,11 @@ namespace Negocio
             if (usuarioExistente != null && usuarioExistente.Id != id)
                 return false;
 
-            usuario.NombreUsuario = nuevoNombre;
+            usuario.Nombre = nuevoNombre;
             usuario.Contraseña = nuevaContraseña;
 
             if (nuevoRol != null)
-                usuario.RolUsuario = nuevoRol;
+                usuario.Rol = nuevoRol;
 
             usuarioDatos.ModificarUsuario(usuario);
             return true;

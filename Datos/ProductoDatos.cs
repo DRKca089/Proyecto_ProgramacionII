@@ -39,7 +39,7 @@ public class ProductoDatos
                     Codigo = campos[0],
                     Nombre = campos[1],
                     CantidadDisponible = int.Parse(campos[2]),
-                    Valor = decimal.Parse(campos[3], CultureInfo.InvariantCulture)
+                    PrecioUnitario = decimal.Parse(campos[3], CultureInfo.InvariantCulture)
                 };
                 productos.Add(producto);
             }
@@ -56,7 +56,7 @@ public class ProductoDatos
         {
             "Codigo,Nombre,CantidadDisponible,Valor"
         };
-        lineas.AddRange(productos.Select(p => $"{p.Codigo},{p.Nombre},{p.CantidadDisponible},{p.Valor.ToString(CultureInfo.InvariantCulture)}"));
+        lineas.AddRange(productos.Select(p => $"{p.Codigo},{p.Nombre},{p.CantidadDisponible},{p.PrecioUnitario.ToString(CultureInfo.InvariantCulture)}"));
         File.WriteAllLines(ArchivoCsv, lineas);
     }
 
@@ -78,7 +78,7 @@ public class ProductoDatos
         {
             producto.Nombre = productoActualizado.Nombre;
             producto.CantidadDisponible = productoActualizado.CantidadDisponible;
-            producto.Valor = productoActualizado.Valor;
+            producto.PrecioUnitario = productoActualizado.PrecioUnitario;
             GuardarEnArchivo();
         }
     }

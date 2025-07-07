@@ -1,7 +1,6 @@
 ﻿using Datos;
 using Negocio;
 using Presentacion.Forms.Cliente;
-using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -25,9 +24,9 @@ namespace Presentacion.Forms
             var lista = compras.Select(compra =>
             {
                 var usuario = usuarios.FirstOrDefault(u => u.Id == compra.IdUsuario);
-                string nombreUsuario = usuario != null ? usuario.NombreUsuario : "Usuario eliminado";
+                string nombreUsuario = usuario != null ? usuario.Nombre : "Usuario eliminado";
 
-                compra.NombreCliente = nombreUsuario;
+                compra.NombreUsuario = nombreUsuario;
                 return compra;
    
             }).ToList();

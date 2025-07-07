@@ -22,14 +22,14 @@ namespace Presentacion.Forms.FormsCliente
         private void MostrarDatos()
         {
             txtID.Text = usuarioActual.Id;
-            txtUsuario.Text = usuarioActual.NombreUsuario;
+            txtUsuario.Text = usuarioActual.Nombre;
             txtContraseña.Text = usuarioActual.Contraseña;
             txtSaldo.Text = usuarioActual.Saldo.ToString("C2");
         }
 
         private void Restricciones()
         {
-            bool esAdmin = usuarioActual.RolUsuario.Equals("Administrador", StringComparison.OrdinalIgnoreCase);
+            bool esAdmin = usuarioActual.Rol.Equals("Administrador", StringComparison.OrdinalIgnoreCase);
             txtMonto.Enabled = !esAdmin;
             btnDepositar.Enabled = !esAdmin;
         }
@@ -59,7 +59,7 @@ namespace Presentacion.Forms.FormsCliente
         {
             //Validar si quieres cambiar el nombre de usuario
             string validacion = usuarioLogica.ValidarRegistro(txtUsuario.Text);
-            bool nombreCambió = !txtUsuario.Text.Equals(usuarioActual.NombreUsuario,StringComparison.OrdinalIgnoreCase);
+            bool nombreCambió = !txtUsuario.Text.Equals(usuarioActual.Nombre,StringComparison.OrdinalIgnoreCase);
 
             if (validacion != "OK" && nombreCambió && validacion.Contains("usuario"))
             {
@@ -118,8 +118,8 @@ namespace Presentacion.Forms.FormsCliente
             {
                 if (nombreCambió)
                 {
-                    usuarioActual.NombreUsuario = txtUsuario.Text;
-                    formularioPadre.RefrescarDatosUsuario(usuarioActual.NombreUsuario);
+                    usuarioActual.Nombre = txtUsuario.Text;
+                    formularioPadre.RefrescarDatosUsuario(usuarioActual.Nombre);
                 }
                 if (cambiarContraseña)
                 {

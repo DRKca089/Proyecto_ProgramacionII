@@ -42,8 +42,9 @@ public class CompraLogica
             Codigo = nuevoCodigo,
             IdUsuario = idUsuario,
             Fecha = DateTime.Now,
-            Total = total
+            Total = total        
         };
+
 
         var detalles = productos.Select(p => new CompraDetalles
         {
@@ -64,7 +65,7 @@ public class CompraLogica
     public List<Compra> ObtenerComprasPorNombreUsuario(string nombreUsuario)
     {
         var usuarios = new UsuarioDatos().ObtenerUsuarios();
-        var usuario = usuarios.FirstOrDefault(u => u.NombreUsuario.Equals(nombreUsuario, StringComparison.OrdinalIgnoreCase));
+        var usuario = usuarios.FirstOrDefault(u => u.Nombre.Equals(nombreUsuario, StringComparison.OrdinalIgnoreCase));
 
         if (usuario == null)
         {
@@ -75,7 +76,7 @@ public class CompraLogica
 
         foreach (var compra in compras)
         {
-            compra.NombreCliente = usuario.NombreUsuario;
+            compra.NombreUsuario = usuario.Nombre;
         }
 
         return compras;
