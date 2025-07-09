@@ -43,7 +43,7 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.txtNProductos = new System.Windows.Forms.TextBox();
             this.cmbReporte = new System.Windows.Forms.ComboBox();
-            this.btnEliminar = new FontAwesome.Sharp.IconButton();
+            this.btnGenerarReporte = new FontAwesome.Sharp.IconButton();
             this.label3 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
@@ -163,14 +163,13 @@
             this.lblTotal.Name = "lblTotal";
             this.lblTotal.Size = new System.Drawing.Size(130, 23);
             this.lblTotal.TabIndex = 39;
-            this.lblTotal.Text = "hola";
             // 
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(30)))), ((int)(((byte)(68)))));
             this.panel2.Controls.Add(this.txtNProductos);
             this.panel2.Controls.Add(this.cmbReporte);
-            this.panel2.Controls.Add(this.btnEliminar);
+            this.panel2.Controls.Add(this.btnGenerarReporte);
             this.panel2.Controls.Add(this.label3);
             this.panel2.Controls.Add(this.label1);
             this.panel2.Location = new System.Drawing.Point(27, 12);
@@ -185,6 +184,7 @@
             this.txtNProductos.Name = "txtNProductos";
             this.txtNProductos.Size = new System.Drawing.Size(197, 27);
             this.txtNProductos.TabIndex = 45;
+            this.txtNProductos.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtNProductos_KeyDown);
             // 
             // cmbReporte
             // 
@@ -199,21 +199,21 @@
             this.cmbReporte.Size = new System.Drawing.Size(197, 27);
             this.cmbReporte.TabIndex = 44;
             // 
-            // btnEliminar
+            // btnGenerarReporte
             // 
-            this.btnEliminar.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEliminar.IconChar = FontAwesome.Sharp.IconChar.File;
-            this.btnEliminar.IconColor = System.Drawing.Color.Black;
-            this.btnEliminar.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnEliminar.IconSize = 25;
-            this.btnEliminar.Location = new System.Drawing.Point(551, 49);
-            this.btnEliminar.Name = "btnEliminar";
-            this.btnEliminar.Size = new System.Drawing.Size(168, 30);
-            this.btnEliminar.TabIndex = 43;
-            this.btnEliminar.Text = "Generar Reporte";
-            this.btnEliminar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnEliminar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnEliminar.UseVisualStyleBackColor = true;
+            this.btnGenerarReporte.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnGenerarReporte.IconChar = FontAwesome.Sharp.IconChar.File;
+            this.btnGenerarReporte.IconColor = System.Drawing.Color.Black;
+            this.btnGenerarReporte.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnGenerarReporte.IconSize = 25;
+            this.btnGenerarReporte.Location = new System.Drawing.Point(551, 49);
+            this.btnGenerarReporte.Name = "btnGenerarReporte";
+            this.btnGenerarReporte.Size = new System.Drawing.Size(168, 30);
+            this.btnGenerarReporte.TabIndex = 43;
+            this.btnGenerarReporte.Text = "Generar Reporte";
+            this.btnGenerarReporte.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnGenerarReporte.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnGenerarReporte.UseVisualStyleBackColor = true;
             // 
             // label3
             // 
@@ -274,7 +274,7 @@
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label3;
-        private FontAwesome.Sharp.IconButton btnEliminar;
+        private FontAwesome.Sharp.IconButton btnGenerarReporte;
         private System.Windows.Forms.ComboBox cmbReporte;
         private System.Windows.Forms.TextBox txtNProductos;
         private System.Windows.Forms.Panel panel3;

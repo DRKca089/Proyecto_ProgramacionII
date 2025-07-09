@@ -65,21 +65,22 @@ public class CompraLogica
     public List<Compra> ObtenerComprasPorNombreUsuario(string nombreUsuario)
     {
         var usuarios = new UsuarioDatos().ObtenerUsuarios();
-        var usuario = usuarios.FirstOrDefault(u => u.Nombre.Equals(nombreUsuario, StringComparison.OrdinalIgnoreCase));
+        var usuariosFiltrados = usuarios.Where(u => u.Nombre.IndexOf(nombreUsuario, StringComparison.OrdinalIgnoreCase) >= 0).ToList();
 
-        if (usuario == null)
+        var todasLasCompras = new List<Compra>();
+
+        foreach (var usuario in usuariosFiltrados)
         {
-            return new List<Compra>();
+            var compras = ObtenerComprasPorUsuario(usuario.Id);
+
+            foreach (var compra in compras)
+            {
+                compra.NombreUsuario = usuario.Nombre;
+                todasLasCompras.Add(compra);
+            }
         }
 
-        var compras = ObtenerComprasPorUsuario(usuario.Id);
-
-        foreach (var compra in compras)
-        {
-            compra.NombreUsuario = usuario.Nombre;
-        }
-
-        return compras;
+        return todasLasCompras;
     }
 
     public decimal ObtenerTotalGastadoPorUsuario(string idUsuario)

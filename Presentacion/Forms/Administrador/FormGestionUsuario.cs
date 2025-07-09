@@ -201,5 +201,14 @@ namespace Presentacion.Forms.FormsAdministrador
                 dGVUsuarios.DataSource = null;
             }
         }
+
+        private void txtBuscar_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.KeyCode == Keys.Enter)
+            {
+                e.SuppressKeyPress = true;
+                btnBuscar.PerformClick(); 
+            }
+        }
     }
 }

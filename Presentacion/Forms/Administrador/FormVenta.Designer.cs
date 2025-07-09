@@ -144,7 +144,7 @@
             // 
             // colCliente
             // 
-            this.colCliente.DataPropertyName = "NombreCliente";
+            this.colCliente.DataPropertyName = "NombreUsuario";
             this.colCliente.HeaderText = "Cliente";
             this.colCliente.Name = "colCliente";
             this.colCliente.ReadOnly = true;
@@ -197,6 +197,7 @@
             this.txtBuscar.Name = "txtBuscar";
             this.txtBuscar.Size = new System.Drawing.Size(280, 22);
             this.txtBuscar.TabIndex = 31;
+            this.txtBuscar.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBuscar_KeyDown);
             // 
             // FormVenta
             // 

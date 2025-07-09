@@ -53,5 +53,13 @@ namespace Presentacion.Forms
                 MessageBox.Show(resultadoRegistro, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private void txtConfirmarContraseña_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.KeyCode == Keys.Enter)
+            {
+                btnRegistro.PerformClick();
+            }
+        }
     }
 }

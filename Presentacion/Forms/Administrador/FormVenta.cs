@@ -67,5 +67,12 @@ namespace Presentacion.Forms
                 dGVVenta.DataSource = null;
             }
         }
+
+        private void txtBuscar_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.KeyCode == Keys.Enter)
+            {
+                btnBuscar.PerformClick();
+            }
     }
 }

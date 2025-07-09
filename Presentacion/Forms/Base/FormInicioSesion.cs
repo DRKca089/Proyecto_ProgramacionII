@@ -64,5 +64,13 @@ namespace Presentacion
             registro.ShowDialog();
             this.Show();
         }
+
+        private void txtContraseña_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.KeyCode == Keys.Enter)
+            {
+                btnIniciarSesion.PerformClick();
+            }
+        }
     }
 }

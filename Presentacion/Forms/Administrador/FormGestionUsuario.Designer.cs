@@ -107,6 +107,7 @@
             this.txtBuscar.Name = "txtBuscar";
             this.txtBuscar.Size = new System.Drawing.Size(278, 23);
             this.txtBuscar.TabIndex = 14;
+            this.txtBuscar.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBuscar_KeyDown);
             // 
             // dGVUsuarios
             // 
@@ -170,14 +171,14 @@
             // 
             // Rol
             // 
-            this.Rol.DataPropertyName = "RolUsuario";
+            this.Rol.DataPropertyName = "Rol";
             this.Rol.HeaderText = "Rol";
             this.Rol.Name = "Rol";
             this.Rol.ReadOnly = true;
             // 
             // NombreUsuario
             // 
-            this.NombreUsuario.DataPropertyName = "NombreUsuario";
+            this.NombreUsuario.DataPropertyName = "Nombre";
             dataGridViewCellStyle2.Format = "C2";
             this.NombreUsuario.DefaultCellStyle = dataGridViewCellStyle2;
             this.NombreUsuario.HeaderText = "Usuario";

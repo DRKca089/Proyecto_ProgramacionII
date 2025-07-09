@@ -9,5 +9,13 @@ namespace Presentacion.Forms
         {
             InitializeComponent();
         }
+
+        private void txtNProductos_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.KeyCode == Keys.Enter)
+            {
+                btnGenerarReporte.PerformClick();
+            }
+        }
     }
 }

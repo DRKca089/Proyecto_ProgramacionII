@@ -111,6 +111,7 @@
             this.txtContraseña.Size = new System.Drawing.Size(250, 27);
             this.txtContraseña.TabIndex = 7;
             this.txtContraseña.UseSystemPasswordChar = true;
+            this.txtContraseña.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtContraseña_KeyDown);
             // 
             // label3
             // 

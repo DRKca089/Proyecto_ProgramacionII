@@ -121,6 +121,7 @@
             this.txtConfirmarContraseña.Size = new System.Drawing.Size(250, 26);
             this.txtConfirmarContraseña.TabIndex = 10;
             this.txtConfirmarContraseña.UseSystemPasswordChar = true;
+            this.txtConfirmarContraseña.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtConfirmarContraseña_KeyDown);
             // 
             // btnRegistro
             // 

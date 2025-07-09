@@ -108,6 +108,7 @@
             this.txtBuscar.Name = "txtBuscar";
             this.txtBuscar.Size = new System.Drawing.Size(253, 23);
             this.txtBuscar.TabIndex = 14;
+            this.txtBuscar.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBuscar_KeyDown);
             // 
             // dGVTienda
             // 
@@ -176,7 +177,7 @@
             // 
             // Valor
             // 
-            this.Valor.DataPropertyName = "Valor";
+            this.Valor.DataPropertyName = "PrecioUnitario";
             dataGridViewCellStyle3.Format = "C2";
             this.Valor.DefaultCellStyle = dataGridViewCellStyle3;
             this.Valor.FillWeight = 103.84F;
@@ -195,7 +196,7 @@
             // Cantidad
             // 
             this.Cantidad.FillWeight = 103.84F;
-            this.Cantidad.HeaderText = "Cantidad";
+            this.Cantidad.HeaderText = "Cantidad Elejida";
             this.Cantidad.Name = "Cantidad";
             this.Cantidad.ReadOnly = true;
             // 

@@ -168,5 +168,13 @@ namespace Presentacion.Forms.FormsCliente
             frmTienda tienda = new frmTienda(usuarioActual, cantidadesSeleccionadas);
             tienda.Show();
         }
+
+        private void txtBuscar_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                btnBuscar.PerformClick();
+            }
+        }
     }
 }

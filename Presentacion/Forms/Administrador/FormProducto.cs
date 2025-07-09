@@ -199,5 +199,13 @@ namespace Presentacion.Forms
                 MessageBox.Show("Error inesperado al seleccionar el producto" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private void txtProductoBuscar_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.KeyCode == Keys.Enter)
+            {
+                btnBuscarProducto.PerformClick();
+            }
+        }
     }
 }
