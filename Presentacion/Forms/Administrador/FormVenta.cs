@@ -28,7 +28,7 @@ namespace Presentacion.Forms
 
                 compra.NombreUsuario = nombreUsuario;
                 return compra;
-   
+
             }).ToList();
 
             dGVVenta.AutoGenerateColumns = false;
@@ -70,9 +70,10 @@ namespace Presentacion.Forms
 
         private void txtBuscar_KeyDown(object sender, KeyEventArgs e)
         {
-            if(e.KeyCode == Keys.Enter)
+            if (e.KeyCode == Keys.Enter)
             {
                 btnBuscar.PerformClick();
             }
+        }
     }
 }

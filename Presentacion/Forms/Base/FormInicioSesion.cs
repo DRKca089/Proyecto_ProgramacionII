@@ -52,7 +52,7 @@ namespace Presentacion
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error inesperado: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Error inesperado: {ex.Message}\nPor favor comunicarse con soporte al cliente", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
             }
         }

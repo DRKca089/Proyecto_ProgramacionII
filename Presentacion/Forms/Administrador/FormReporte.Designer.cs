@@ -28,25 +28,26 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label2 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.dGVReporte = new System.Windows.Forms.DataGridView();
-            this.clmStockCodigo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmStockNombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Stock = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CantidadVendida = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Total = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lblTotal = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.txtNProductos = new System.Windows.Forms.TextBox();
-            this.cmbReporte = new System.Windows.Forms.ComboBox();
+            this.txtNumeroProductos = new System.Windows.Forms.TextBox();
+            this.cmbTipoReporte = new System.Windows.Forms.ComboBox();
             this.btnGenerarReporte = new FontAwesome.Sharp.IconButton();
             this.label3 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.Codigo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Stock = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CantidadVendida = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Ingreso = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dGVReporte)).BeginInit();
             this.panel2.SuspendLayout();
@@ -83,77 +84,47 @@
             this.dGVReporte.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dGVReporte.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
             this.dGVReporte.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.HotTrack;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dGVReporte.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.HotTrack;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dGVReporte.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.dGVReporte.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dGVReporte.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.clmStockCodigo,
-            this.clmStockNombre,
+            this.Codigo,
+            this.Nombre,
             this.Stock,
             this.CantidadVendida,
-            this.Total});
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(66)))), ((int)(((byte)(91)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.SteelBlue;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dGVReporte.DefaultCellStyle = dataGridViewCellStyle2;
+            this.Ingreso});
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(66)))), ((int)(((byte)(91)))));
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.SteelBlue;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dGVReporte.DefaultCellStyle = dataGridViewCellStyle7;
             this.dGVReporte.EnableHeadersVisualStyles = false;
             this.dGVReporte.GridColor = System.Drawing.Color.SteelBlue;
             this.dGVReporte.Location = new System.Drawing.Point(13, 13);
             this.dGVReporte.Name = "dGVReporte";
             this.dGVReporte.ReadOnly = true;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(66)))), ((int)(((byte)(91)))));
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.SteelBlue;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dGVReporte.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(66)))), ((int)(((byte)(91)))));
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.SteelBlue;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dGVReporte.RowHeadersDefaultCellStyle = dataGridViewCellStyle8;
             this.dGVReporte.RowHeadersVisible = false;
+            this.dGVReporte.RowHeadersWidth = 62;
             this.dGVReporte.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dGVReporte.Size = new System.Drawing.Size(706, 219);
             this.dGVReporte.TabIndex = 33;
-            // 
-            // clmStockCodigo
-            // 
-            this.clmStockCodigo.HeaderText = "Código";
-            this.clmStockCodigo.Name = "clmStockCodigo";
-            this.clmStockCodigo.ReadOnly = true;
-            // 
-            // clmStockNombre
-            // 
-            this.clmStockNombre.HeaderText = "Nombre";
-            this.clmStockNombre.Name = "clmStockNombre";
-            this.clmStockNombre.ReadOnly = true;
-            // 
-            // Stock
-            // 
-            this.Stock.HeaderText = "Stock";
-            this.Stock.Name = "Stock";
-            this.Stock.ReadOnly = true;
-            this.Stock.Visible = false;
-            // 
-            // CantidadVendida
-            // 
-            this.CantidadVendida.HeaderText = "Cantidad Vendida";
-            this.CantidadVendida.Name = "CantidadVendida";
-            this.CantidadVendida.ReadOnly = true;
-            // 
-            // Total
-            // 
-            this.Total.HeaderText = "Ingreso";
-            this.Total.Name = "Total";
-            this.Total.ReadOnly = true;
             // 
             // lblTotal
             // 
@@ -167,8 +138,8 @@
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(30)))), ((int)(((byte)(68)))));
-            this.panel2.Controls.Add(this.txtNProductos);
-            this.panel2.Controls.Add(this.cmbReporte);
+            this.panel2.Controls.Add(this.txtNumeroProductos);
+            this.panel2.Controls.Add(this.cmbTipoReporte);
             this.panel2.Controls.Add(this.btnGenerarReporte);
             this.panel2.Controls.Add(this.label3);
             this.panel2.Controls.Add(this.label1);
@@ -177,27 +148,28 @@
             this.panel2.Size = new System.Drawing.Size(731, 91);
             this.panel2.TabIndex = 34;
             // 
-            // txtNProductos
+            // txtNumeroProductos
             // 
-            this.txtNProductos.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNProductos.Location = new System.Drawing.Point(213, 52);
-            this.txtNProductos.Name = "txtNProductos";
-            this.txtNProductos.Size = new System.Drawing.Size(197, 27);
-            this.txtNProductos.TabIndex = 45;
-            this.txtNProductos.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtNProductos_KeyDown);
+            this.txtNumeroProductos.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtNumeroProductos.Location = new System.Drawing.Point(213, 52);
+            this.txtNumeroProductos.Name = "txtNumeroProductos";
+            this.txtNumeroProductos.Size = new System.Drawing.Size(95, 27);
+            this.txtNumeroProductos.TabIndex = 45;
+            this.txtNumeroProductos.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtNProductos_KeyDown);
             // 
-            // cmbReporte
+            // cmbTipoReporte
             // 
-            this.cmbReporte.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbReporte.FormattingEnabled = true;
-            this.cmbReporte.Items.AddRange(new object[] {
+            this.cmbTipoReporte.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbTipoReporte.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbTipoReporte.FormattingEnabled = true;
+            this.cmbTipoReporte.Items.AddRange(new object[] {
             "Stock Bajo",
             "Productos más vendidos",
             "Productos menos vendidos"});
-            this.cmbReporte.Location = new System.Drawing.Point(213, 12);
-            this.cmbReporte.Name = "cmbReporte";
-            this.cmbReporte.Size = new System.Drawing.Size(197, 27);
-            this.cmbReporte.TabIndex = 44;
+            this.cmbTipoReporte.Location = new System.Drawing.Point(213, 12);
+            this.cmbTipoReporte.Name = "cmbTipoReporte";
+            this.cmbTipoReporte.Size = new System.Drawing.Size(273, 27);
+            this.cmbTipoReporte.TabIndex = 3;
             // 
             // btnGenerarReporte
             // 
@@ -214,6 +186,7 @@
             this.btnGenerarReporte.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnGenerarReporte.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnGenerarReporte.UseVisualStyleBackColor = true;
+            this.btnGenerarReporte.Click += new System.EventHandler(this.btnGenerarReporte_Click);
             // 
             // label3
             // 
@@ -245,6 +218,44 @@
             this.panel3.Size = new System.Drawing.Size(731, 47);
             this.panel3.TabIndex = 34;
             // 
+            // Codigo
+            // 
+            this.Codigo.DataPropertyName = "Codigo";
+            this.Codigo.HeaderText = "Código";
+            this.Codigo.Name = "Codigo";
+            this.Codigo.ReadOnly = true;
+            // 
+            // Nombre
+            // 
+            this.Nombre.DataPropertyName = "Nombre";
+            this.Nombre.HeaderText = "Nombre";
+            this.Nombre.Name = "Nombre";
+            this.Nombre.ReadOnly = true;
+            // 
+            // Stock
+            // 
+            this.Stock.DataPropertyName = "CantidadDisponible";
+            this.Stock.HeaderText = "Stock";
+            this.Stock.Name = "Stock";
+            this.Stock.ReadOnly = true;
+            this.Stock.Visible = false;
+            // 
+            // CantidadVendida
+            // 
+            this.CantidadVendida.DataPropertyName = "CantidadVendida";
+            this.CantidadVendida.HeaderText = "Cantidad Vendida";
+            this.CantidadVendida.Name = "CantidadVendida";
+            this.CantidadVendida.ReadOnly = true;
+            // 
+            // Ingreso
+            // 
+            this.Ingreso.DataPropertyName = "Ingreso";
+            dataGridViewCellStyle6.Format = "C2";
+            this.Ingreso.DefaultCellStyle = dataGridViewCellStyle6;
+            this.Ingreso.HeaderText = "Ingreso";
+            this.Ingreso.Name = "Ingreso";
+            this.Ingreso.ReadOnly = true;
+            // 
             // FormReporte
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -275,13 +286,13 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label3;
         private FontAwesome.Sharp.IconButton btnGenerarReporte;
-        private System.Windows.Forms.ComboBox cmbReporte;
-        private System.Windows.Forms.TextBox txtNProductos;
+        private System.Windows.Forms.ComboBox cmbTipoReporte;
+        private System.Windows.Forms.TextBox txtNumeroProductos;
         private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmStockCodigo;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmStockNombre;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Codigo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Nombre;
         private System.Windows.Forms.DataGridViewTextBoxColumn Stock;
         private System.Windows.Forms.DataGridViewTextBoxColumn CantidadVendida;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Total;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Ingreso;
     }
 }

@@ -70,7 +70,7 @@ namespace Negocio
                     if (producto.CantidadDisponible < 0)
                         producto.CantidadDisponible = 0;
 
-                    productoDatos.ActualizarProducto(producto); //Paara guardarse en el csv
+                    productoDatos.ActualizarProducto(producto); //Para guardarse en el csv
                 }
             }
         }
@@ -94,6 +94,26 @@ namespace Negocio
                 }
             }
             return carrito;
+        }
+
+        // Top n productos más vendidos
+        public List<Producto> ObtenerProductosMasVendidos(int n)
+        {
+            var todos = productoDatos.ObtenerProductosConVentas();
+            return todos.OrderByDescending(p => p.CantidadVendida).Take(n).ToList();
+        }
+
+        // Top n productos menos vendidos
+        public List<Producto> ObtenerProductosMenosVendidos(int n)
+        {
+            var todos = productoDatos.ObtenerProductosConVentas();
+            return todos.OrderBy(p => p.CantidadVendida).Take(n).ToList();
+        }
+
+        // n productos con menor stock
+        public List<Producto> ObtenerProductosConMenorStock(int n)
+        {
+            return productoDatos.ObtenerProductosConMenorStock(n);
         }
 
         private string GenerarCodigo()

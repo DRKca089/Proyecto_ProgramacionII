@@ -11,7 +11,6 @@ namespace Datos
         private const string ArchivoCsv = "usuarios.csv";
         private List<Usuario> usuarios = new List<Usuario>();
         private CompraDatos compraDatos = new CompraDatos();
-        private DetalleCompraDatos detalleCompraDatos = new DetalleCompraDatos();
 
         public UsuarioDatos()
         {

@@ -82,6 +82,11 @@ public class CompraLogica
 
         return todasLasCompras;
     }
+    public decimal ObtenerIngresoTotalVentas()
+    {
+        var todasCompras = compraDatos.ObtenerCompras();
+        return todasCompras.Sum(c => c.Total);
+    }
 
     public decimal ObtenerTotalGastadoPorUsuario(string idUsuario)
     {
