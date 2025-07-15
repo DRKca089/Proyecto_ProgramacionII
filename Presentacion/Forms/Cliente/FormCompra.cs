@@ -43,7 +43,7 @@ namespace Presentacion.Forms.FormsCliente
 
                 if (decimal.Round(usuarioActual.Saldo, 2) < decimal.Round(totalCompra, 2))
                 {
-                    MessageBox.Show("No tienes saldo suficiente para realizar esta compra.", "Saldo insuficiente", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("No tienes saldo suficiente para realizar esta compra.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
@@ -66,7 +66,7 @@ namespace Presentacion.Forms.FormsCliente
                 bool ok = usuarioLogica.DescontarSaldo(usuarioActual.Id, totalCompra, out string mensaje, out decimal nuevoSaldo);
                 if (!ok)
                 {
-                    MessageBox.Show("Error al descontar saldo: " + mensaje, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show($"Error al descontar saldo: {mensaje}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
                 usuarioActual.Saldo = nuevoSaldo;
@@ -77,7 +77,7 @@ namespace Presentacion.Forms.FormsCliente
                 string resultado = compraLogica.RegistrarCompra(usuarioActual.Id, carrito);
                 if (resultado != "OK")
                 {
-                    MessageBox.Show("Error al registrar la compra: " + resultado, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show($"Error al descontar saldo: {resultado}","Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 

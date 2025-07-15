@@ -57,9 +57,14 @@ namespace Presentacion.Forms.FormsCliente
 
         private void btnGuardarCambios_Click(object sender, EventArgs e)
         {
-            //Validar si quieres cambiar el nombre de usuario
+            // Validar si quiere cambiar el nombre
             string validacion = usuarioLogica.ValidarRegistro(txtUsuario.Text);
-            bool nombreCambió = !txtUsuario.Text.Equals(usuarioActual.Nombre,StringComparison.OrdinalIgnoreCase);
+            bool nombreCambió = !txtUsuario.Text.Equals(usuarioActual.Nombre, StringComparison.OrdinalIgnoreCase);
+
+            if (!ValidacionCampos.EstanLlenos(txtUsuario)){
+                MessageBox.Show("El nombre de usuario no puede estar vacío.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
 
             if (validacion != "OK" && nombreCambió && validacion.Contains("usuario"))
             {
@@ -69,6 +74,12 @@ namespace Presentacion.Forms.FormsCliente
 
             // Validar si quiere cambiar contraseña
             bool cambiarContraseña = !string.IsNullOrWhiteSpace(txtNuevaContraseña.Text) || !string.IsNullOrWhiteSpace(txtConfirmarContraseña.Text);
+
+            if (!nombreCambió && !cambiarContraseña)
+            {
+                MessageBox.Show("Debe modificar al menos el nombre de usuario o la contraseña para guardar los cambios.", "Sin cambios", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
 
             if (cambiarContraseña)
             {
@@ -102,17 +113,9 @@ namespace Presentacion.Forms.FormsCliente
                     return;
             }
 
-            string nuevaContraseña;
-            if(cambiarContraseña)
-            {
-                nuevaContraseña = txtNuevaContraseña.Text.Trim();
-            }
-            else
-            {
-                nuevaContraseña = usuarioActual.Contraseña; // Mantiene la contraseña actual si no se cambia
-            }
+            string nuevaContraseña = cambiarContraseña ? txtNuevaContraseña.Text.Trim() : usuarioActual.Contraseña;
 
-            bool actualizado = usuarioLogica.ModificarUsuario(usuarioActual.Id, txtUsuario.Text,nuevaContraseña);
+            bool actualizado = usuarioLogica.ModificarUsuario(usuarioActual.Id, txtUsuario.Text, nuevaContraseña);
 
             if (actualizado)
             {

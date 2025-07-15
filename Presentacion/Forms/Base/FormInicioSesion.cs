@@ -20,7 +20,7 @@ namespace Presentacion
 
             if (!ValidacionCampos.EstanLlenos(txtUsuario, txtContraseña, cmbRol))
             {
-                MessageBox.Show("Rellene todos los campos");
+                MessageBox.Show("Rellene todos los campos", "Avertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 

@@ -15,8 +15,10 @@ namespace Presentacion
         private Dictionary<string, int> cantidadesSeleccionadas = new Dictionary<string, int>();
         private Form formularioHijoActual;
         private Usuario usuarioActual;
+
         private string nombreUsuario;
         private string rolUsuario;
+
         public frmMenu(string nombre, string rol, Usuario usuario)
         {
             InitializeComponent();
@@ -66,6 +68,7 @@ namespace Presentacion
         {
             if (formularioHijoActual != null)
             {
+                if (formularioHijoActual is frmReporte reporteForm)
                 formularioHijoActual.Close();
             }
             formularioHijoActual = formulariohijo;
@@ -96,7 +99,7 @@ namespace Presentacion
 
         private void btnReporte_Click(object sender, EventArgs e)
         {
-            AbrirFormularioHijo(new FormReporte());
+            AbrirFormularioHijo(new frmReporte());
         }
 
         private void bntTienda_Click(object sender, EventArgs e)

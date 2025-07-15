@@ -48,13 +48,15 @@ namespace Presentacion.Forms
 
         private void btnBuscar_Click(object sender, System.EventArgs e)
         {
-            if (!ValidacionCampos.EstanLlenos(txtBuscar))
+            string textoBusqueda = txtBuscar.Text.Trim();
+
+            if (string.IsNullOrEmpty(textoBusqueda))
             {
-                CargarVentas();
+                MessageBox.Show("Por favor escriba el nombre del usuario que desea buscar", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            var compras = compraLogica.ObtenerComprasPorNombreUsuario(txtBuscar.Text.Trim());
+            var compras = compraLogica.ObtenerComprasPorNombreUsuario(textoBusqueda);
 
             if (compras.Any())
             {
@@ -63,9 +65,12 @@ namespace Presentacion.Forms
             }
             else
             {
-                MessageBox.Show("No se encontraron compras de ese usuario.", "Sin resultados", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                dGVVenta.DataSource = null;
+                MessageBox.Show("No se encontraron compras de ese usuario", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                txtBuscar.Clear();         // Limpia campo
+                txtBuscar.Focus();         // Foco al campo
+                CargarVentas();            // Recarga todas las ventas
             }
+
         }
 
         private void txtBuscar_KeyDown(object sender, KeyEventArgs e)

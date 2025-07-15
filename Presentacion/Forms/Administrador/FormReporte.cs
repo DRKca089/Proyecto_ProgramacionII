@@ -1,20 +1,67 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Negocio;
+using System;
 using System.Windows.Forms;
-using Negocio;
 
 namespace Presentacion.Forms
 {
-    public partial class FormReporte : Form
+    public partial class frmReporte : Form
     {
         private ProductoLogica productoLogica = new ProductoLogica();
-        private CompraLogica compralogica = new CompraLogica();
+        private CompraLogica compraLogica = new CompraLogica();
 
-        public FormReporte()
+        public frmReporte()
         {
             InitializeComponent();
             dGVReporte.AutoGenerateColumns = false;
-            lblTotal.Text = $"${compralogica.ObtenerIngresoTotalVentas():F2}";
+        }
+
+        private void CargarReporte(string tipo, int numero)
+        {
+            try
+            {
+                object reporteData = null;
+
+                switch (tipo)
+                {
+                    case "Productos más vendidos":
+                        reporteData = productoLogica.ObtenerProductosMasVendidos(numero);
+                        ConfigurarColumnas(true, true, false);
+                        break;
+
+                    case "Productos menos vendidos":
+                        reporteData = productoLogica.ObtenerProductosMenosVendidos(numero);
+                        ConfigurarColumnas(true, true, false);
+                        break;
+
+                    case "Stock Bajo":
+                        reporteData = productoLogica.ObtenerProductosConMenorStock(numero);
+                        ConfigurarColumnas(false, false, true);
+                        break;
+
+                    default:
+                        MessageBox.Show("Tipo de reporte no reconocido.");
+                        return;
+                }
+                dGVReporte.DataSource = null;
+                dGVReporte.DataSource = reporteData;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al generar el reporte: {ex.Message}");
+            }
+
+        }
+
+        private void ConfigurarColumnas(bool mostrarCantidad, bool mostrarIngreso, bool mostrarStock)
+        {
+            if (dGVReporte.Columns.Contains("CantidadVendida"))
+                dGVReporte.Columns["CantidadVendida"].Visible = mostrarCantidad;
+
+            if (dGVReporte.Columns.Contains("Ingreso"))
+                dGVReporte.Columns["Ingreso"].Visible = mostrarIngreso;
+
+            if (dGVReporte.Columns.Contains("Stock"))
+                dGVReporte.Columns["Stock"].Visible = mostrarStock;
         }
 
         private void txtNProductos_KeyDown(object sender, KeyEventArgs e)
@@ -27,62 +74,37 @@ namespace Presentacion.Forms
 
         private void btnGenerarReporte_Click(object sender, EventArgs e)
         {
-            if (!ValidacionCampos.EstanLlenos(txtNumeroProductos, cmbTipoReporte))
+            string tipoSeleccionado = cmbTipoReporte.SelectedItem?.ToString()?.Trim();
+
+            if (!ValidacionCampos.EstanLlenos(txtNumeroProductos) || !ValidacionCampos.EstanLlenos(cmbTipoReporte))
             {
-                MessageBox.Show("Por favor rellene todos los campos.");
+                MessageBox.Show("Complete todos los campos", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 
-
-            if (!ValidacionNumeros.EsEntero(txtNumeroProductos.Text.Trim(), out int numeroProductos) || numeroProductos < 1)
+            if (!int.TryParse(txtNumeroProductos.Text.Trim(), out int numero) || numero < 1)
             {
-                MessageBox.Show("Ingresa un número positivo valido.");
+                MessageBox.Show("Número de productos inválido", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 
-            string tipoReporte = cmbTipoReporte.SelectedItem?.ToString()?.Trim();
-            List<object> reporte = new List<object>();
+            // Aquí validamos con el total general de productos sin crear métodos nuevos
+            int totalProductos = productoLogica.ListarProductos().Count;
 
-            try
+            if (numero > totalProductos)
             {
-                switch (tipoReporte)
-                {
-                    case "Productos más vendidos":
-                        var mas = productoLogica.ObtenerProductosMasVendidos(numeroProductos);
-                        dGVReporte.DataSource = null;
-                        dGVReporte.DataSource = mas;
-                        dGVReporte.Columns["Stock"].Visible = false;
-                        dGVReporte.Columns["CantidadVendida"].Visible = true;
-                        dGVReporte.Columns["Ingreso"].Visible = true;
-                        break;
-
-                    case "Productos menos vendidos":
-                        var menos = productoLogica.ObtenerProductosMenosVendidos(numeroProductos);
-                        dGVReporte.DataSource = null;
-                        dGVReporte.DataSource = menos;
-                        dGVReporte.Columns["Stock"].Visible = false;
-                        dGVReporte.Columns["CantidadVendida"].Visible = true;
-                        dGVReporte.Columns["Ingreso"].Visible = true;
-                        break;
-
-                    case "Stock Bajo":
-                        var bajo = productoLogica.ObtenerProductosConMenorStock(numeroProductos);
-                        dGVReporte.DataSource = null;
-                        dGVReporte.DataSource = bajo;
-                        dGVReporte.Columns["Stock"].Visible = true;
-                        dGVReporte.Columns["CantidadVendida"].Visible = false;
-                        dGVReporte.Columns["Ingreso"].Visible = false;
-                        break;
-
-                    default:
-                        MessageBox.Show("Tipo de reporte no reconocido.");
-                        return;
-                }
+                MessageBox.Show($"Solo existen {totalProductos} productos registrados. Por favor ingrese un número válido.",
+                    "Número excedido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Error al generar el reporte: {ex.Message}");
-            }
+
+            CargarReporte(tipoSeleccionado, numero);
+
+        }
+
+        private void frmReporte_Load(object sender, EventArgs e)
+        {
+            lblTotal.Text = $" {compraLogica.ObtenerIngresoTotalVentas():C2}";
         }
     }
 }

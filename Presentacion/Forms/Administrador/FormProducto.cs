@@ -2,7 +2,6 @@
 using Negocio;
 using System.Collections.Generic;
 using System.Linq;
-using System.Drawing.Text;
 using System.Windows.Forms;
 
 namespace Presentacion.Forms
@@ -29,19 +28,19 @@ namespace Presentacion.Forms
         {
             if (!ValidacionCampos.EstanLlenos(txtProductoNombre, txtProductoCantidad, txtProductoValor))
             {
-                MessageBox.Show("Rellene todos los campos", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Rellene todos los campos", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
             if (!ValidacionNumeros.EsEntero(txtProductoCantidad.Text.Trim(), out int cantidad))
             {
-                MessageBox.Show("La cantidad debe ser un valor entero", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("La cantidad debe ser un valor entero", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
             if (!ValidacionNumeros.EsDecimal(txtProductoValor.Text.Trim(), out decimal valor))
             {
-                MessageBox.Show("El valor debe ser un valor decimal", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("El valor debe ser un valor decimal", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -69,27 +68,23 @@ namespace Presentacion.Forms
         {
             if (!ValidacionCampos.EstanLlenos(txtProductoCodigo, txtProductoNombre, txtProductoCantidad, txtProductoValor))
             {
-                MessageBox.Show("Rellene todos los campos");
+                MessageBox.Show("Rellene todos los campos","Avertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 
             if (!ValidacionNumeros.EsEntero(txtProductoCantidad.Text.Trim(), out int cantidad))
             {
-                MessageBox.Show("La cantidad debe ser un valor entero");
+                MessageBox.Show("La cantidad debe ser un valor entero", "Avertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 
             if (!ValidacionNumeros.EsDecimal(txtProductoValor.Text.Trim(), out decimal valor))
             {
-                MessageBox.Show("El valor debe ser un valor decimal con dos decimas");
+                MessageBox.Show("El valor debe ser un valor decimal con dos decimas", "Avertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 
-            DialogResult respuesta = MessageBox.Show(
-                "¿Está seguro que desea modificar el producto?",
-                "Confirmar modificación",
-                MessageBoxButtons.YesNo,
-                MessageBoxIcon.Question);
+            DialogResult respuesta = MessageBox.Show("¿Está seguro que desea modificar el producto?","Confirmar modificación",MessageBoxButtons.YesNo,MessageBoxIcon.Question);
 
             if (respuesta == DialogResult.Yes)
             {
@@ -104,13 +99,13 @@ namespace Presentacion.Forms
                     };
 
                     productoLogica.Modificar(productoModificado);
-                    MessageBox.Show("Producto modificado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Producto modificado correctamente","Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     ActualizarTablaProducto();
                     LimpiarFormulario.LimpiarCampos(txtProductoCodigo, txtProductoNombre, txtProductoCantidad, txtProductoValor);
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Error al modificar: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show($"Error al modificar: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
@@ -119,15 +114,11 @@ namespace Presentacion.Forms
         {
             if (!ValidacionCampos.EstanLlenos(txtProductoCodigo, txtProductoNombre, txtProductoCantidad, txtProductoValor))
             {
-                MessageBox.Show("Rellene todos los campos");
+                MessageBox.Show("Rellene todos los campos", "Avertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 
-            DialogResult confirmacion = MessageBox.Show(
-                "¿Está seguro que desea eliminar este producto?",
-                "Confirmar eliminación",
-                MessageBoxButtons.YesNo,
-                MessageBoxIcon.Question);
+            DialogResult confirmacion = MessageBox.Show("¿Está seguro que desea eliminar este producto?","Confirmar eliminación",MessageBoxButtons.YesNo,MessageBoxIcon.Question);
 
             if (confirmacion == DialogResult.Yes)
             {
@@ -142,21 +133,23 @@ namespace Presentacion.Forms
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Error al eliminar: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show($"Error al eliminar: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
 
         private void btnBuscarProducto_Click(object sender, EventArgs e)
         {
-            if (!ValidacionCampos.EstanLlenos(txtProductoBuscar))
+            string textoBusqueda = txtProductoBuscar.Text.Trim();
+
+            if (string.IsNullOrEmpty(textoBusqueda))
             {
-                ActualizarTablaProducto();
+                MessageBox.Show("Por favor escriba el nombre o código del producto que desea buscar", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
             // Buscar por código
-            Producto productoPorCodigo = productoLogica.BuscarPorCodigo(txtProductoBuscar.Text);
+            Producto productoPorCodigo = productoLogica.BuscarPorCodigo(textoBusqueda);
             if (productoPorCodigo != null)
             {
                 dGVProducto.DataSource = new List<Producto> { productoPorCodigo };
@@ -164,16 +157,19 @@ namespace Presentacion.Forms
             }
 
             // Buscar por nombre
-            List<Producto> productosPorNombre = productoLogica.BuscarPorNombre(txtProductoBuscar.Text);
+            List<Producto> productosPorNombre = productoLogica.BuscarPorNombre(textoBusqueda);
             if (productosPorNombre.Any())
             {
                 dGVProducto.DataSource = productosPorNombre;
             }
             else
             {
-                MessageBox.Show("No se encontraron productos.", "Sin resultados", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                dGVProducto.DataSource = null;
+                MessageBox.Show("Producto no existente", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                txtProductoBuscar.Clear();           // Limpiar campo
+                txtProductoBuscar.Focus();           // Foco al campo
+                ActualizarTablaProducto();           // Recargar todos los productos
             }
+
         }
 
         private void dGVProducto_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -192,11 +188,11 @@ namespace Presentacion.Forms
             }
             catch (ArgumentOutOfRangeException ex)
             {
-                MessageBox.Show("Se intentó acceder a una fila que no existe" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show($"Se intentó acceder a una fila que no existe {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error inesperado al seleccionar el producto" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Error inesperado al seleccionar el producto{ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

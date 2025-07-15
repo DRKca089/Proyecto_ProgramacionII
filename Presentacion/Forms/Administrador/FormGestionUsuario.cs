@@ -45,7 +45,7 @@ namespace Presentacion.Forms.FormsAdministrador
 
             if (resultado == "OK")
             {
-                MessageBox.Show("Usuario agregado correctamente.");
+                MessageBox.Show("Usuario agregado correctamente.", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 ActualizarTablaUsuarios();
                 LimpiarFormulario.LimpiarCampos(txtID, txtUsuario, txtSaldo, cmbRol, txtContraseña);
 
@@ -62,18 +62,18 @@ namespace Presentacion.Forms.FormsAdministrador
 
             if (!ValidacionCampos.EstanLlenos(txtID, txtUsuario, txtContraseña, txtSaldo))
             {
-                MessageBox.Show("Rellene todos los campos");
+                MessageBox.Show("Rellene todos los campos", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
             if (usuarioExistente != null && usuarioExistente.Id != txtID.Text)
             {
-                MessageBox.Show("Ya existe un usuario con ese nombre.");
+                MessageBox.Show("Ya existe un usuario con ese nombre", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
             if (ValidacionContraseña.EsLongitudValida(txtContraseña.Text) == false)
             {
-                MessageBox.Show("La contraseña debe tener al menos 5 caracteres.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("La contraseña debe tener al menos 5 caracteres", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -89,7 +89,7 @@ namespace Presentacion.Forms.FormsAdministrador
                 }
                 else
                 {
-                    MessageBox.Show("Error al modificar usuario.","Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Error al modificar usuario","Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
@@ -98,7 +98,7 @@ namespace Presentacion.Forms.FormsAdministrador
         {
             if (!ValidacionCampos.EstanLlenos(txtID, txtUsuario, txtContraseña, txtSaldo))
             {
-                MessageBox.Show("Rellene todos los campos");
+                MessageBox.Show("Rellene todos los campos", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -182,23 +182,28 @@ namespace Presentacion.Forms.FormsAdministrador
         {
             string busqueda = txtBuscar.Text.Trim();
 
-            // Si el campo está vacío, recarga toda la tabla
+            // Validación si está vacío
             if (string.IsNullOrWhiteSpace(busqueda))
             {
-                ActualizarTablaUsuarios();
+                MessageBox.Show("Por favor ingrese un nombre de usuario para buscar.", "Campo vacío", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
             // Buscar usuarios por nombre (que contengan el texto)
             List<Usuario> usuariosPorNombre = usuarioLogica.BuscarPorNombre(busqueda);
+
             if (usuariosPorNombre.Any())
             {
                 dGVUsuarios.DataSource = usuariosPorNombre;
             }
             else
             {
-                MessageBox.Show("No se encontraron usuarios.", "Sin resultados", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                dGVUsuarios.DataSource = null;
+                MessageBox.Show("No se encontraron usuarios con ese nombre.", "Sin resultados", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                //Restaurar tabla y limpiar campo
+                txtBuscar.Clear();
+                ActualizarTablaUsuarios();
+
             }
         }
 

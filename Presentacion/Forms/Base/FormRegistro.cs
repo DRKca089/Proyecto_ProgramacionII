@@ -16,19 +16,19 @@ namespace Presentacion.Forms
         {
             if (!ValidacionCampos.EstanLlenos(txtUsuario, txtContraseña, txtConfirmarContraseña))
             {
-                MessageBox.Show("Rellene todos los campos");
+                MessageBox.Show("Rellene todos los campos", "Avertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 
             if (ValidacionContraseña.EsLongitudValida(txtContraseña.Text) == false)
             {
-                MessageBox.Show("La contraseña debe tener al menos 5 caracteres.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("La contraseña debe tener al menos 5 caracteres", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
             if (!ValidacionContraseña.SonContraseñasIguales(txtContraseña.Text, txtConfirmarContraseña.Text))
             {
-                MessageBox.Show("Las contraseñas no son iguales");
+                MessageBox.Show("Las contraseñas no son iguales", "Avertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 
@@ -36,7 +36,7 @@ namespace Presentacion.Forms
 
             if (resultadoValidacion != "OK")
             {
-                MessageBox.Show(resultadoValidacion, "Error de registro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(resultadoValidacion, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 

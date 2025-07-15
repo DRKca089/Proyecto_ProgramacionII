@@ -138,14 +138,16 @@ namespace Presentacion.Forms.FormsCliente
 
         private void btnBuscar_Click(object sender, EventArgs e)
         {
-            if (!ValidacionCampos.EstanLlenos(txtBuscar))
+            string textoBusqueda = txtBuscar.Text.Trim();
+
+            if (string.IsNullOrEmpty(textoBusqueda))
             {
-                ActualizarTabla();
+                MessageBox.Show("Por favor escriba el nombre o código del producto que desea buscar", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
             // Buscar por código
-            Producto productoPorCodigo = productoLogica.BuscarPorCodigo(txtBuscar.Text);
+            Producto productoPorCodigo = productoLogica.BuscarPorCodigo(textoBusqueda);
             if (productoPorCodigo != null)
             {
                 dGVTienda.DataSource = new List<Producto> { productoPorCodigo };
@@ -153,20 +155,23 @@ namespace Presentacion.Forms.FormsCliente
             }
 
             // Buscar por nombre
-            List<Producto> productosPorNombre = productoLogica.BuscarPorNombre(txtBuscar.Text);
+            List<Producto> productosPorNombre = productoLogica.BuscarPorNombre(textoBusqueda);
             if (productosPorNombre.Any())
             {
                 dGVTienda.DataSource = productosPorNombre;
             }
             else
             {
-                MessageBox.Show("No se encontraron productos.", "Sin resultados", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                dGVTienda.DataSource = null;
+                MessageBox.Show("Producto no existente.", "Sin resultados", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                txtBuscar.Clear();           // Limpiar campo
+                txtBuscar.Focus();           // Devolver foco al campo
+                ActualizarTabla();           // Recargar todos los productos
             }
-
-            // Al cerrar EditarUsuario y volver a abrir Tienda
-            frmTienda tienda = new frmTienda(usuarioActual, cantidadesSeleccionadas);
-            tienda.Show();
+            if (!ValidacionCampos.EstanLlenos(txtBuscar))
+            {
+                ActualizarTabla();
+                return;
+            }
         }
 
         private void txtBuscar_KeyDown(object sender, KeyEventArgs e)
