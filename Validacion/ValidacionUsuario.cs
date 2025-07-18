@@ -1,5 +1,4 @@
-﻿using Datos;
-using System;
+﻿using System;
 
 public static class ValidacionUsuario
 {
