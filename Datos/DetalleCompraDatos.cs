@@ -6,8 +6,8 @@ using System.IO;
 
 public class DetalleCompraDatos
 {
-    private const string ArchivoCsv = "detalle_compras.csv";
-    private static readonly string CabeceraCsv = "IdCompra,IdUsuario,NombreProducto,Cantidad,PrecioUnitario";
+    private const string ArchivoDetalleCompra = "detalle_compras.csv";
+    private static readonly string CabeceraCsvDetalles = "IdCompra,IdUsuario,NombreProducto,Cantidad,PrecioUnitario";
 
     private List<CompraDetalles> detalles = new List<CompraDetalles>();
 
@@ -20,13 +20,13 @@ public class DetalleCompraDatos
     {
         detalles.Clear();
 
-        if (!File.Exists(ArchivoCsv))
+        if (!File.Exists(ArchivoDetalleCompra))
         {
-            File.WriteAllText(ArchivoCsv, CabeceraCsv + Environment.NewLine);
+            File.WriteAllText(ArchivoDetalleCompra, CabeceraCsvDetalles + Environment.NewLine);
             return;
         }
 
-        var lineas = File.ReadAllLines(ArchivoCsv);
+        var lineas = File.ReadAllLines(ArchivoDetalleCompra);
 
         foreach (var linea in lineas.Skip(1))
         {
@@ -51,9 +51,9 @@ public class DetalleCompraDatos
 
     private void GuardarTodo()
     {
-        var lineas = new List<string> { CabeceraCsv };
+        var lineas = new List<string> { CabeceraCsvDetalles };
         lineas.AddRange(detalles.Select(FormatearDetalleParaCsv));
-        File.WriteAllLines(ArchivoCsv, lineas);
+        File.WriteAllLines(ArchivoDetalleCompra, lineas);
     }
 
     public List<CompraDetalles> ObtenerDetallesPorCompra(string codigoCompra, string idUsuario)

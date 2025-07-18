@@ -1,5 +1,4 @@
-﻿using Negocio;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
@@ -29,15 +28,9 @@ namespace Presentacion.Forms.FormsAdministrador
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-            if (!ValidacionCampos.EstanLlenos(txtUsuario, txtContraseña, cmbRol))
+            if (!CamposValidosParaAgregarModificar(out string mensaje))
             {
-                MessageBox.Show("Rellene todos los campos", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-            if(ValidacionContraseña.EsLongitudValida(txtContraseña.Text) == false)
-            {
-                MessageBox.Show("La contraseña debe tener al menos 5 caracteres.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(mensaje, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -45,10 +38,9 @@ namespace Presentacion.Forms.FormsAdministrador
 
             if (resultado == "OK")
             {
-                MessageBox.Show("Usuario agregado correctamente.", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Usuario agregado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 ActualizarTablaUsuarios();
                 LimpiarFormulario.LimpiarCampos(txtID, txtUsuario, txtSaldo, cmbRol, txtContraseña);
-
             }
             else
             {
@@ -58,39 +50,30 @@ namespace Presentacion.Forms.FormsAdministrador
 
         private void btnModificar_Click(object sender, EventArgs e)
         {
-            var usuarioExistente = usuarioLogica.ObtenerUsuario(txtUsuario.Text.Trim());
-
-            if (!ValidacionCampos.EstanLlenos(txtID, txtUsuario, txtContraseña, txtSaldo))
+            if (!CamposValidosParaAgregarModificar(out string mensaje))
             {
-                MessageBox.Show("Rellene todos los campos", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(mensaje, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
+            var usuarioExistente = usuarioLogica.ObtenerUsuario(txtUsuario.Text.Trim());
             if (usuarioExistente != null && usuarioExistente.Id != txtID.Text)
             {
                 MessageBox.Show("Ya existe un usuario con ese nombre", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-
-            if (ValidacionContraseña.EsLongitudValida(txtContraseña.Text) == false)
-            {
-                MessageBox.Show("La contraseña debe tener al menos 5 caracteres", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
+            bool exito = usuarioLogica.ModificarUsuario(txtID.Text, txtUsuario.Text.Trim(), txtContraseña.Text, cmbRol.Text.Trim());
+
+            if (exito)
+            {
+                MessageBox.Show("Usuario modificado correctamente.");
+                ActualizarTablaUsuarios();
+                LimpiarFormulario.LimpiarCampos(txtID, txtUsuario, txtSaldo, cmbRol, txtContraseña);
+            }
             else
             {
-                bool exito = usuarioLogica.ModificarUsuario(txtID.Text,txtUsuario.Text.Trim(),txtContraseña.Text,cmbRol.Text.Trim());
-
-                if (exito)
-                {
-                    MessageBox.Show("Usuario modificado correctamente.");
-                    ActualizarTablaUsuarios();
-                    LimpiarFormulario.LimpiarCampos(txtID, txtUsuario, txtSaldo, cmbRol, txtContraseña);
-                }
-                else
-                {
-                    MessageBox.Show("Error al modificar usuario","Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+                MessageBox.Show("Error al modificar usuario", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -102,33 +85,22 @@ namespace Presentacion.Forms.FormsAdministrador
                 return;
             }
 
-            if (dGVUsuarios.CurrentRow == null)
+            if (dGVUsuarios.CurrentRow == null || usuarioActual == null)
             {
-                MessageBox.Show("Seleccione un usuario para eliminar.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-            if (usuarioActual == null)
-            {
-                MessageBox.Show("Usuario actual no inicializado.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Debe seleccionar un usuario.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
             string idAEliminar = dGVUsuarios.CurrentRow.Cells["ID"].Value?.ToString();
-
             if (string.IsNullOrWhiteSpace(idAEliminar))
             {
                 MessageBox.Show("No se pudo obtener el ID del usuario.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
-
-            DialogResult confirm = MessageBox.Show("¿Seguro que desea eliminar este usuario?", "Confirmar", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-
-            if (confirm == DialogResult.Yes)
+            if (MessageBox.Show("¿Seguro que desea eliminar este usuario?", "Confirmar", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
             {
                 bool exito = usuarioLogica.EliminarUsuario(idAEliminar, usuarioActual.Id);
-
                 if (exito)
                 {
                     MessageBox.Show("Usuario eliminado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -137,10 +109,8 @@ namespace Presentacion.Forms.FormsAdministrador
                 }
                 else
                 {
-                    if (idAEliminar == usuarioActual.Id)
-                        MessageBox.Show("No puedes eliminarte a ti mismo.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    else
-                        MessageBox.Show("No se pudo eliminar el usuario.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    string msg = idAEliminar == usuarioActual.Id ? "No puedes eliminarte a ti mismo." : "No se pudo eliminar el usuario.";
+                    MessageBox.Show(msg, "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
         }
@@ -205,6 +175,25 @@ namespace Presentacion.Forms.FormsAdministrador
                 ActualizarTablaUsuarios();
 
             }
+        }
+
+        private bool CamposValidosParaAgregarModificar(out string mensaje)
+        {
+            mensaje = "";
+
+            if (!ValidacionCampos.EstanLlenos(txtUsuario, txtContraseña, cmbRol))
+            {
+                mensaje = "Rellene todos los campos.";
+                return false;
+            }
+
+            if (!ValidacionContraseña.EsLongitudValida(txtContraseña.Text))
+            {
+                mensaje = "La contraseña debe tener al menos 5 caracteres.";
+                return false;
+            }
+
+            return true;
         }
 
         private void txtBuscar_KeyDown(object sender, KeyEventArgs e)

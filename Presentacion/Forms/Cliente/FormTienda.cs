@@ -1,5 +1,4 @@
-﻿using Negocio;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
@@ -164,7 +163,6 @@ namespace Presentacion.Forms.FormsCliente
             {
                 MessageBox.Show("Producto no existente.", "Sin resultados", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 txtBuscar.Clear();           // Limpiar campo
-                txtBuscar.Focus();           // Devolver foco al campo
                 ActualizarTabla();           // Recargar todos los productos
             }
             if (!ValidacionCampos.EstanLlenos(txtBuscar))

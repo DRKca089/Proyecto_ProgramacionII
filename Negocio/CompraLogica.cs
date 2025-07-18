@@ -5,23 +5,21 @@ using System.Linq;
 
 public class CompraLogica
 {
-    private CompraDatos compraDatos = new CompraDatos();
-    private DetalleCompraDatos detalleDatos = new DetalleCompraDatos();
+    private readonly CompraDatos compraDatos = new CompraDatos();
+    private readonly DetalleCompraDatos detalleDatos = new DetalleCompraDatos();
 
     private string GenerarCodigoCompra(string idUsuario)
     {
         var comprasUsuario = compraDatos.ObtenerComprasPorUsuario(idUsuario);
-        int siguienteNumero;
+        int siguienteNumero = 1;
 
         if (comprasUsuario.Any())
         {
-            int numeroMaximo = comprasUsuario.Select(c => int.Parse(c.Codigo.Substring(1))).Max();
+            int numeroMaximo = comprasUsuario
+                .Select(c => int.Parse(c.Codigo.Substring(1)))
+                .Max();
 
             siguienteNumero = numeroMaximo + 1;
-        }
-        else
-        {
-            siguienteNumero = 1;
         }
 
         return "C" + siguienteNumero.ToString("D4");
@@ -32,7 +30,7 @@ public class CompraLogica
         if (productos == null || productos.Count == 0)
             return "No hay productos para comprar.";
 
-        string nuevoCodigo = GenerarCodigoCompra(idUsuario); 
+        string nuevoCodigo = GenerarCodigoCompra(idUsuario);
         decimal total = productos.Sum(p => p.Cantidad * p.PrecioUnitario);
 
         var compra = new Compra
@@ -40,11 +38,10 @@ public class CompraLogica
             Codigo = nuevoCodigo,
             IdUsuario = idUsuario,
             Fecha = DateTime.Now,
-            Total = total        
+            Total = total
         };
 
-
-        var detalles = productos.Select(p => new CompraDetalles
+        var detallesCompra = productos.Select(p => new CompraDetalles
         {
             CodigoCompra = nuevoCodigo,
             IdUsuario = idUsuario,
@@ -55,7 +52,7 @@ public class CompraLogica
         }).ToList();
 
         compraDatos.AgregarCompra(compra);
-        detalleDatos.AgregarDetalles(detalles);
+        detalleDatos.AgregarDetalles(detallesCompra);
 
         return "OK";
     }
@@ -63,23 +60,26 @@ public class CompraLogica
     public List<Compra> ObtenerComprasPorNombreUsuario(string nombreUsuario)
     {
         var usuarios = new UsuarioDatos().ObtenerUsuarios();
-        var usuariosFiltrados = usuarios.Where(u => u.Nombre.IndexOf(nombreUsuario, StringComparison.OrdinalIgnoreCase) >= 0).ToList();
+        var usuariosFiltrados = usuarios
+            .Where(u => u.Nombre.IndexOf(nombreUsuario, StringComparison.OrdinalIgnoreCase) >= 0)
+            .ToList();
 
-        var todasLasCompras = new List<Compra>();
+        var comprasFiltradas = new List<Compra>();
 
         foreach (var usuario in usuariosFiltrados)
         {
-            var compras = ObtenerComprasPorUsuario(usuario.Id);
+            var comprasUsuario = ObtenerComprasPorUsuario(usuario.Id);
 
-            foreach (var compra in compras)
+            foreach (var compra in comprasUsuario)
             {
                 compra.NombreUsuario = usuario.Nombre;
-                todasLasCompras.Add(compra);
+                comprasFiltradas.Add(compra);
             }
         }
 
-        return todasLasCompras;
+        return comprasFiltradas;
     }
+
     public decimal ObtenerIngresoTotalVentas()
     {
         var todasCompras = compraDatos.ObtenerCompras();
@@ -88,8 +88,8 @@ public class CompraLogica
 
     public decimal ObtenerTotalGastadoPorUsuario(string idUsuario)
     {
-        var compras = ObtenerComprasPorUsuario(idUsuario);
-        return compras.Sum(c => c.Total);
+        var comprasUsuario = ObtenerComprasPorUsuario(idUsuario);
+        return comprasUsuario.Sum(c => c.Total);
     }
 
     public List<Compra> ObtenerCompras()
@@ -102,12 +102,15 @@ public class CompraLogica
         return compraDatos.ObtenerComprasPorUsuario(idUsuario);
     }
 
-    public List<CompraDetalles> ObtenerDetallesCompra(string CodigoCompra, string idUsuario)
+    public List<CompraDetalles> ObtenerDetallesCompra(string codigoCompra, string idUsuario)
     {
-        foreach (var d in detalleDatos.ObtenerDetallesPorCompra(CodigoCompra, idUsuario))
+        var detalles = detalleDatos.ObtenerDetallesPorCompra(codigoCompra, idUsuario);
+
+        foreach (var detalle in detalles)
         {
-            d.Subtotal = d.Cantidad * d.PrecioUnitario;
+            detalle.Subtotal = detalle.Cantidad * detalle.PrecioUnitario;
         }
-        return detalleDatos.ObtenerDetallesPorCompra(CodigoCompra, idUsuario);
+
+        return detalles;
     }
 }

@@ -1,6 +1,4 @@
-﻿using Datos;
-using Negocio;
-using Presentacion.Forms.Cliente;
+﻿using Presentacion.Forms.Cliente;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -67,7 +65,6 @@ namespace Presentacion.Forms
             {
                 MessageBox.Show("No se encontraron compras de ese usuario", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 txtBuscar.Clear();         // Limpia campo
-                txtBuscar.Focus();         // Foco al campo
                 CargarVentas();            // Recarga todas las ventas
             }
 

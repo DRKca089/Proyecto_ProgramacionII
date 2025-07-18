@@ -1,5 +1,4 @@
 ﻿using System;
-using Negocio;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
@@ -26,21 +25,9 @@ namespace Presentacion.Forms
 
         private void btnAgregarProducto_Click(object sender, EventArgs e)
         {
-            if (!ValidacionCampos.EstanLlenos(txtProductoNombre, txtProductoCantidad, txtProductoValor))
+            if (!ValidarCamposProducto(out int cantidad, out decimal valor, out string mensaje))
             {
-                MessageBox.Show("Rellene todos los campos", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-            if (!ValidacionNumeros.EsEntero(txtProductoCantidad.Text.Trim(), out int cantidad))
-            {
-                MessageBox.Show("La cantidad debe ser un valor entero", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-            if (!ValidacionNumeros.EsDecimal(txtProductoValor.Text.Trim(), out decimal valor))
-            {
-                MessageBox.Show("El valor debe ser un valor decimal", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(mensaje, "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -68,23 +55,17 @@ namespace Presentacion.Forms
         {
             if (!ValidacionCampos.EstanLlenos(txtProductoCodigo, txtProductoNombre, txtProductoCantidad, txtProductoValor))
             {
-                MessageBox.Show("Rellene todos los campos","Avertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("Rellene todos los campos", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 
-            if (!ValidacionNumeros.EsEntero(txtProductoCantidad.Text.Trim(), out int cantidad))
+            if (!ValidarCamposProducto(out int cantidad, out decimal valor, out string mensaje))
             {
-                MessageBox.Show("La cantidad debe ser un valor entero", "Avertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show(mensaje, "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 
-            if (!ValidacionNumeros.EsDecimal(txtProductoValor.Text.Trim(), out decimal valor))
-            {
-                MessageBox.Show("El valor debe ser un valor decimal con dos decimas", "Avertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                return;
-            }
-
-            DialogResult respuesta = MessageBox.Show("¿Está seguro que desea modificar el producto?","Confirmar modificación",MessageBoxButtons.YesNo,MessageBoxIcon.Question);
+            DialogResult respuesta = MessageBox.Show("¿Está seguro que desea modificar el producto?", "Confirmar modificación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
             if (respuesta == DialogResult.Yes)
             {
@@ -99,7 +80,7 @@ namespace Presentacion.Forms
                     };
 
                     productoLogica.Modificar(productoModificado);
-                    MessageBox.Show("Producto modificado correctamente","Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Producto modificado correctamente", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     ActualizarTablaProducto();
                     LimpiarFormulario.LimpiarCampos(txtProductoCodigo, txtProductoNombre, txtProductoCantidad, txtProductoValor);
                 }
@@ -194,6 +175,33 @@ namespace Presentacion.Forms
             {
                 MessageBox.Show($"Error inesperado al seleccionar el producto{ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private bool ValidarCamposProducto(out int cantidad, out decimal valor, out string mensaje)
+        {
+            mensaje = "";
+            cantidad = 0;
+            valor = 0;
+
+            if (!ValidacionCampos.EstanLlenos(txtProductoNombre, txtProductoCantidad, txtProductoValor))
+            {
+                mensaje = "Rellene todos los campos.";
+                return false;
+            }
+
+            if (!ValidacionNumeros.EsEntero(txtProductoCantidad.Text.Trim(), out cantidad))
+            {
+                mensaje = "La cantidad debe ser un valor entero.";
+                return false;
+            }
+
+            if (!ValidacionNumeros.EsDecimal(txtProductoValor.Text.Trim(), out valor))
+            {
+                mensaje = "El valor debe ser un número decimal válido con máximo dos decimales.";
+                return false;
+            }
+
+            return true;
         }
 
         private void txtProductoBuscar_KeyDown(object sender, KeyEventArgs e)

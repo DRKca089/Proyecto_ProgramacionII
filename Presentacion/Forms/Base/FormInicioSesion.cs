@@ -1,5 +1,4 @@
-﻿using Negocio;
-using Presentacion.Forms;
+﻿using Presentacion.Forms;
 using System;
 using System.Windows.Forms;
 

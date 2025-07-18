@@ -3,12 +3,11 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
-using System.Runtime.ConstrainedExecution;
 
 public class CompraDatos
 {
     private const string ArchivoCompras = "compras.csv";
-    private static readonly string CabeceraCsv = "IdCompra,IdUsuario,Fecha,Total";
+    private static readonly string CabeceraCsvCompras = "IdCompra,IdUsuario,Fecha,Total";
 
     private List<Compra> compras = new List<Compra>();
 
@@ -21,7 +20,7 @@ public class CompraDatos
     {
         if (!File.Exists(ArchivoCompras))
         {
-            File.WriteAllText(ArchivoCompras, CabeceraCsv + "\n");
+            File.WriteAllText(ArchivoCompras, CabeceraCsvCompras + "\n");
             return;
         }
 
@@ -50,7 +49,7 @@ public class CompraDatos
 
     private void GuardarCompras()
     {
-        var lineas = new List<string> {CabeceraCsv};
+        var lineas = new List<string> { CabeceraCsvCompras };
         lineas.AddRange(compras.Select(FormatearCompraParaCsv));
         File.WriteAllLines(ArchivoCompras, lineas);
     }

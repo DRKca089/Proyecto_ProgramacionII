@@ -1,5 +1,4 @@
-﻿using Negocio;
-using Presentacion.Forms;
+﻿using Presentacion.Forms;
 using Presentacion.Forms.FormsAdministrador;
 using Presentacion.Forms.FormsCliente;
 using System;
