@@ -15,9 +15,7 @@ public class CompraLogica
 
         if (comprasUsuario.Any())
         {
-            int numeroMaximo = comprasUsuario
-                .Select(c => int.Parse(c.Codigo.Substring(1)))
-                .Max();
+            int numeroMaximo = comprasUsuario.Select(c => int.Parse(c.Codigo.Substring(1))).Max();
 
             siguienteNumero = numeroMaximo + 1;
         }

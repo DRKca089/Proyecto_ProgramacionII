@@ -49,7 +49,7 @@ namespace Datos
                 }
                 catch(Exception)
                 {
-                    //Joseph mira que agregar aqui
+
                 }
             }
         }

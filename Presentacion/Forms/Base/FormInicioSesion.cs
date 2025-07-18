@@ -23,7 +23,6 @@ namespace Presentacion
                 MessageBox.Show("Rellene todos los campos", "Avertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
-
             try
             {
                 string resultado = usuarioLogica.ValidarInicioSesion(txtUsuario.Text, txtContraseña.Text, cmbRol.Text);

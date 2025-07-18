@@ -3,10 +3,13 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Runtime.ConstrainedExecution;
 
 public class CompraDatos
 {
     private const string ArchivoCompras = "compras.csv";
+    private static readonly string CabeceraCsv = "IdCompra,IdUsuario,Fecha,Total";
+
     private List<Compra> compras = new List<Compra>();
 
     public CompraDatos()
@@ -18,43 +21,37 @@ public class CompraDatos
     {
         if (!File.Exists(ArchivoCompras))
         {
-            File.WriteAllText(ArchivoCompras, "IdCompra,IdUsuario,Fecha,Total\n");
+            File.WriteAllText(ArchivoCompras, CabeceraCsv + "\n");
             return;
         }
 
-        var lineas = File.ReadAllLines(ArchivoCompras).Skip(1);
         compras.Clear();
 
+        var lineas = File.ReadAllLines(ArchivoCompras).Skip(1);
         foreach (var linea in lineas)
         {
             if (string.IsNullOrWhiteSpace(linea)) continue;
+
             var campos = linea.Split(',');
             if (campos.Length != 4) continue;
+
             try
             {
-                compras.Add(new Compra
-                {
-                    Codigo = campos[0],
-                    IdUsuario = campos[1],
-                    Fecha = DateTime.Parse(campos[2]),
-                    Total = decimal.Parse(campos[3], CultureInfo.InvariantCulture)
-                });
+                var compra = ParsearCompra(campos);
+                if (compra != null)
+                    compras.Add(compra);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                //Joseph, mira como podrias agregar algo aqui
+                Console.WriteLine($"Error al parsear línea: {linea}. Detalle: {ex.Message}");
             }
         }
     }
 
     private void GuardarCompras()
     {
-        var lineas = new List<string>
-        {
-            "IdCompra,IdUsuario,Fecha,Cantidad,Total"
-        };
-        lineas.AddRange(compras.Select(c =>
-            $"{c.Codigo},{c.IdUsuario},{c.Fecha},{c.Total.ToString(System.Globalization.CultureInfo.InvariantCulture)}"));
+        var lineas = new List<string> {CabeceraCsv};
+        lineas.AddRange(compras.Select(FormatearCompraParaCsv));
         File.WriteAllLines(ArchivoCompras, lineas);
     }
 
@@ -72,5 +69,21 @@ public class CompraDatos
     public List<Compra> ObtenerComprasPorUsuario(string idUsuario)
     {
         return compras.Where(c => c.IdUsuario == idUsuario).ToList();
+    }
+
+    private Compra ParsearCompra(string[] campos)
+    {
+        return new Compra
+        {
+            Codigo = campos[0],
+            IdUsuario = campos[1],
+            Fecha = DateTime.Parse(campos[2]),
+            Total = decimal.Parse(campos[3], CultureInfo.InvariantCulture)
+        };
+    }
+
+    private string FormatearCompraParaCsv(Compra c)
+    {
+        return $"{c.Codigo},{c.IdUsuario},{c.Fecha},{c.Total.ToString(CultureInfo.InvariantCulture)}";
     }
 }

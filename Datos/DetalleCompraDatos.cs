@@ -7,6 +7,8 @@ using System.IO;
 public class DetalleCompraDatos
 {
     private const string ArchivoCsv = "detalle_compras.csv";
+    private static readonly string CabeceraCsv = "IdCompra,IdUsuario,NombreProducto,Cantidad,PrecioUnitario";
+
     private List<CompraDetalles> detalles = new List<CompraDetalles>();
 
     public DetalleCompraDatos()
@@ -20,7 +22,7 @@ public class DetalleCompraDatos
 
         if (!File.Exists(ArchivoCsv))
         {
-            File.WriteAllText(ArchivoCsv, "IdCompra,IdUsuario,NombreProducto,Cantidad,PrecioUnitario" + Environment.NewLine);
+            File.WriteAllText(ArchivoCsv, CabeceraCsv + Environment.NewLine);
             return;
         }
 
@@ -36,44 +38,51 @@ public class DetalleCompraDatos
 
             try
             {
-                var detalle = new CompraDetalles
-                {
-                    CodigoCompra = campos[0],
-                    IdUsuario = campos[1],
-                    NombreProducto = campos[2],
-                    Cantidad = int.Parse(campos[3]),
-                    PrecioUnitario = decimal.Parse(campos[4], CultureInfo.InvariantCulture)
-                };
-
-                detalles.Add(detalle);
+                var detalle = ParsearDetalle(campos);
+                if (detalle != null)
+                    detalles.Add(detalle);
             }
-            catch(Exception){
-                //Joseph busca que agregar aqui
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error al parsear línea: {linea}. Detalle: {ex.Message}");
             }
         }
     }
 
     private void GuardarTodo()
     {
-        var lineas = new List<string>
-        {
-           "IdCompra,IdUsuario,NombreProducto,Cantidad,PrecioUnitario"
-        };
-
-        lineas.AddRange(detalles.Select(d =>$"{d.CodigoCompra},{d.IdUsuario},{d.NombreProducto},{d.Cantidad},{d.PrecioUnitario.ToString(CultureInfo.InvariantCulture)}"));
-
+        var lineas = new List<string> { CabeceraCsv };
+        lineas.AddRange(detalles.Select(FormatearDetalleParaCsv));
         File.WriteAllLines(ArchivoCsv, lineas);
     }
 
     public List<CompraDetalles> ObtenerDetallesPorCompra(string codigoCompra, string idUsuario)
     {
-        return detalles.Where(d => d.CodigoCompra.Equals(codigoCompra, StringComparison.OrdinalIgnoreCase)
-                     && d.IdUsuario.Equals(idUsuario, StringComparison.OrdinalIgnoreCase)).ToList();
+        return detalles.Where(d =>
+            d.CodigoCompra.Equals(codigoCompra, StringComparison.OrdinalIgnoreCase) &&
+            d.IdUsuario.Equals(idUsuario, StringComparison.OrdinalIgnoreCase)).ToList();
     }
 
     public void AgregarDetalles(List<CompraDetalles> nuevosDetalles)
     {
         detalles.AddRange(nuevosDetalles);
         GuardarTodo();
+    }
+
+    private CompraDetalles ParsearDetalle(string[] campos)
+    {
+        return new CompraDetalles
+        {
+            CodigoCompra = campos[0],
+            IdUsuario = campos[1],
+            NombreProducto = campos[2],
+            Cantidad = int.Parse(campos[3]),
+            PrecioUnitario = decimal.Parse(campos[4], CultureInfo.InvariantCulture)
+        };
+    }
+
+    private string FormatearDetalleParaCsv(CompraDetalles detalle)
+    {
+        return $"{detalle.CodigoCompra},{detalle.IdUsuario},{detalle.NombreProducto},{detalle.Cantidad},{detalle.PrecioUnitario.ToString(CultureInfo.InvariantCulture)}";
     }
 }
