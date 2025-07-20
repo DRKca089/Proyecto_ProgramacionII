@@ -16,5 +16,6 @@ Instrucciones:
 3. Ingresas nombre y contraseña para iniciar sesión o registrarse para crear un nuevo usuario.
 4. Navega usando los botones que habren formularios, cada formulario tiene una función en especifica.
 
-Importate
+Importante
+
 *Las funciones varian si tu usuario tiene rol de administrador o de cliente*
