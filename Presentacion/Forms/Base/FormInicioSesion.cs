@@ -1,6 +1,7 @@
 ﻿using Presentacion.Forms;
 using System;
 using System.Windows.Forms;
+using LoginAppComponent.LoginComponent;
 
 namespace Presentacion
 {
@@ -8,6 +9,7 @@ namespace Presentacion
     {
 
         private UsuarioLogica usuarioLogica = new UsuarioLogica();
+        private AuthService authService = new AuthService();
 
         public frmInicioSesion()
         {
@@ -19,11 +21,22 @@ namespace Presentacion
 
             if (!ValidacionCampos.EstanLlenos(txtUsuario, txtContraseña, cmbRol))
             {
-                MessageBox.Show("Rellene todos los campos", "Avertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("Rellene todos los campos", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
+
             try
             {
+                // Valida con el componente AuthService
+                bool valido = authService.ValidateUser(txtUsuario.Text, txtContraseña.Text);
+
+                if (!valido)
+                {
+                    MessageBox.Show("Credenciales inválidas.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                // Valida con la lógica real para roles
                 string resultado = usuarioLogica.ValidarInicioSesion(txtUsuario.Text, txtContraseña.Text, cmbRol.Text);
 
                 if (resultado == "OK")
@@ -33,7 +46,7 @@ namespace Presentacion
                     if (usuario == null)
                     {
                         MessageBox.Show("Usuario no encontrado.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return;  // Aquí evitas que siga el código con usuario null
+                        return;
                     }
 
                     MessageBox.Show("¡Login exitoso!", "Bienvenido", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -51,7 +64,6 @@ namespace Presentacion
             catch (Exception ex)
             {
                 MessageBox.Show($"Error inesperado: {ex.Message}\nPor favor comunicarse con soporte al cliente", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
             }
         }
 
@@ -65,7 +77,7 @@ namespace Presentacion
 
         private void txtContraseña_KeyDown(object sender, KeyEventArgs e)
         {
-            if(e.KeyCode == Keys.Enter)
+            if (e.KeyCode == Keys.Enter)
             {
                 btnIniciarSesion.PerformClick();
             }

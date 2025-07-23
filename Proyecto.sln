@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Presentacion", "Presentacio
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Validacion", "Validacion\Validacion.csproj", "{DBE6B6A3-C67E-4065-B14C-0256C3DCDDD7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoginAppComponent", "..\..\TAREAS_PROGRAMACION\LoginAppComponent\LoginAppComponent\LoginAppComponent.csproj", "{17711C75-D6C9-47E3-1DC7-13B3D7135587}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{DBE6B6A3-C67E-4065-B14C-0256C3DCDDD7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DBE6B6A3-C67E-4065-B14C-0256C3DCDDD7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DBE6B6A3-C67E-4065-B14C-0256C3DCDDD7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{17711C75-D6C9-47E3-1DC7-13B3D7135587}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{17711C75-D6C9-47E3-1DC7-13B3D7135587}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{17711C75-D6C9-47E3-1DC7-13B3D7135587}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{17711C75-D6C9-47E3-1DC7-13B3D7135587}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
