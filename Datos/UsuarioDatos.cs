@@ -17,6 +17,7 @@ public class UsuarioDatos
         CargarDesdeArchivo();
     }
 
+    // Carga los usuarios desde el archivo CSV
     private void CargarDesdeArchivo()
     {
         usuarios.Clear();
@@ -49,28 +50,31 @@ public class UsuarioDatos
         }
     }
 
+    // Guarda la lista actual de usuarios en el archivo CSV
     private void GuardarEnArchivo()
     {
         var lineas = new List<string> { CabeceraCsvUsuarios };
 
-        lineas.AddRange(usuarios.Select(u =>
-            $"{u.Id},{u.Nombre},{u.Contraseña},{u.Rol},{u.Saldo.ToString(CultureInfo.InvariantCulture)}"));
+        lineas.AddRange(usuarios.Select(usuario =>
+            $"{usuario.Id},{usuario.Nombre},{usuario.Contraseña},{usuario.Rol},{usuario.Saldo.ToString(CultureInfo.InvariantCulture)}"));
 
         File.WriteAllLines(ArchivoUsuarios, lineas);
     }
 
-    // Método privado para asegurar que los datos estén cargados
+    // Recarga los datos desde el archivo para asegurar que la lista esté actualizada
     private void RecargarDatos()
     {
         CargarDesdeArchivo();
     }
 
+    // Devuelve una copia de la lista actual de usuarios
     public List<Usuario> ObtenerUsuarios()
     {
         RecargarDatos();
         return usuarios.ToList();
     }
 
+    // Agrega un nuevo usuario y guarda los cambios
     public void AgregarUsuario(Usuario nuevoUsuario)
     {
         RecargarDatos();
@@ -78,24 +82,28 @@ public class UsuarioDatos
         GuardarEnArchivo();
     }
 
+    // Verifica si existe un usuario con el nombre dado
     public bool ExisteUsuario(string nombreUsuario)
     {
         RecargarDatos();
-        return usuarios.Any(u => u.Nombre.Equals(nombreUsuario, StringComparison.OrdinalIgnoreCase));
+        return usuarios.Any(usuario => usuario.Nombre.Equals(nombreUsuario, StringComparison.OrdinalIgnoreCase));
     }
 
+    // Obtiene un usuario por su nombre
     public Usuario ObtenerPorNombre(string nombre)
     {
         RecargarDatos();
-        return usuarios.FirstOrDefault(u => u.Nombre.Equals(nombre, StringComparison.OrdinalIgnoreCase));
+        return usuarios.FirstOrDefault(usuario => usuario.Nombre.Equals(nombre, StringComparison.OrdinalIgnoreCase));
     }
 
+    // Obtiene un usuario por su ID
     public Usuario ObtenerPorId(string id)
     {
         RecargarDatos();
-        return usuarios.FirstOrDefault(u => u.Id.Equals(id));
+        return usuarios.FirstOrDefault(usuario => usuario.Id.Equals(id));
     }
 
+    // Modifica un usuario existente y guarda los cambios
     public void ModificarUsuario(Usuario usuarioModificado)
     {
         RecargarDatos();
@@ -111,6 +119,7 @@ public class UsuarioDatos
         GuardarEnArchivo();
     }
 
+    // Elimina un usuario por su ID y guarda los cambios
     public void EliminarUsuario(string id)
     {
         RecargarDatos();
@@ -119,22 +128,24 @@ public class UsuarioDatos
         if (usuario == null) return;
 
         var comprasUsuario = compraDatos.ObtenerComprasPorUsuario(id);
-        var codigosCompras = comprasUsuario.Select(c => c.Codigo).ToList();
+        var codigosCompras = comprasUsuario.Select(compra => compra.Codigo).ToList();
 
         usuarios.Remove(usuario);
         GuardarEnArchivo();
     }
 
+    // Busca usuarios por nombre y devuelve una lista de coincidencias
     public List<Usuario> BuscarPorNombre(string nombreUsuario)
     {
         RecargarDatos();
         return usuarios
-            .Where(u => u.Nombre.IndexOf(nombreUsuario, StringComparison.OrdinalIgnoreCase) >= 0)
+            .Where(usuario => usuario.Nombre.IndexOf(nombreUsuario, StringComparison.OrdinalIgnoreCase) >= 0)
             .ToList();
     }
 
+    // Busca un usuario por su ID
     private Usuario BuscarPorId(string id)
     {
-        return usuarios.FirstOrDefault(u => u.Id == id);
+        return usuarios.FirstOrDefault(usuario => usuario.Id == id);
     }
 }

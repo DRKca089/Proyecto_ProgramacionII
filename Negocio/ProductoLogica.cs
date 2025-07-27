@@ -6,6 +6,7 @@ public class ProductoLogica
 {
     private readonly ProductoDatos productoDatos = new ProductoDatos();
 
+    // Agrega un nuevo producto luego de validar que no esté repetido y genera un nuevo código
     public void Agregar(Producto producto)
     {
         ValidarProducto(producto);
@@ -20,6 +21,7 @@ public class ProductoLogica
         productoDatos.AgregarProducto(producto);
     }
 
+    // Modifica un producto existente luego de validar sus datos y que no esté repetido el nombre
     public void Modificar(Producto producto)
     {
         ValidarProducto(producto, esModificacion: true);
@@ -37,6 +39,7 @@ public class ProductoLogica
         productoDatos.ActualizarProducto(producto);
     }
 
+    // Elimina un producto por su código si existe
     public void Eliminar(string codigo)
     {
         var existente = productoDatos.BuscarPorCodigo(codigo);
@@ -46,15 +49,19 @@ public class ProductoLogica
         productoDatos.EliminarProducto(codigo);
     }
 
+    // Busca un producto por su código
     public Producto BuscarPorCodigo(string codigo) =>
         productoDatos.BuscarPorCodigo(codigo);
 
+    // Busca productos por nombre
     public List<Producto> BuscarPorNombre(string nombre) =>
         productoDatos.BuscarPorNombre(nombre);
 
+    // Lista todos los productos disponibles
     public List<Producto> ListarProductos() =>
         productoDatos.ObtenerProductos();
 
+    // Actualiza el stock de los productos luego de una compra (resta las cantidades compradas)
     public void ActualizarStock(Dictionary<string, int> cantidadesCompradas)
     {
         foreach (var item in cantidadesCompradas)
@@ -70,6 +77,7 @@ public class ProductoLogica
         }
     }
 
+    // Genera una lista de productos seleccionados para una compra con sus cantidades y subtotales
     public List<CompraDetalles> ObtenerProductosParaCompra(List<Producto> productos, Dictionary<string, int> cantidadesSeleccionadas)
     {
         var carrito = new List<CompraDetalles>();
@@ -91,21 +99,25 @@ public class ProductoLogica
         return carrito;
     }
 
+    // Obtiene los n productos más vendidos (ordenados de mayor a menor por cantidad vendida)
     public List<Producto> ObtenerProductosMasVendidos(int n)
     {
         var productosConVentas = productoDatos.ObtenerProductosConVentas();
-        return productosConVentas.OrderByDescending(p => p.CantidadVendida).Take(n).ToList();
+        return productosConVentas.OrderByDescending(producto => producto.CantidadVendida).Take(n).ToList();
     }
 
+    // Obtiene los n productos menos vendidos
     public List<Producto> ObtenerProductosMenosVendidos(int n)
     {
         var productosConVentas = productoDatos.ObtenerProductosConVentas();
-        return productosConVentas.OrderBy(p => p.CantidadVendida).Take(n).ToList();
+        return productosConVentas.OrderBy(producto => producto.CantidadVendida).Take(n).ToList();
     }
 
+    // Obtiene los n productos con menor stock disponible
     public List<Producto> ObtenerProductosConMenorStock(int n) =>
         productoDatos.ObtenerProductosConMenorStock(n);
 
+    // Genera automáticamente un nuevo código de producto
     private string GenerarCodigo()
     {
         var productos = productoDatos.ObtenerProductos();
@@ -113,13 +125,14 @@ public class ProductoLogica
         int siguienteNumero = 1;
         if (productos.Any())
         {
-            int maxNumero = productos.Select(p => int.Parse(p.Codigo.Substring(1))).Max();
+            int maxNumero = productos.Select(producto => int.Parse(producto.Codigo.Substring(1))).Max();
             siguienteNumero = maxNumero + 1;
         }
 
         return "P" + siguienteNumero.ToString("D4");
     }
 
+    // Valida los datos del producto antes de agregarlo o modificarlo
     private void ValidarProducto(Producto producto, bool esModificacion = false)
     {
         if (producto == null)

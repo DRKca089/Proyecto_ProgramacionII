@@ -7,6 +7,7 @@ public class CompraLogica
     private readonly CompraDatos compraDatos = new CompraDatos();
     private readonly DetalleCompraDatos detalleDatos = new DetalleCompraDatos();
 
+    // Genera un nuevo código único de compra para el usuario
     private string GenerarCodigoCompra(string idUsuario)
     {
         var comprasUsuario = compraDatos.ObtenerComprasPorUsuario(idUsuario);
@@ -24,6 +25,7 @@ public class CompraLogica
         return "C" + siguienteNumero.ToString("D4");
     }
 
+    // Registra una nueva compra para un usuario con sus productos, y la guarda en archivos
     public string RegistrarCompra(string idUsuario, List<CompraDetalles> productos)
     {
         if (productos == null || productos.Count == 0)
@@ -56,6 +58,7 @@ public class CompraLogica
         return "OK";
     }
 
+    // Devuelve todas las compras asociadas a un nombre de usuario
     public List<Compra> ObtenerComprasPorNombreUsuario(string nombreUsuario)
     {
         var usuarios = new UsuarioDatos().ObtenerUsuarios();
@@ -79,28 +82,33 @@ public class CompraLogica
         return comprasFiltradas;
     }
 
+    // Devuelve el ingreso total generado por todas las compras registradas
     public decimal ObtenerIngresoTotalVentas()
     {
         var todasCompras = compraDatos.ObtenerCompras();
         return todasCompras.Sum(c => c.Total);
     }
 
+    // Devuelve cuánto ha gastado un usuario específico en total
     public decimal ObtenerTotalGastadoPorUsuario(string idUsuario)
     {
         var comprasUsuario = ObtenerComprasPorUsuario(idUsuario);
         return comprasUsuario.Sum(c => c.Total);
     }
 
+    // Devuelve todas las compras realizadas
     public List<Compra> ObtenerCompras()
     {
         return compraDatos.ObtenerCompras();
     }
 
+    // Devuelve todas las compras hechas por un usuario específico
     public List<Compra> ObtenerComprasPorUsuario(string idUsuario)
     {
         return compraDatos.ObtenerComprasPorUsuario(idUsuario);
     }
 
+    // Devuelve los detalles de una compra específica hecha por un usuario
     public List<CompraDetalles> ObtenerDetallesCompra(string codigoCompra, string idUsuario)
     {
         var detalles = detalleDatos.ObtenerDetallesPorCompra(codigoCompra, idUsuario);

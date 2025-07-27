@@ -16,6 +16,7 @@ public class CompraDatos
         CargarCompras();
     }
 
+    // Carga las compras desde el archivo CSV
     private void CargarCompras()
     {
         if (!File.Exists(ArchivoCompras))
@@ -47,6 +48,7 @@ public class CompraDatos
         }
     }
 
+    // Guarda las compras en el archivo CSV
     private void GuardarCompras()
     {
         var lineas = new List<string> { CabeceraCsvCompras };
@@ -54,22 +56,26 @@ public class CompraDatos
         File.WriteAllLines(ArchivoCompras, lineas);
     }
 
+    // Agrega una nueva compra y guarda los cambios
     public void AgregarCompra(Compra compra)
     {
         compras.Add(compra);
         GuardarCompras();
     }
 
+    // Devuelve todas las compras
     public List<Compra> ObtenerCompras()
     {
         return compras.ToList();
     }
 
+    // Devuelve las compras de un usuario específico
     public List<Compra> ObtenerComprasPorUsuario(string idUsuario)
     {
-        return compras.Where(c => c.IdUsuario == idUsuario).ToList();
+        return compras.Where(compra => compra.IdUsuario == idUsuario).ToList();
     }
 
+    // Convierte los campos de una línea CSV en una instancia de Compra
     private Compra ParsearCompra(string[] campos)
     {
         return new Compra
@@ -80,9 +86,10 @@ public class CompraDatos
             Total = decimal.Parse(campos[3], CultureInfo.InvariantCulture)
         };
     }
-
-    private string FormatearCompraParaCsv(Compra c)
+    
+    // Convierte una instancia de Compra en una línea CSV
+    private string FormatearCompraParaCsv(Compra compra)
     {
-        return $"{c.Codigo},{c.IdUsuario},{c.Fecha},{c.Total.ToString(CultureInfo.InvariantCulture)}";
+        return $"{compra.Codigo},{compra.IdUsuario},{compra.Fecha},{compra.Total.ToString(CultureInfo.InvariantCulture)}";
     }
 }

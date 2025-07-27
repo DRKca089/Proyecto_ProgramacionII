@@ -16,6 +16,7 @@ public class DetalleCompraDatos
         CargarDesdeArchivo();
     }
 
+    // Carga todos los detalles de compra desde el archivo CSV
     private void CargarDesdeArchivo()
     {
         detalles.Clear();
@@ -49,6 +50,7 @@ public class DetalleCompraDatos
         }
     }
 
+    // Guarda todos los detalles actuales en el archivo CSV
     private void GuardarTodo()
     {
         var lineas = new List<string> { CabeceraCsvDetalles };
@@ -56,19 +58,22 @@ public class DetalleCompraDatos
         File.WriteAllLines(ArchivoDetalleCompra, lineas);
     }
 
+    // Devuelve los detalles de una compra específica por su código y usuario
     public List<CompraDetalles> ObtenerDetallesPorCompra(string codigoCompra, string idUsuario)
     {
-        return detalles.Where(d =>
-            d.CodigoCompra.Equals(codigoCompra, StringComparison.OrdinalIgnoreCase) &&
-            d.IdUsuario.Equals(idUsuario, StringComparison.OrdinalIgnoreCase)).ToList();
+        return detalles.Where(detalleCompra =>
+            detalleCompra.CodigoCompra.Equals(codigoCompra, StringComparison.OrdinalIgnoreCase) &&
+            detalleCompra.IdUsuario.Equals(idUsuario, StringComparison.OrdinalIgnoreCase)).ToList();
     }
 
+    // Agrega una lista de nuevos detalles de compra y los guarda en el archivo
     public void AgregarDetalles(List<CompraDetalles> nuevosDetalles)
     {
         detalles.AddRange(nuevosDetalles);
         GuardarTodo();
     }
 
+    // Convierte un arreglo de campos CSV en un objeto CompraDetalles
     private CompraDetalles ParsearDetalle(string[] campos)
     {
         return new CompraDetalles
@@ -81,6 +86,7 @@ public class DetalleCompraDatos
         };
     }
 
+    // Convierte un objeto CompraDetalles en una línea CSV
     private string FormatearDetalleParaCsv(CompraDetalles detalle)
     {
         return $"{detalle.CodigoCompra},{detalle.IdUsuario},{detalle.NombreProducto},{detalle.Cantidad},{detalle.PrecioUnitario.ToString(CultureInfo.InvariantCulture)}";

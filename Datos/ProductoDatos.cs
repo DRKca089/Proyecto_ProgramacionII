@@ -23,15 +23,17 @@ public class ProductoDatos
         return productos.ToList();
     }
 
+    // Agrega un nuevo producto y lo guarda en el archivo
     public void AgregarProducto(Producto producto)
     {
         productos.Add(producto);
         GuardarProductosEnArchivo();
     }
 
+    // Actualiza un producto existente y guarda los cambios
     public void ActualizarProducto(Producto productoActualizado)
     {
-        var producto = productos.FirstOrDefault(p => p.Codigo == productoActualizado.Codigo);
+        var producto = productos.FirstOrDefault(producto => producto.Codigo == productoActualizado.Codigo);
         if (producto != null)
         {
             producto.Nombre = productoActualizado.Nombre;
@@ -41,9 +43,10 @@ public class ProductoDatos
         }
     }
 
+    // Elimina un producto por su código y guarda los cambios
     public void EliminarProducto(string codigo)
     {
-        var producto = productos.FirstOrDefault(p => p.Codigo == codigo);
+        var producto = productos.FirstOrDefault(producto => producto.Codigo == codigo);
         if (producto != null)
         {
             productos.Remove(producto);
@@ -51,42 +54,46 @@ public class ProductoDatos
         }
     }
 
+    // Busca un producto por su código exacto
     public Producto BuscarPorCodigo(string codigo)
     {
-        return productos.FirstOrDefault(p => p.Codigo.Equals(codigo, StringComparison.OrdinalIgnoreCase));
+        return productos.FirstOrDefault(producto => producto.Codigo.Equals(codigo, StringComparison.OrdinalIgnoreCase));
     }
 
+    // Busca productos por nombre parcial o completo
     public List<Producto> BuscarPorNombre(string nombre)
     {
-        return productos.Where(p => p.Nombre.IndexOf(nombre, StringComparison.OrdinalIgnoreCase) >= 0).ToList();
+        return productos.Where(producto => producto.Nombre.IndexOf(nombre, StringComparison.OrdinalIgnoreCase) >= 0).ToList();
     }
 
+    // Devuelve los N productos con menor stock disponible
     public List<Producto> ObtenerProductosConMenorStock(int n)
     {
         return productos
-            .OrderBy(p => p.CantidadDisponible)
+            .OrderBy(producto => producto.CantidadDisponible)
             .Take(n)
             .ToList();
     }
 
+    // Devuelve productos con información de ventas (cantidad vendida e ingresos generados)
     public List<Producto> ObtenerProductosConVentas()
     {
         var detalles = CargarDetallesDesdeArchivo();
 
         var productosConVentas = detalles
-            .GroupBy(d => d.NombreProducto.Trim())
-            .Select(g =>
+            .GroupBy(detalleCompra => detalleCompra.NombreProducto.Trim())
+            .Select(grupo =>
             {
-                var nombre = g.Key;
+                var nombre = grupo.Key;
                 var productoOriginal = productos
-                    .FirstOrDefault(p => p.Nombre.Trim().Equals(nombre, StringComparison.OrdinalIgnoreCase));
+                    .FirstOrDefault(producto => producto.Nombre.Trim().Equals(nombre, StringComparison.OrdinalIgnoreCase));
 
                 return new Producto
                 {
                     Codigo = productoOriginal?.Codigo ?? "---",
                     Nombre = productoOriginal?.Nombre ?? $"{nombre} (eliminado)",
-                    CantidadVendida = g.Sum(x => x.Cantidad),
-                    Ingreso = g.Sum(x => x.Subtotal)
+                    CantidadVendida = grupo.Sum(x => x.Cantidad),
+                    Ingreso = grupo.Sum(x => x.Subtotal)
                 };
             })
             .ToList();
@@ -94,6 +101,7 @@ public class ProductoDatos
         return productosConVentas;
     }
 
+    // Carga los productos desde el archivo CSV
     private List<Producto> CargarProductosDesdeArchivo()
     {
         var lista = new List<Producto>();
@@ -128,6 +136,7 @@ public class ProductoDatos
         return lista;
     }
 
+    // Guarda la lista de productos en el archivo CSV
     private void GuardarProductosEnArchivo()
     {
         var lineas = new List<string> { CabeceraCsvProductos };
@@ -138,6 +147,7 @@ public class ProductoDatos
         File.WriteAllLines(ArchivoProductos, lineas);
     }
 
+    // Carga los detalles de compra desde el archivo CSV para calcular ventas
     private List<CompraDetalles> CargarDetallesDesdeArchivo()
     {
         var detalles = new List<CompraDetalles>();
