@@ -140,7 +140,7 @@ namespace Presentacion.Forms.FormsAdministrador
             }
             catch (ArgumentOutOfRangeException ex)
             {
-                MessageBox.Show($"Se intentó acceder a una fila que no existe.\n{ ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show($"Se intentó acceder a una fila que no existe.\n{ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             catch (Exception ex)
             {
@@ -198,10 +198,19 @@ namespace Presentacion.Forms.FormsAdministrador
 
         private void txtBuscar_KeyDown(object sender, KeyEventArgs e)
         {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.SuppressKeyPress = true;
+                btnBuscar.PerformClick();
+            }
+        }
+
+        private void txtContraseña_KeyDown(object sender, KeyEventArgs e)
+        {
             if(e.KeyCode == Keys.Enter)
             {
                 e.SuppressKeyPress = true;
-                btnBuscar.PerformClick(); 
+                btnAgregar.PerformClick();
             }
         }
     }

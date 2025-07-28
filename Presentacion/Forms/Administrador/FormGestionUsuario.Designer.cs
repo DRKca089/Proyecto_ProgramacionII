@@ -344,6 +344,7 @@
             txtContraseña.Size = new System.Drawing.Size(389, 21);
             txtContraseña.TabIndex = 45;
             txtContraseña.UseSystemPasswordChar = true;
+            txtContraseña.KeyDown += txtContraseña_KeyDown;
             // 
             // label8
             // 
